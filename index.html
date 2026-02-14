@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aromagic — Narzędzia do prowadzenia biznesu doTERRA</title>
+  <meta name="description" content="Minuty zamiast godzin. Analityka zespołu, kalkulacje cenowe, katalog produktów — bezpośrednio z portalu doTERRA.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --bg: #ffffff;
+      --bg-soft: #F9FAFB;  
+      --border: #E5E7EB;       
+      --purple: #7E57C2;
+      --purple-soft: #F3EEFA;
+      --green: #4CAF50;
+      --green-hover: #43A047;
+      --nav-h: 64px
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .w {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .nav-logo span {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-hover);
+    }
+
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-soft);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle svg { color: var(--text); }
+
+    /* ---- HERO ---- */
+    .hero {
+      padding: calc(var(--nav-h) + 80px) 0 96px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- SECTION ---- */
+    section { padding: 80px 0; }
+    .bg-soft { background: var(--bg-soft); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .section-head {
+      margin-bottom: 56px;
+    }
+
+    .section-head h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      margin-top: 12px;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+    }
+
+    .section-head--center {
+      text-align: center;
+    }
+
+    .section-head--center p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- PROBLEM ---- */
+    .problems {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .problem-item {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .problem-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+
+    .problem-icon svg { width: 18px; height: 18px; }
+
+    .problem-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .problem-summary {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .problem-summary strong {
+      color: var(--purple);
+    }
+
+    /* ---- FEATURES ---- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .feature {
+      padding: 32px 28px;
+      background: var(--bg);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 16px;
+      color: var(--purple);
+    }
+
+    .feature-icon svg { width: 36px; height: 36px; stroke-width: 1.5; }
+
+    .feature h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ---- WHY ---- */
+    .why-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 14px;
+    }
+
+    .why-check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--purple-soft);
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .why-check svg { width: 14px; height: 14px; }
+
+    .why-item h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .why-item p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ---- PERSONAS ---- */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .persona {
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+    }
+
+    .persona h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .persona p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ---- ROADMAP ---- */
+    .roadmap-grid {
+      display: flex;
+      gap: 16px;
+    }
+
+    .roadmap-item {
+      flex: 1;
+      padding: 24px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .roadmap-item-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 12px;
+      color: var(--text-muted);
+    }
+
+    .roadmap-item-icon svg { width: 32px; height: 32px; stroke-width: 1.5; }
+
+    .roadmap-item h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* ---- PROOF ---- */
+    .proof-content {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .proof-content blockquote {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: normal;
+      margin-bottom: 16px;
+    }
+
+    .proof-author {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* ---- CTA ---- */
+    .final-cta {
+      padding: 96px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .final-cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    .final-cta p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .final-cta .hero-note { margin-top: 14px; }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ---- ANIMATIONS ---- */
+    .anim {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .anim.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+        gap: 12px;
+      }
+      .nav-toggle { display: block; }
+
+      .hero { padding: calc(var(--nav-h) + 48px) 0 64px; }
+      .hero h1 { font-size: 2rem; }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+
+      section { padding: 56px 0; }
+      .section-head { margin-bottom: 36px; }
+      .section-head h2 { font-size: 1.5rem; }
+
+      .problems,
+      .why-list,
+      .personas-grid { grid-template-columns: 1fr; }
+
+      .features-grid { grid-template-columns: 1fr; }
+
+      .roadmap-grid { flex-direction: column; }
+
+      .final-cta { padding: 64px 0; }
+      .final-cta h2 { font-size: 1.5rem; }
+
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Aromagic">
+        <span>Aromagic</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#features">Funkcje</a>
+        <a href="#why">Dlaczego my</a>
+        <a href="#for-who">Dla kogo</a>
+        <a href="#cta" class="btn btn-primary">Dołącz za darmo</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="w">
+      <div class="hero-label">Early Access</div>
+      <h1>Wszystkie narzędzia do biznesu doTERRA w&nbsp;jednym miejscu</h1>
+      <p class="hero-sub">Minuty zamiast godzin. Analityka zespołu, kalkulacje cenowe, katalog produktów — bezpośrednio z&nbsp;portalu doTERRA.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">Dołącz do Early Access</a>
+      </div>
+      <p class="hero-note">Bez karty kredytowej. Zacznij w kilka minut.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="bg-soft" id="problem">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">Problem</div>
+        <h2>Znasz to?</h2>
+      </div>
+      <div class="problems">
+        <div class="problem-item anim">
+          <div class="problem-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          </div>
+          <p>Portal doTERRA wolno działa, a&nbsp;dane starsze niż 6&nbsp;miesięcy są praktycznie niedostępne.</p>
+        </div>
+        <div class="problem-item anim">
+          <div class="problem-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z"/></svg>
+          </div>
+          <p>Godziny tygodniowo na ręczne przeliczanie cen, sprawdzanie punktów i&nbsp;analizę zespołu w&nbsp;Excelu.</p>
+        </div>
+        <div class="problem-item anim">
+          <div class="problem-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59"/></svg>
+          </div>
+          <p>Sprawdzenie historii klienta lub nieopłaconych zamówień to przeklikiwanie portalu strona po stronie.</p>
+        </div>
+        <div class="problem-item anim">
+          <div class="problem-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+          </div>
+          <p>Przy zespole 100+ osób to nie zarządzanie — to walka z&nbsp;narzędziami zamiast skupienia na ludziach.</p>
+        </div>
+      </div>
+      <p class="problem-summary anim">
+        <strong>Aromagic to zmienia.</strong> Wszystko, na co w&nbsp;portalu tracisz minuty, tutaj masz natychmiast.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">Funkcje</div>
+        <h2>Narzędzia, które oszczędzają godziny</h2>
+      </div>
+      <div class="features-grid anim">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z"/></svg>
+          </div>
+          <h3>Dashboard zespołu</h3>
+          <p>Historia każdego klienta jednym kliknięciem. Zamówienia na żywo, powroty po nieaktywności, nieopłacone zamówienia.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+          </div>
+          <h3>Statystyki i analiza</h3>
+          <p>Skład obrotu, klastry PO3, kalkulator fast startu, retencja zespołu. Pełna historia danych — porównuj miesiące i śledź trendy.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"/></svg>
+          </div>
+          <h3>Nawigacja po strukturze</h3>
+          <p>Drzewo zespołu, zaawansowane filtrowanie, szybkie wyszukiwanie. Widzisz kto jest pod kim i dajesz konkretne wskazówki.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
+          </div>
+          <h3>Kalkulacje cenowe</h3>
+          <p>Dodaj produkty, wygeneruj kalkulację i wyślij klientowi link — widzi ceny w&nbsp;swojej walucie. Wiele rynków.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          </div>
+          <h3>Katalog produktów</h3>
+          <p>Pełna baza doTERRA z cenami na różnych rynkach i opisami w wielu językach. Koniec z&nbsp;PDF-ami.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+          </div>
+          <h3>Integracja z portalem</h3>
+          <p>Rozszerzenie Chrome synchronizuje dane bezpośrednio z portalu doTERRA. Katalog i kalkulacje działają na każdym urządzeniu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="bg-soft" id="why">
+    <div class="w">
+      <div class="section-head anim">
+        <div class="section-label">Dlaczego Aromagic</div>
+        <h2>To, czego nie daje żadne inne narzędzie</h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item anim">
+          <div class="why-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <h4>Jedyne takie narzędzie w Europie</h4>
+            <p>Nie ma drugiej dedykowanej platformy dla doTERRA.</p>
+          </div>
+        </div>
+        <div class="why-item anim">
+          <div class="why-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <h4>Aktualny plan kompensacyjny</h4>
+            <p>PO3 Boost, Rank Compression, nowe progi PGV.</p>
+          </div>
+        </div>
+        <div class="why-item anim">
+          <div class="why-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <h4>Bezpieczeństwo i RODO</h4>
+            <p>Dane przechowywane w UE, eksport w każdej chwili.</p>
+          </div>
+        </div>
+        <div class="why-item anim">
+          <div class="why-check">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+          </div>
+          <div>
+            <h4>Szybki start</h4>
+            <p>Pierwszy import danych zajmuje kilka minut.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHO -->
+  <section id="for-who">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">Dla kogo</div>
+        <h2>Niezależnie od wielkości zespołu</h2>
+      </div>
+      <div class="personas-grid">
+        <div class="persona anim">
+          <h3>Budujesz zespół?</h3>
+          <p>Kalkulator cenowy, katalog produktów, podgląd na zespół — gotowe narzędzia od pierwszego dnia. Startujesz profesjonalnie zamiast od zera.</p>
+        </div>
+        <div class="persona anim">
+          <h3>Zarządzasz dużym zespołem?</h3>
+          <p>Podgląd na całą strukturę, filtrowanie po aktywności, planowanie rangi. Skupiasz się na ludziach, nie na&nbsp;Excelu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="bg-soft">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">W planach</div>
+        <h2>To dopiero początek</h2>
+      </div>
+      <div class="roadmap-grid anim">
+        <div class="roadmap-item">
+          <div class="roadmap-item-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg>
+          </div>
+          <h4>Inteligentne powiadomienia</h4>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-item-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/></svg>
+          </div>
+          <h4>Planowanie rangi</h4>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-item-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-6 18.75h6"/></svg>
+          </div>
+          <h4>Aplikacja mobilna</h4>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-item-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+          </div>
+          <h4>AI asystent</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section>
+    <div class="w">
+      <div class="proof-content anim">
+        <blockquote>
+          Aromagic powstaje z&nbsp;realnej potrzeby — tworzy je aktywny konsultant doTERRA, który sam codziennie zarządza zespołem i&nbsp;zna każdy ból portalu od środka.
+        </blockquote>
+        <p class="proof-author">Stworzone przez praktyka</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="cta">
+    <div class="w">
+      <div class="anim">
+        <h2>Zacznij korzystać</h2>
+        <p>Dołącz do programu Early Access i testuj Aromagic jako jeden z&nbsp;pierwszych.</p>
+        <a href="#" class="btn btn-primary">Dołącz bezpłatnie</a>
+        <p class="hero-note">Bez karty kredytowej. Bez zobowiązań.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="w">
+      <div class="footer-inner">
+        <span>&copy; 2025 Aromagic</span>
+        <div class="footer-links">
+          <a href="#">Polityka prywatności</a>
+          <a href="#">Regulamin</a>
+          <a href="#">Kontakt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a =>
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+
+    // Scroll animations
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
