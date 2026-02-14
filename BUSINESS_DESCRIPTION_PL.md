@@ -9,9 +9,9 @@
 Prowadzenie biznesu doTERRA wymaga codziennego śledzenia dziesiątek informacji: kto złożył zamówienie, ile OV ma każda noga, jakie ceny obowiązują na danym rynku, kto potrzebuje wsparcia. Większość konsultantów radzi sobie z tym za pomocą Excela, notatek w telefonie i ręcznego przepisywania danych z portalu doTERRA.
 
 To oznacza:
-- **Ociężały system doTERRA** — wolno działa, brakuje funkcjonalności, a i tak trzeba go uzupełniać Excelem i notatkami
-- **Stracony czas na kalkulacje** — ręczne przeliczanie cen w wielu walutach i przygotowywanie ofert zabiera czas, który mógłbyś poświęcić na sprzedaż
-- **Ślepe zarządzanie zespołem** — żeby sprawdzić historię klienta, zamówienia w strukturze czy nieopłacone zamówienia, musisz przeklikiwać się przez portal. Brak filtrów, brak statystyk, brak szybkiego podglądu
+- **Ociężały system doTERRA** — wolno działa, brakuje funkcjonalności, a i tak trzeba go uzupełniać Excelem i notatkami. Dane starsze niż 6 miesięcy? Praktycznie niedostępne.
+- **Stracony czas na kalkulacje** — ręczne przeliczanie cen w wielu walutach, przygotowywanie ofert, sprawdzanie punktów lojalnościowych. Godziny tygodniowo, które mógłbyś poświęcić na sprzedaż i budowanie zespołu.
+- **Ślepe zarządzanie zespołem** — żeby sprawdzić historię klienta, zamówienia w strukturze czy nieopłacone zamówienia, musisz przeklikiwać się przez portal strona po stronie. Brak filtrów, brak statystyk, brak szybkiego podglądu. Przy zespole 100+ osób to godziny pracy tygodniowo.
 
 ---
 
@@ -21,9 +21,9 @@ Wszystko, na co w portalu doTERRA tracisz minuty przeklikiwania, w Aromagic masz
 
 ### Klienci i zamówienia
 - **Historia każdego klienta jednym kliknięciem** — zamówienia, status LRP, zniżki, punkty lojalnościowe, ulubione produkty. Bez przeklikiwania się przez portal.
-- **Zamówienia w strukturze na żywo** — natychmiast widzisz kto złożył zamówienie w bieżącym miesiącu.
+- **Zamówienia w strukturze na żywo** — koniec z codziennym sprawdzaniem portalu. Widzisz kto zamówił i od razu wiesz, ile brakuje Ci do celu.
 - **Powroty po nieaktywności** — wyłapujesz kto wrócił po przerwie. Realna szansa na optymalizację struktury i wyższe zarobki.
-- **Zamówienia poza LRP** — widzisz kto zamówił bez szablonu. Możesz mu jeszcze pomóc zdobyć punkty, a sobie zaliczyć obrót do klastrów.
+- **Zamówienia poza LRP** — widzisz kto zamówił bez szablonu. Możesz mu pomóc zdobyć punkty, a sobie zaliczyć obrót do klastrów.
 - **Nieopłacone zamówienia** — numer zamówienia, wartość PV i data — jednym kliknięciem przechodzisz do zamówienia w portalu doTERRA.
 
 ### Statystyki i analiza
@@ -31,8 +31,8 @@ Wszystko, na co w portalu doTERRA tracisz minuty przeklikiwania, w Aromagic masz
 - **Tracking rejestracji** — który WA generuje rejestracje, w jakich miesiącach, które są opłacone, na jakie produkty. Wszystko w jednym widoku.
 - **Klastry PO3 i PGV** — w sekundę sprawdzasz stan wypełnienia klastra w danym miesiącu i aktualną wartość PGV dowolnej osoby w strukturze.
 - **Kalkulator fast startu** — od razu wiesz ile zarobisz na danej rejestracji lub zamówieniu w ramach fast startu. Bez ręcznego liczenia.
-- **Retencja w zespole** — statystyki unikalnych klientów składających zamówienia. Łatwo policzysz retencję i zobaczysz jak aktywny jest Twój zespół z miesiąca na miesiąc.
-- **Pełna historia danych** — w portalu doTERRA dane starsze niż 6 miesięcy są praktycznie niedostępne. W Aromagic masz przejrzysty dostęp do całej historii bez ograniczeń.
+- **Retencja w zespole** — widzisz ilu unikalnych klientów składa zamówienia i jak to się zmienia z miesiąca na miesiąc. Reagujesz na spadki zanim wpłyną na Twoją rangę.
+- **Pełna historia danych** — w portalu doTERRA dane starsze niż 6 miesięcy są praktycznie niedostępne. W Aromagic masz całą historię — porównujesz miesiące, śledzisz trendy, planujesz na podstawie danych, nie przeczuć.
 
 ### Nawigacja po strukturze
 - **Zaawansowane filtrowanie** — po enrollerze, sponsorze, fast starcie, PGV, nieaktywności, randze — dowolna kombinacja filtrów. Znajdziesz dokładnie tych członków, których szukasz.
@@ -60,10 +60,12 @@ Rozszerzenie do Chrome, które działa bezpośrednio na stronach office.doterra.
 ## Dlaczego Aromagic
 
 - **Jedyne takie narzędzie** — nie ma drugiej dedykowanej platformy dla doTERRA w Europie Środkowej
+- **Aktualny plan kompensacyjny** — Aromagic uwzględnia najnowszy Elevated Compensation Plan doTERRA, w tym PO3 Boost, Rank Compression i nowe progi PGV
 - **Wszystko w jednym** — zastępuje Excel, ręczne notatki i kalkulator
 - **Integracja z doTERRA** — dane z portalu doTERRA dostępne bezpośrednio w aplikacji
-- **Bezpieczeństwo** — Twoje dane i dane zespołu w jednym bezpiecznym miejscu z kontrolą dostępu
+- **Bezpieczeństwo i RODO** — Twoje dane i dane zespołu w jednym bezpiecznym miejscu z kontrolą dostępu. Dane przechowywane w UE, zgodnie z RODO. Możesz je wyeksportować w każdej chwili.
 - **Oszczędność czasu** — minuty zamiast godzin na analizę zespołu i przygotowanie ofert
+- **Szybki start** — pierwszy import danych zajmuje kilka minut. Instalujesz rozszerzenie Chrome, synchronizujesz dane i zaczynasz pracować.
 
 ---
 
@@ -82,7 +84,7 @@ Masz zespół 50, 500 czy 1000+ osób? Aromagic daje Ci podgląd na całą struk
 - **Inteligentne powiadomienia** — alerty o nieaktywnych klientach, brakującym OV w nodze lub klastrze, ryzyku utraty zniżki lub przepadnięciu punktów lojalnościowych. Aromagic pilnuje za Ciebie zamiast samodzielnie szukać problemów.
 - **Zaawansowane planowanie rangi i klastrów** — przypisywanie członków do nóg, planowanie przyszłych zamówień oraz uwzględnianie zamówień nieopłaconych, o których wiesz, żeby uzyskać odpowiednie OV. Zagnieżdżone planowanie rang (np. Gold wymaga Premier, który wymaga Executive). Analiza opłacalności: ile kosztuje dokupienie vs ile zyskasz na wyższej randze lub poziomie PO3.
 - **Aplikacja mobilna** — natywna aplikacja na iOS i Android z pełnym dostępem do wszystkich funkcji.
-- **AI asystent** — inteligentne podpowiedzi do zarządzania zespołem i optymalizacji struktury.
+- **AI asystent** — podpowie kogo warto skontaktować, gdzie tracisz OV i jak zoptymalizować strukturę żeby utrzymać lub podnieść rangę.
 
 ---
 
@@ -91,3 +93,16 @@ Masz zespół 50, 500 czy 1000+ osób? Aromagic daje Ci podgląd na całą struk
 - Aplikacja webowa z pełnym dostępem mobilnym — działa w przeglądarce na komputerze, tablecie i telefonie
 - Rozszerzenie Chrome do integracji z portalem doTERRA
 - Bezpieczna autoryzacja i szyfrowane połączenia
+- Dane przechowywane w UE, zgodność z RODO
+
+---
+
+## Stworzone przez praktyka
+
+Aromagic powstaje z realnej potrzeby — tworzy je aktywny konsultant doTERRA, który sam codziennie zarządza zespołem i zna każdy ból portalu od środka.
+
+---
+
+## Zacznij korzystać
+
+Dołącz do programu Early Access i testuj Aromagic jako jeden z pierwszych. Bezpłatnie.
