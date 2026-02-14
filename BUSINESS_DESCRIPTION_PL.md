@@ -52,13 +52,13 @@ Sprawdź w sekundę, jaki produkt można odebrać za punkty lojalnościowe i ile
 Pełna baza produktów doTERRA z wyszukiwaniem, filtrami i szczegółowymi informacjami. Aktualne ceny na różnych rynkach, opisy w wielu językach. Koniec z przeglądaniem katalogów PDF.
 
 ### Integracja z portalem doTERRA
-Rozszerzenie do Chrome, które działa bezpośrednio na stronach office.doterra.com i mydoterra.com. Pobiera najświeższe dane z portalu doTERRA, dzięki czemu w Aromagic zawsze pracujesz na aktualnych informacjach.
+Rozszerzenie do Chrome, które działa bezpośrednio na stronach office.doterra.com i mydoterra.com. Pobiera najświeższe dane z portalu doTERRA, dzięki czemu w Aromagic zawsze pracujesz na aktualnych informacjach. Aktualizacja danych o zespole wymaga przeglądarki desktopowej — katalog produktów, cenniki i kalkulacje działają na każdym urządzeniu.
 
 ---
 
 ## Dlaczego Aromagic
 
-- **Jedyne takie narzędzie** — nie ma drugiej platformy dedykowanej doTERRA na rynku polskim
+- **Jedyne takie narzędzie** — nie ma drugiej dedykowanej platformy dla doTERRA w Europie Środkowej
 - **Wszystko w jednym** — zastępuje Excel, ręczne notatki i kalkulator
 - **Integracja z doTERRA** — dane z portalu doTERRA dostępne bezpośrednio w aplikacji
 - **Bezpieczeństwo** — Twoje dane i dane zespołu w jednym bezpiecznym miejscu z kontrolą dostępu
@@ -68,16 +68,25 @@ Rozszerzenie do Chrome, które działa bezpośrednio na stronach office.doterra.
 
 ## Dla kogo
 
-### Nowy konsultant
-Dopiero zaczynasz? Aromagic daje Ci gotowe narzędzia od pierwszego dnia: kalkulator cenowy, katalog produktów, podgląd na zespół. Startujesz z profesjonalnym zapleczem zamiast zaczynać od zera.
+### Konsultant budujący zespół
+Zaczynasz budować swoją strukturę? Aromagic daje Ci gotowe narzędzia od pierwszego dnia: kalkulator cenowy, katalog produktów, podgląd na zespół. Startujesz z profesjonalnym zapleczem zamiast zaczynać od zera.
 
 ### Doświadczony lider
 Masz zespół 50, 500 czy 1000+ osób? Aromagic daje Ci podgląd na całą strukturę i filtrowanie po aktywności. Skupiasz się na ludziach, nie na Excelu.
 
 ---
 
+## W planach
+
+- **Inteligentne powiadomienia** — alerty o nieaktywnych klientach, brakującym OV w nodze lub klastrze, ryzyku utraty zniżki lub przepadnięciu punktów lojalnościowych. Aromagic pilnuje za Ciebie zamiast samodzielnie szukać problemów.
+- **Zaawansowane planowanie rangi i klastrów** — przypisywanie członków do nóg, planowanie przyszłych zamówień oraz uwzględnianie zamówień nieopłaconych, o których wiesz, żeby uzyskać odpowiednie OV. Zagnieżdżone planowanie rang (np. Gold wymaga Premier, który wymaga Executive). Analiza opłacalności: ile kosztuje dokupienie vs ile zyskasz na wyższej randze lub poziomie PO3.
+- **Aplikacja mobilna** — natywna aplikacja na iOS i Android z pełnym dostępem do wszystkich funkcji.
+- **AI asystent** — inteligentne podpowiedzi do zarządzania zespołem i optymalizacji struktury.
+
+---
+
 ## Technologia
 
-- Aplikacja webowa (działa w przeglądarce na komputerze i telefonie)
+- Aplikacja webowa z pełnym dostępem mobilnym — działa w przeglądarce na komputerze, tablecie i telefonie
 - Rozszerzenie Chrome do integracji z portalem doTERRA
 - Bezpieczna autoryzacja i szyfrowane połączenia

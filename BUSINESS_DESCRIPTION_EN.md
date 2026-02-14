@@ -52,13 +52,13 @@ Check in seconds which products can be redeemed for free with loyalty points and
 Complete doTERRA product database with search, filters, and detailed information. Current prices across different markets, multi-language descriptions. No more browsing through PDF catalogs.
 
 ### doTERRA Portal Integration
-Chrome extension that works directly on office.doterra.com and mydoterra.com. It pulls the freshest data from the doTERRA portal, so you always work with up-to-date information in Aromagic.
+Chrome extension that works directly on office.doterra.com and mydoterra.com. It pulls the freshest data from the doTERRA portal, so you always work with up-to-date information in Aromagic. Team data syncing requires a desktop browser — product catalog, price lists, and calculations work on any device.
 
 ---
 
 ## Why Aromagic
 
-- **One of a kind** — there is no other platform dedicated to doTERRA on the Polish market
+- **One of a kind** — there is no other dedicated platform for doTERRA in Central Europe
 - **All-in-one** — replaces Excel, manual notes, and calculators
 - **doTERRA integration** — data from the doTERRA portal available directly in the app
 - **Security** — your data and team data in one secure place with access control
@@ -68,16 +68,25 @@ Chrome extension that works directly on office.doterra.com and mydoterra.com. It
 
 ## Who It's For
 
-### New Consultant
-Just starting out? Aromagic gives you ready-made tools from day one: price calculator, product catalog, team overview. You start with a professional toolkit instead of building everything from scratch.
+### Team-Building Consultant
+Starting to build your structure? Aromagic gives you ready-made tools from day one: price calculator, product catalog, team overview. You start with a professional toolkit instead of building everything from scratch.
 
 ### Experienced Leader
 Managing a team of 50, 500, or 1,000+ people? Aromagic gives you a view of your entire structure and activity filtering. Focus on people, not spreadsheets.
 
 ---
 
+## Coming Soon
+
+- **Smart Notifications** — alerts for inactive clients, missing OV in a leg or cluster, risk of losing a discount, or loyalty points about to expire. Aromagic watches for you instead of hunting for problems yourself.
+- **Advanced Rank & Cluster Planning** — assign members to legs, plan future orders and factor in known but unpaid orders to hit the right OV targets. Nested rank planning (e.g. Gold requires Premier, which requires Executive). Cost-benefit analysis: how much to invest vs how much you gain from the higher rank or PO3 level.
+- **Mobile App** — native iOS and Android app with full access to all features.
+- **AI Assistant** — intelligent suggestions for team management and structure optimization.
+
+---
+
 ## Technology
 
-- Web application (works in any browser on desktop and mobile)
+- Web application with full mobile access — works in any browser on desktop, tablet, and phone
 - Chrome extension for doTERRA portal integration
 - Secure authentication and encrypted connections
