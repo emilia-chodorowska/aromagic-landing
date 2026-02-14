@@ -37,6 +37,7 @@ Everything that takes minutes of clicking through the doTERRA portal, Aromagic g
 ### Structure Navigation
 - **Advanced filtering** — by enroller, sponsor, fast start, PGV, inactivity, rank — any combination. Find exactly the members you're looking for.
 - **Quick member search** — instantly find anyone in your structure, view their stats, and copy their ID in one click.
+- **Tree view of your structure** — intuitively expand and collapse team branches. See who's under whom, drill down into the structure, and jump back in one click.
 - **WA team structures at a glance** — quickly analyze any member's downline. See their structure, assess the situation, and give them targeted guidance.
 
 ### Rank Planning

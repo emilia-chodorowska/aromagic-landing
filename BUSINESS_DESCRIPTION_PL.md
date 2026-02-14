@@ -37,6 +37,7 @@ Wszystko, na co w portalu doTERRA tracisz minuty przeklikiwania, w Aromagic masz
 ### Nawigacja po strukturze
 - **Zaawansowane filtrowanie** — po enrollerze, sponsorze, fast starcie, PGV, nieaktywności, randze — dowolna kombinacja filtrów. Znajdziesz dokładnie tych członków, których szukasz.
 - **Szybkie wyszukiwanie członków** — natychmiastowe znajdowanie osób w strukturze, podgląd ich statystyk i kopiowanie ID jednym kliknięciem.
+- **Przeglądanie drzewa struktury** — intuicyjne rozwijanie i zwijanie gałęzi zespołu. Widzisz kto jest pod kim, przechodzisz w głąb struktury i wracasz jednym kliknięciem.
 - **Wgląd w struktury WA w zespole** — szybka analiza zespołów poszczególnych członków. Widzisz ich strukturę, oceniasz sytuację i przekazujesz konkretne wskazówki.
 
 ### Planowanie rangi
