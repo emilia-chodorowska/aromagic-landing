@@ -13,7 +13,7 @@ Aktywny konsultant, który przeszedł fazę "tylko kupuję dla siebie" i zaczą�
 
 ### Typowy dzień z doTERRA
 - Rano sprawdza czy ktoś złożył zamówienie
-- Przelicza ceny dla klientów z różnych rynków (PL, CZ, DE)
+- Przelicza ceny dla klientów z różnych rynków europejskich (DE, PL, RO, AT, CH, FR, IT i inne)
 - Przegląda portal żeby zobaczyć kto jest aktywny w tym miesiącu
 - Pisze do osób, które dawno nie zamawiały
 - Wieczorem ręcznie liczy OV w nogach i sprawdza ile brakuje do kolejnej rangi
@@ -50,7 +50,7 @@ Aktywny konsultant, który przeszedł fazę "tylko kupuję dla siebie" i zaczą�
 **Doświadczenie:** 2-10+ lat aktywnego budowania
 
 ### Kim jest
-Lider z rozbudowaną strukturą, często cross-border (zespoły w PL, CZ, SK, HU, DE). doTERRA to główne lub znaczące źródło dochodu. Ma 3-6 aktywnych nóg, w każdej po kilkudziesięciu-kilkuset ludzi. Mentoruje swoich builderów i pomaga im awansować. Uczestniczy w eventach doTERRA, często prowadzi szkolenia.
+Lider z rozbudowaną strukturą, często cross-border (zespoły w DE, PL, RO, AT, CH, FR, IT i innych krajach europejskich). doTERRA to główne lub znaczące źródło dochodu. Ma 3-6 aktywnych nóg, w każdej po kilkudziesięciu-kilkuset ludzi. Mentoruje swoich builderów i pomaga im awansować. Uczestniczy w eventach doTERRA, często prowadzi szkolenia.
 
 ### Typowy dzień z doTERRA
 - Sprawdza stan zamówień w całej strukturze — kto już zamówił, kto nie

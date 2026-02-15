@@ -59,7 +59,7 @@ Chrome extension that works directly on office.doterra.com and mydoterra.com. It
 
 ## Why Aromagic
 
-- **One of a kind** — there is no other dedicated platform for doTERRA in Central Europe
+- **One of a kind** — there is no other dedicated platform for doTERRA in Europe
 - **Up-to-date compensation plan** — Aromagic supports the latest Elevated Compensation Plan, including PO3 Boost, Rank Compression, and new PGV thresholds
 - **All-in-one** — replaces Excel, manual notes, and calculators
 - **doTERRA integration** — data from the doTERRA portal available directly in the app

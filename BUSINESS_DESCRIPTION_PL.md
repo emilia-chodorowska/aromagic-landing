@@ -59,7 +59,7 @@ Rozszerzenie do Chrome, które działa bezpośrednio na stronach office.doterra.
 
 ## Dlaczego Aromagic
 
-- **Jedyne takie narzędzie** — nie ma drugiej dedykowanej platformy dla doTERRA w Europie Środkowej
+- **Jedyne takie narzędzie** — nie ma drugiej dedykowanej platformy dla doTERRA w Europie
 - **Aktualny plan kompensacyjny** — Aromagic uwzględnia najnowszy Elevated Compensation Plan doTERRA, w tym PO3 Boost, Rank Compression i nowe progi PGV
 - **Wszystko w jednym** — zastępuje Excel, ręczne notatki i kalkulator
 - **Integracja z doTERRA** — dane z portalu doTERRA dostępne bezpośrednio w aplikacji

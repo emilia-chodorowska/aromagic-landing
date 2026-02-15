@@ -136,7 +136,7 @@ Rozszerzenie Chrome opiera się na strukturze stron doTERRA. Zmiana layoutu port
 → *Plan B:* Monitoring zmian w portalu, szybkie aktualizacje rozszerzenia. Dane już zsynchronizowane pozostają dostępne.
 
 **Ryzyko #2 — Wąski rynek:**
-doTERRA w Europie Środkowej to ograniczona liczba WA z zespołami. Może nie być wystarczająco dużo płacących użytkowników.
+doTERRA w Europie to ograniczona liczba WA z zespołami. Może nie być wystarczająco dużo płacących użytkowników.
 → *Plan B:* Rozszerzenie na kolejne rynki europejskie (DE, UK, IT). Docelowo adaptacja pod inne firmy MLM z podobnym modelem.
 
 **Ryzyko #3 — Polityka doTERRA:**
