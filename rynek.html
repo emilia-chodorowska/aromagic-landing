@@ -503,15 +503,15 @@
       </div>
       <div class="stats-row anim">
         <div class="stat-card">
-          <div class="stat-value purple">~2 600</div>
+          <div class="stat-value purple">~3 100</div>
           <div class="stat-label">Liderów Silver+ łącznie</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value green">~680</div>
+          <div class="stat-value green">~1 200</div>
           <div class="stat-label">w tym Gold+</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value blue">~256</div>
+          <div class="stat-value blue">284</div>
           <div class="stat-label">w tym Diamond+</div>
         </div>
         <div class="stat-card">
@@ -883,55 +883,57 @@
       'Włochy':'#42A5F5', Francja:'#AB47BC', Hiszpania:'#FF7043',
       Belgia:'#8D6E63', UK:'#EC407A', Izrael:'#66BB6A',
       'Słowacja':'#29B6F6', Holandia:'#26C6DA', 'Bułgaria':'#78909C',
-      Norwegia:'#1E88E5'
+      Norwegia:'#1E88E5', Portugalia:'#FFA726', Cypr:'#7E57C2'
     };
     const OTHER = '#BDBDBD';
 
     const datasets = {
       gold: {
         label: 'Rozkład Gold+',
-        desc: '~680 liderów Gold+. Pewne dane z oficjalnych stron doTERRA.',
-        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition. Dane pobrane luty 2026.',
+        desc: '~1199 liderów Gold+. Dane z oficjalnych stron doTERRA + weryfikacja nazwisk.',
+        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition. Gold: weryfikacja 701 nazwisk. Dane pobrane luty 2026.',
         data: [
-          ['Niemcy',167],['Rumunia',101],['Szwajcaria',42],['Polska',41],
-          ['Węgry',35],['Austria',31],['Włochy',27],['Francja',22],
-          ['Hiszpania',16],['Belgia',16],['UK',14],['Izrael',12],
-          ['Słowacja',12],['Holandia',12],['Bułgaria',11],['Norwegia',11],
-          ['Inne (18)',110]
+          ['Niemcy',408],['Rumunia',229],['Węgry',89],['Polska',72],
+          ['Włochy',58],['Szwajcaria',55],['Francja',45],['Bułgaria',33],
+          ['Słowacja',32],['Austria',29],['UK',26],['Izrael',19],
+          ['Holandia',15],['Hiszpania',15],['Portugalia',12],['Norwegia',10],
+          ['Inne (17)',52]
         ]
       },
       platinum: {
         label: 'Rozkład Platinum+',
-        desc: '~437 liderów Platinum+. Pewne dane z oficjalnych stron doTERRA.',
-        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Platinum, Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.',
+        desc: '~498 liderów Platinum+. Pewne dane z oficjalnych stron doTERRA.',
+        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Platinum, Diamond, Blue Diamond, Presidential Diamond, Double Presidential/Diamond). Dane pobrane luty 2026.',
         data: [
-          ['Niemcy',120],['Rumunia',73],['Szwajcaria',32],['Polska',23],
-          ['Węgry',20],['Włochy',15],['Austria',12],['Hiszpania',11],
-          ['UK',10],['Francja',10],['Izrael',9],['Bułgaria',9],
-          ['Belgia',8],['Słowacja',8],['Holandia',7],['Norwegia',5],
-          ['Inne (18)',65]
+          ['Niemcy',157],['Rumunia',101],['Szwajcaria',39],['Węgry',27],
+          ['Polska',26],['Włochy',17],['Austria',16],['Bułgaria',15],
+          ['Izrael',12],['Hiszpania',12],['UK',11],['Słowacja',11],
+          ['Francja',11],['Holandia',8],['Norwegia',5],['Portugalia',4],
+          ['Inne (17)',26]
         ]
       },
       diamond: {
         label: 'Rozkład Diamond+',
-        desc: '~256 liderów Diamond+. Pewne dane z oficjalnych stron doTERRA.',
-        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.',
+        desc: '284 liderów Diamond+. Pewne dane z oficjalnych stron doTERRA.',
+        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond, Double Diamond). Dane pobrane luty 2026.',
         data: [
-          ['Niemcy',78],['Rumunia',50],['Szwajcaria',25],['Węgry',14],
-          ['Polska',13],['Austria',10],['Włochy',8],['UK',7],
-          ['Hiszpania',7],['Francja',6],['Belgia',5],['Izrael',5],
-          ['Słowacja',5],['Bułgaria',5],['Holandia',4],['Norwegia',3],
-          ['Inne (18)',11]
+          ['Niemcy',85],['Rumunia',56],['Szwajcaria',31],['Węgry',17],
+          ['Polska',14],['Austria',9],['Włochy',8],['UK',7],
+          ['Hiszpania',7],['Słowacja',7],['Francja',6],['Belgia',5],
+          ['Izrael',5],['Bułgaria',5],['Cypr',5],['Holandia',4],
+          ['Inne (11)',13]
         ]
       },
       silver: {
         label: 'Rozkład Silver+',
-        desc: '~2600 liderów Silver+.',
+        desc: '~3100 liderów Silver+.',
         note: 'Silver: estymacja z analizy nazwisk (±15-20%). Gold+: dane pewne. Źródło: doterra.com/ME/en_ME. Luty 2026.',
         data: [
-          ['Niemcy',507],['Rumunia',441],['Polska',166],['Węgry',130],
-          ['Włochy',122],['Francja',97],['Szwajcaria',92],['Austria',91],
-          ['Hiszpania',71],['Bułgaria',61],['Inne',822]
+          ['Niemcy',1062],['Rumunia',596],['Węgry',231],['Polska',187],
+          ['Włochy',151],['Szwajcaria',143],['Francja',117],['Bułgaria',86],
+          ['Słowacja',83],['Austria',75],['UK',68],['Izrael',49],
+          ['Holandia',39],['Hiszpania',39],['Portugalia',31],['Norwegia',26],
+          ['Inne (17)',136]
         ]
       }
     };
@@ -948,11 +950,28 @@
       descEl.textContent = ds.desc;
       noteEl.textContent = ds.note;
 
-      const inneTooltip = '<span class="tooltip-box">' +
-        '18 mniejszych krajów m.in.:<br>' +
-        'Czechy, Chorwacja, Grecja, Portugalia,<br>' +
-        'Szwecja, Dania, Finlandia, Irlandia...' +
-        '</span>';
+      const inneTooltips = {
+        silver: '<span class="tooltip-box">' +
+          'Belgia (~21), Dania (~18), Cypr (~18),<br>' +
+          'Mołdawia (~16), Ukraina (~13), Słowenia (~10),<br>' +
+          '11 inn. (~40)' +
+          '</span>',
+        gold: '<span class="tooltip-box">' +
+          'Belgia (~8), Dania (~7), Cypr (~7),<br>' +
+          'Mołdawia (~6), Ukraina (~5), Słowenia (~4),<br>' +
+          '11 inn. (~15)' +
+          '</span>',
+        platinum: '<span class="tooltip-box">' +
+          'Belgia (~8), Cypr (~6), Dania (~3),<br>' +
+          'Ukraina (~2), Słowenia (~2), 12 inn. (~5)' +
+          '</span>',
+        diamond: '<span class="tooltip-box">' +
+          'Portugalia (~4), Norwegia (~3), Dania (~2),<br>' +
+          'Chorwacja, Słowenia, Serbia, Irlandia,<br>' +
+          'Malta, Estonia, Ukraina, Mołdawia (zb. ~4)' +
+          '</span>'
+      };
+      const inneTooltip = inneTooltips[rank];
       const total = ds.data.reduce((s, d) => s + d[1], 0);
       chartEl.innerHTML = ds.data.map(([name, val]) => {
         const w = (val / max * 100).toFixed(1);
@@ -993,17 +1012,23 @@
 
     // --- Stacked chart ---
     const stackedData = [
-      { name:'Niemcy', silver:340, gold:47, platinum:42, diamond:78 },
-      { name:'Rumunia', silver:340, gold:28, platinum:23, diamond:50 },
-      { name:'Polska', silver:125, gold:18, platinum:10, diamond:13 },
-      { name:'Węgry', silver:95, gold:15, platinum:6, diamond:14 },
-      { name:'Włochy', silver:95, gold:12, platinum:7, diamond:8 },
-      { name:'Francja', silver:75, gold:12, platinum:4, diamond:6 },
-      { name:'Szwajcaria', silver:50, gold:10, platinum:7, diamond:25 },
-      { name:'Austria', silver:60, gold:19, platinum:2, diamond:10 },
-      { name:'Hiszpania', silver:55, gold:5, platinum:4, diamond:7 },
-      { name:'Bułgaria', silver:50, gold:2, platinum:4, diamond:5 },
-      { name:'Inne', silver:688, gold:72, platinum:22, diamond:40 }
+      { name:'Niemcy', silver:653, gold:251, platinum:72, diamond:85 },
+      { name:'Rumunia', silver:367, gold:128, platinum:45, diamond:56 },
+      { name:'Węgry', silver:142, gold:62, platinum:10, diamond:17 },
+      { name:'Polska', silver:115, gold:46, platinum:12, diamond:14 },
+      { name:'Włochy', silver:93, gold:41, platinum:9, diamond:8 },
+      { name:'Szwajcaria', silver:88, gold:16, platinum:8, diamond:31 },
+      { name:'Francja', silver:72, gold:34, platinum:5, diamond:6 },
+      { name:'Bułgaria', silver:53, gold:18, platinum:10, diamond:5 },
+      { name:'Słowacja', silver:51, gold:21, platinum:4, diamond:7 },
+      { name:'Austria', silver:46, gold:13, platinum:7, diamond:9 },
+      { name:'UK', silver:42, gold:15, platinum:4, diamond:7 },
+      { name:'Izrael', silver:30, gold:7, platinum:7, diamond:5 },
+      { name:'Holandia', silver:24, gold:7, platinum:4, diamond:4 },
+      { name:'Hiszpania', silver:24, gold:3, platinum:5, diamond:7 },
+      { name:'Portugalia', silver:19, gold:8, platinum:0, diamond:4 },
+      { name:'Norwegia', silver:16, gold:5, platinum:2, diamond:3 },
+      { name:'Inne', silver:84, gold:26, platinum:10, diamond:16 }
     ];
 
     const stackedEl = document.getElementById('stackedChart');
@@ -1024,9 +1049,9 @@
       }
       const tooltip = d.name === 'Inne'
         ? '<span class="tooltip-box">' +
-          'Belgia, UK, Izrael, Słowacja,<br>' +
-          'Holandia, Norwegia<br>' +
-          '+ 18 mniejszych krajów' +
+          'Cypr (~30), Dania (~30), Portugalia (~30),<br>' +
+          'Rosja (~26), Czechy (~21), Ukraina (~21),<br>' +
+          'Szwecja (~17), Słowenia (~17), 10 inn. (~280)' +
           '</span>'
         : '';
       const rowClass = tooltip ? ' row-tooltip' : '';
