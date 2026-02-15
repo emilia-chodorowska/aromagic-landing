@@ -225,6 +225,21 @@
     }
     .stacked-total .stacked-country,
     .stacked-total .stacked-val { font-weight: 700; }
+    .stacked-tooltip {
+      position: relative; cursor: help;
+    }
+    .stacked-tooltip .tooltip-box {
+      display: none; position: absolute; bottom: calc(100% + 8px); left: 0;
+      background: var(--text); color: #fff; padding: 10px 14px;
+      border-radius: 8px; font-size: 0.75rem; line-height: 1.6;
+      white-space: nowrap; z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .stacked-tooltip .tooltip-box::after {
+      content: ''; position: absolute; top: 100%; left: 20px;
+      border: 6px solid transparent; border-top-color: var(--text);
+    }
+    .stacked-tooltip:hover .tooltip-box { display: block; }
     .stacked-legend {
       display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px;
       justify-content: center;
@@ -1000,8 +1015,16 @@
           return '<div class="stacked-seg ' + r + '" data-sw="' + pct + '" title="' + r.charAt(0).toUpperCase() + r.slice(1) + ': ' + d[r] + '"></div>';
         }).join('');
       }
+      const nameHtml = d.name === 'Inne'
+        ? '<span class="stacked-country stacked-tooltip">' + d.name +
+          '<span class="tooltip-box">' +
+          'Belgia (16), UK (14), Izrael (12),<br>' +
+          'Słowacja (12), Holandia (12), Norwegia (11),<br>' +
+          '+ 18 mniejszych krajów (57)' +
+          '</span></span>'
+        : '<span class="stacked-country">' + d.name + '</span>';
       return '<div class="stacked-row">' +
-        '<span class="stacked-country">' + d.name + '</span>' +
+        nameHtml +
         '<div style="width:' + barW + '%"><div class="stacked-bar">' + segs + '</div></div>' +
         '<span class="stacked-val">~' + total + '</span>' +
         '</div>';
