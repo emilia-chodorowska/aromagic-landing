@@ -124,8 +124,20 @@
 
     /* BAR CHART */
     .chart { margin-bottom: 16px; }
+    .chart-tabs {
+      display: flex; gap: 8px; margin-bottom: 24px;
+    }
+    .chart-tab {
+      padding: 8px 20px; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--bg); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .chart-tab:hover { border-color: var(--purple); color: var(--purple); }
+    .chart-tab.active {
+      background: var(--purple); color: #fff; border-color: var(--purple);
+    }
     .chart-row {
-      display: grid; grid-template-columns: 100px 1fr 90px;
+      display: grid; grid-template-columns: 100px 1fr 50px;
       align-items: center; gap: 12px; margin-bottom: 6px;
     }
     .chart-country {
@@ -444,113 +456,24 @@
     </div>
   </section>
 
-  <!-- GOLD+ CHART -->
+  <!-- RANK CHART -->
   <section class="bg-soft" id="market">
     <div class="w">
       <div class="section-head anim">
-        <div class="section-label">Rozkład Gold+</div>
+        <div class="section-label" id="chartLabel">Rozkład Gold+</div>
         <h2>Niemcy dominują. Rumunia zaskakuje.</h2>
-        <p>~680 liderów od rangi Gold w górę z oficjalnymi danymi o kraju. Największa i najbardziej wiarygodna próba.</p>
+        <p id="chartDesc">~680 liderów od rangi Gold w górę z oficjalnymi danymi o kraju. Największa i najbardziej wiarygodna próba.</p>
       </div>
 
-      <div class="chart anim" id="goldChart">
-        <div class="chart-row">
-          <span class="chart-country">Niemcy</span>
-          <div class="chart-bar-wrap"><div class="chart-bar de" data-w="100" style="width:0"></div></div>
-          <span class="chart-val">167</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Rumunia</span>
-          <div class="chart-bar-wrap"><div class="chart-bar ro" data-w="60" style="width:0"></div></div>
-          <span class="chart-val">101</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Szwajcaria</span>
-          <div class="chart-bar-wrap"><div class="chart-bar ch" data-w="25" style="width:0"></div></div>
-          <span class="chart-val">42</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Polska</span>
-          <div class="chart-bar-wrap"><div class="chart-bar pl" data-w="24.5" style="width:0"></div></div>
-          <span class="chart-val">41</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Węgry</span>
-          <div class="chart-bar-wrap"><div class="chart-bar hu" data-w="21" style="width:0"></div></div>
-          <span class="chart-val">35</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Austria</span>
-          <div class="chart-bar-wrap"><div class="chart-bar at" data-w="18.5" style="width:0"></div></div>
-          <span class="chart-val">31</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Włochy</span>
-          <div class="chart-bar-wrap"><div class="chart-bar it" data-w="16" style="width:0"></div></div>
-          <span class="chart-val">27</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Francja</span>
-          <div class="chart-bar-wrap"><div class="chart-bar fr" data-w="13" style="width:0"></div></div>
-          <span class="chart-val">22</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Hiszpania</span>
-          <div class="chart-bar-wrap"><div class="chart-bar es" data-w="9.6" style="width:0"></div></div>
-          <span class="chart-val">16</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Belgia</span>
-          <div class="chart-bar-wrap"><div class="chart-bar be" data-w="9.6" style="width:0"></div></div>
-          <span class="chart-val">16</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">UK</span>
-          <div class="chart-bar-wrap"><div class="chart-bar gb" data-w="8.4" style="width:0"></div></div>
-          <span class="chart-val">14</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Izrael</span>
-          <div class="chart-bar-wrap"><div class="chart-bar il" data-w="7.2" style="width:0"></div></div>
-          <span class="chart-val">12</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Słowacja</span>
-          <div class="chart-bar-wrap"><div class="chart-bar sk" data-w="7.2" style="width:0"></div></div>
-          <span class="chart-val">12</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Holandia</span>
-          <div class="chart-bar-wrap"><div class="chart-bar nl" data-w="7.2" style="width:0"></div></div>
-          <span class="chart-val">12</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Bułgaria</span>
-          <div class="chart-bar-wrap"><div class="chart-bar bg" data-w="6.6" style="width:0"></div></div>
-          <span class="chart-val">11</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Norwegia</span>
-          <div class="chart-bar-wrap"><div class="chart-bar no" data-w="6.6" style="width:0"></div></div>
-          <span class="chart-val">11</span>
-        </div>
-        <div class="chart-row">
-          <span class="chart-country">Inne (18)</span>
-          <div class="chart-bar-wrap"><div class="chart-bar other" data-w="34" style="width:0"></div></div>
-          <span class="chart-val">57</span>
-        </div>
+      <div class="chart-tabs">
+        <button class="chart-tab active" data-rank="gold">Gold+</button>
+        <button class="chart-tab" data-rank="diamond">Diamond+</button>
+        <button class="chart-tab" data-rank="silver">Silver+</button>
       </div>
 
-      <div class="chart-legend">
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--purple)"></span> Niemcy</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#5C6BC0"></span> Rumunia</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#26A69A"></span> Szwajcaria</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--green)"></span> Polska</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--amber)"></span> Węgry</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#EF5350"></span> Austria</div>
-      </div>
+      <div class="chart anim" id="rankChart"></div>
 
-      <p class="note">Źródło: doterra.com/ME/en_ME — strony Recognition (Gold, Platinum, Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.</p>
+      <p class="note" id="chartNote">Źródło: doterra.com/ME/en_ME — strony Recognition. Dane pobrane luty 2026.</p>
     </div>
   </section>
 
@@ -862,7 +785,97 @@
         }
       });
     }, { threshold: 0.2 });
-    document.querySelectorAll('.chart, .pyramids').forEach(el => barObs.observe(el));
+    document.querySelectorAll('.pyramids').forEach(el => barObs.observe(el));
+
+    // --- Rank chart ---
+    const colors = {
+      Niemcy:'var(--purple)', Rumunia:'#5C6BC0', Szwajcaria:'#26A69A',
+      Polska:'var(--green)', 'Węgry':'var(--amber)', Austria:'#EF5350',
+      'Włochy':'#42A5F5', Francja:'#AB47BC', Hiszpania:'#FF7043',
+      Belgia:'#8D6E63', UK:'#EC407A', Izrael:'#66BB6A',
+      'Słowacja':'#29B6F6', Holandia:'#26C6DA', 'Bułgaria':'#78909C',
+      Norwegia:'#1E88E5'
+    };
+    const OTHER = '#BDBDBD';
+
+    const datasets = {
+      gold: {
+        label: 'Rozkład Gold+',
+        desc: '~680 liderów od rangi Gold w górę z oficjalnymi danymi o kraju.',
+        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition. Dane pobrane luty 2026.',
+        data: [
+          ['Niemcy',167],['Rumunia',101],['Szwajcaria',42],['Polska',41],
+          ['Węgry',35],['Austria',31],['Włochy',27],['Francja',22],
+          ['Hiszpania',16],['Belgia',16],['UK',14],['Izrael',12],
+          ['Słowacja',12],['Holandia',12],['Bułgaria',11],['Norwegia',11],
+          ['Inne (18)',57]
+        ]
+      },
+      diamond: {
+        label: 'Rozkład Diamond+',
+        desc: '~256 liderów od rangi Diamond w górę. Pewne dane z oficjalnych stron doTERRA.',
+        note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.',
+        data: [
+          ['Niemcy',78],['Rumunia',50],['Szwajcaria',25],['Węgry',14],
+          ['Polska',13],['Austria',10],['Włochy',8],['UK',7],
+          ['Hiszpania',7],['Francja',6],['Belgia',5],['Izrael',5],
+          ['Słowacja',5],['Bułgaria',5],['Holandia',4],['Norwegia',3],
+          ['Inne (18)',11]
+        ]
+      },
+      silver: {
+        label: 'Rozkład Silver+',
+        desc: '~2600 liderów Silver i wyżej. Silver (~1920) estymowane z wzorców nazwisk, Gold+ (~680) dane pewne.',
+        note: 'Silver: estymacja z analizy nazwisk (±15-20%). Gold+: dane pewne. Źródło: doterra.com/ME/en_ME. Luty 2026.',
+        data: [
+          ['Niemcy',507],['Rumunia',441],['Polska',166],['Węgry',130],
+          ['Włochy',122],['Francja',97],['Szwajcaria',92],['Austria',91],
+          ['Hiszpania',71],['Bułgaria',61],['Inne',822]
+        ]
+      }
+    };
+
+    const chartEl = document.getElementById('rankChart');
+    const labelEl = document.getElementById('chartLabel');
+    const descEl = document.getElementById('chartDesc');
+    const noteEl = document.getElementById('chartNote');
+
+    function renderChart(rank) {
+      const ds = datasets[rank];
+      const max = Math.max(...ds.data.map(d => d[1]));
+      labelEl.textContent = ds.label;
+      descEl.textContent = ds.desc;
+      noteEl.textContent = ds.note;
+
+      chartEl.innerHTML = ds.data.map(([name, val]) => {
+        const w = (val / max * 100).toFixed(1);
+        const bg = colors[name] || OTHER;
+        return '<div class="chart-row">' +
+          '<span class="chart-country">' + name + '</span>' +
+          '<div class="chart-bar-wrap"><div class="chart-bar" style="width:0;background:' + bg + '" data-w="' + w + '"></div></div>' +
+          '<span class="chart-val">' + val + '</span>' +
+          '</div>';
+      }).join('');
+
+      // Animate after DOM update
+      requestAnimationFrame(() => {
+        chartEl.querySelectorAll('[data-w]').forEach(bar => {
+          setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 50);
+        });
+      });
+    }
+
+    // Tab clicks
+    document.querySelectorAll('.chart-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chart-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderChart(btn.dataset.rank);
+      });
+    });
+
+    // Initial render
+    renderChart('gold');
   </script>
 
 </body>
