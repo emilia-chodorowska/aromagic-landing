@@ -125,7 +125,7 @@
     /* BAR CHART */
     .chart { margin-bottom: 16px; }
     .chart-row {
-      display: grid; grid-template-columns: 100px 1fr 60px;
+      display: grid; grid-template-columns: 100px 1fr 90px;
       align-items: center; gap: 12px; margin-bottom: 6px;
     }
     .chart-country {
@@ -153,6 +153,7 @@
     .chart-bar.other { background: #BDBDBD; }
     .chart-val {
       font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);
+      white-space: nowrap;
     }
     .chart-legend {
       display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px;
@@ -342,7 +343,7 @@
       section { padding: 48px 0; }
       .stats-row { grid-template-columns: repeat(2, 1fr); }
       .pyramids, .segments { grid-template-columns: 1fr; }
-      .chart-row { grid-template-columns: 72px 1fr 48px; }
+      .chart-row { grid-template-columns: 72px 1fr 80px; }
       .table-wrap { overflow-x: auto; }
       table { min-width: 600px; }
     }
@@ -446,59 +447,59 @@
 
       <div class="chart anim" id="goldChart">
         <div class="chart-row">
-          <span class="chart-country">🇩🇪 Niemcy</span>
+          <span class="chart-country">Niemcy</span>
           <div class="chart-bar-wrap"><div class="chart-bar de" data-w="100" style="width:0"></div></div>
           <span class="chart-val">167 (24.6%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇷🇴 Rumunia</span>
+          <span class="chart-country">Rumunia</span>
           <div class="chart-bar-wrap"><div class="chart-bar ro" data-w="60" style="width:0"></div></div>
           <span class="chart-val">101 (14.9%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇨🇭 Szwajcaria</span>
+          <span class="chart-country">Szwajcaria</span>
           <div class="chart-bar-wrap"><div class="chart-bar ch" data-w="25" style="width:0"></div></div>
           <span class="chart-val">42 (6.2%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇵🇱 Polska</span>
+          <span class="chart-country">Polska</span>
           <div class="chart-bar-wrap"><div class="chart-bar pl" data-w="24.5" style="width:0"></div></div>
           <span class="chart-val">41 (6.0%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇭🇺 Węgry</span>
+          <span class="chart-country">Węgry</span>
           <div class="chart-bar-wrap"><div class="chart-bar hu" data-w="21" style="width:0"></div></div>
           <span class="chart-val">35 (5.1%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇦🇹 Austria</span>
+          <span class="chart-country">Austria</span>
           <div class="chart-bar-wrap"><div class="chart-bar at" data-w="18.5" style="width:0"></div></div>
           <span class="chart-val">31 (4.6%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇮🇹 Włochy</span>
+          <span class="chart-country">Włochy</span>
           <div class="chart-bar-wrap"><div class="chart-bar it" data-w="16" style="width:0"></div></div>
           <span class="chart-val">27 (4.0%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🇫🇷 Francja</span>
+          <span class="chart-country">Francja</span>
           <div class="chart-bar-wrap"><div class="chart-bar fr" data-w="13" style="width:0"></div></div>
           <span class="chart-val">22 (3.2%)</span>
         </div>
         <div class="chart-row">
-          <span class="chart-country">🌍 Reszta (26)</span>
+          <span class="chart-country">Reszta (26)</span>
           <div class="chart-bar-wrap"><div class="chart-bar other" data-w="68" style="width:0"></div></div>
           <span class="chart-val">214 (31.5%)</span>
         </div>
       </div>
 
       <div class="chart-legend">
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--purple)"></span> 🇩🇪 Niemcy</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#5C6BC0"></span> 🇷🇴 Rumunia</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#26A69A"></span> 🇨🇭 Szwajcaria</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--green)"></span> 🇵🇱 Polska</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--amber)"></span> 🇭🇺 Węgry</div>
-        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#EF5350"></span> 🇦🇹 Austria</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--purple)"></span> Niemcy</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#5C6BC0"></span> Rumunia</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#26A69A"></span> Szwajcaria</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--green)"></span> Polska</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--amber)"></span> Węgry</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#EF5350"></span> Austria</div>
       </div>
 
       <p class="note">Źródło: doterra.com/ME/en_ME — strony Recognition (Gold, Platinum, Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.</p>
