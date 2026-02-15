@@ -193,6 +193,50 @@
       width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
     }
 
+    /* STACKED CHART */
+    .stacked-row {
+      display: grid; grid-template-columns: 100px 1fr 50px;
+      align-items: center; gap: 12px; margin-bottom: 6px;
+    }
+    .stacked-country {
+      font-size: 0.82rem; font-weight: 600; text-align: right;
+      white-space: nowrap;
+    }
+    .stacked-bar {
+      display: flex; height: 28px; border-radius: 6px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--bg-soft);
+    }
+    .stacked-seg {
+      height: 100%; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0;
+    }
+    .stacked-seg.silver { background: #90CAF9; }
+    .stacked-seg.gold { background: #FFD54F; }
+    .stacked-seg.platinum { background: #CE93D8; }
+    .stacked-seg.diamond { background: #7E57C2; }
+    .stacked-seg.inne { background: #BDBDBD; }
+    .stacked-val {
+      font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .stacked-total {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .stacked-total .stacked-country,
+    .stacked-total .stacked-val { font-weight: 700; }
+    .stacked-legend {
+      display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px;
+      justify-content: center;
+    }
+    .stacked-legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; color: var(--text-secondary);
+    }
+    .stacked-legend-dot {
+      width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+    }
+
     /* TABLES */
     .table-wrap {
       border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
@@ -370,6 +414,7 @@
       .stats-row { grid-template-columns: repeat(2, 1fr); }
       .pyramids, .segments { grid-template-columns: 1fr; }
       .chart-row { grid-template-columns: 72px 1fr 80px; }
+      .stacked-row { grid-template-columns: 72px 1fr 45px; }
       .table-wrap { overflow-x: auto; }
       table { min-width: 600px; }
     }
@@ -481,6 +526,28 @@
       <div class="chart anim" id="rankChart"></div>
 
       <p class="note" id="chartNote">Źródło: doterra.com/ME/en_ME — strony Recognition. Dane pobrane luty 2026.</p>
+    </div>
+  </section>
+
+  <!-- STACKED CHART -->
+  <section>
+    <div class="w">
+      <div class="section-head anim">
+        <div class="section-label">Struktura rang</div>
+        <h2>Podział rang w każdym kraju</h2>
+        <p>Jak wygląda piramida Silver → Gold → Platinum → Diamond+ per kraj. Silver estymowane z nazwisk.</p>
+      </div>
+
+      <div class="anim" id="stackedChart"></div>
+
+      <div class="stacked-legend">
+        <div class="stacked-legend-item"><span class="stacked-legend-dot" style="background:#90CAF9"></span> Silver (est.)</div>
+        <div class="stacked-legend-item"><span class="stacked-legend-dot" style="background:#FFD54F"></span> Gold</div>
+        <div class="stacked-legend-item"><span class="stacked-legend-dot" style="background:#CE93D8"></span> Platinum</div>
+        <div class="stacked-legend-item"><span class="stacked-legend-dot" style="background:#7E57C2"></span> Diamond+</div>
+      </div>
+
+      <p class="note">Silver: estymacja z analizy nazwisk (±15-20%). Gold/Platinum/Diamond+: dane pewne z oficjalnych stron doTERRA.</p>
     </div>
   </section>
 
@@ -901,6 +968,60 @@
 
     // Initial render
     renderChart('silver');
+
+    // --- Stacked chart ---
+    const stackedData = [
+      { name:'Niemcy', silver:340, gold:47, platinum:42, diamond:78 },
+      { name:'Rumunia', silver:340, gold:28, platinum:23, diamond:50 },
+      { name:'Polska', silver:125, gold:18, platinum:10, diamond:13 },
+      { name:'Węgry', silver:95, gold:15, platinum:6, diamond:14 },
+      { name:'Włochy', silver:95, gold:12, platinum:7, diamond:8 },
+      { name:'Francja', silver:75, gold:12, platinum:4, diamond:6 },
+      { name:'Szwajcaria', silver:50, gold:10, platinum:7, diamond:25 },
+      { name:'Austria', silver:60, gold:19, platinum:2, diamond:10 },
+      { name:'Hiszpania', silver:55, gold:5, platinum:4, diamond:7 },
+      { name:'Bułgaria', silver:50, gold:2, platinum:4, diamond:5 },
+      { name:'Inne', silver:635, gold:0, platinum:0, diamond:0, inne:true }
+    ];
+
+    const stackedEl = document.getElementById('stackedChart');
+    const maxTotal = Math.max(...stackedData.map(d => d.silver + d.gold + d.platinum + d.diamond));
+    const grandTotal = stackedData.reduce((s, d) => s + d.silver + d.gold + d.platinum + d.diamond, 0);
+
+    stackedEl.innerHTML = stackedData.map(d => {
+      const total = d.silver + d.gold + d.platinum + d.diamond;
+      const barW = (total / maxTotal * 100).toFixed(1);
+      let segs;
+      if (d.inne) {
+        segs = '<div class="stacked-seg inne" data-sw="100"></div>';
+      } else {
+        segs = ['silver','gold','platinum','diamond'].map(r => {
+          const pct = (d[r] / total * 100).toFixed(1);
+          return '<div class="stacked-seg ' + r + '" data-sw="' + pct + '" title="' + r.charAt(0).toUpperCase() + r.slice(1) + ': ' + d[r] + '"></div>';
+        }).join('');
+      }
+      return '<div class="stacked-row">' +
+        '<span class="stacked-country">' + d.name + '</span>' +
+        '<div style="width:' + barW + '%"><div class="stacked-bar">' + segs + '</div></div>' +
+        '<span class="stacked-val">~' + total + '</span>' +
+        '</div>';
+    }).join('') +
+    '<div class="stacked-row stacked-total">' +
+      '<span class="stacked-country">RAZEM</span><div></div>' +
+      '<span class="stacked-val">~' + grandTotal + '</span>' +
+    '</div>';
+
+    // Animate stacked segments on scroll
+    const stackedObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('[data-sw]').forEach(seg => {
+            setTimeout(() => { seg.style.width = seg.dataset.sw + '%'; }, 100);
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+    stackedObs.observe(stackedEl);
   </script>
 
 </body>
