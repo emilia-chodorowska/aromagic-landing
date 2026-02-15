@@ -140,6 +140,12 @@
       display: grid; grid-template-columns: 100px 1fr 50px;
       align-items: center; gap: 12px; margin-bottom: 6px;
     }
+    .chart-total {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .chart-total .chart-country,
+    .chart-total .chart-val { font-weight: 700; }
     .chart-country {
       font-size: 0.82rem; font-weight: 600; text-align: right;
       white-space: nowrap;
@@ -847,6 +853,7 @@
       descEl.textContent = ds.desc;
       noteEl.textContent = ds.note;
 
+      const total = ds.data.reduce((s, d) => s + d[1], 0);
       chartEl.innerHTML = ds.data.map(([name, val]) => {
         const w = (val / max * 100).toFixed(1);
         const bg = colors[name] || OTHER;
@@ -855,7 +862,12 @@
           '<div class="chart-bar-wrap"><div class="chart-bar" style="width:0;background:' + bg + '" data-w="' + w + '"></div></div>' +
           '<span class="chart-val">' + val + '</span>' +
           '</div>';
-      }).join('');
+      }).join('') +
+      '<div class="chart-row chart-total">' +
+        '<span class="chart-country">RAZEM</span>' +
+        '<div></div>' +
+        '<span class="chart-val">' + (rank === 'silver' ? '~' : '') + total + '</span>' +
+      '</div>';
 
       // Animate after DOM update
       requestAnimationFrame(() => {
