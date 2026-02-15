@@ -225,21 +225,21 @@
     }
     .stacked-total .stacked-country,
     .stacked-total .stacked-val { font-weight: 700; }
-    .bar-tooltip {
+    .row-tooltip {
       position: relative; cursor: help;
     }
-    .bar-tooltip .tooltip-box {
-      display: none; position: absolute; bottom: calc(100% + 8px); left: 0;
+    .row-tooltip .tooltip-box {
+      display: none; position: absolute; bottom: calc(100% + 8px); left: 120px;
       background: #78909C; color: #fff; padding: 10px 14px;
       border-radius: 8px; font-size: 0.75rem; line-height: 1.6;
       white-space: nowrap; z-index: 10;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .bar-tooltip .tooltip-box::after {
+    .row-tooltip .tooltip-box::after {
       content: ''; position: absolute; top: 100%; left: 20px;
       border: 6px solid transparent; border-top-color: #78909C;
     }
-    .bar-tooltip:hover .tooltip-box { display: block; }
+    .row-tooltip:hover .tooltip-box { display: block; }
     .stacked-legend {
       display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px;
       justify-content: center;
@@ -958,9 +958,10 @@
         const w = (val / max * 100).toFixed(1);
         const bg = colors[name] || OTHER;
         const isInne = name.startsWith('Inne');
-        return '<div class="chart-row">' +
+        return '<div class="chart-row' + (isInne ? ' row-tooltip' : '') + '">' +
+          (isInne ? inneTooltip : '') +
           '<span class="chart-country">' + name + '</span>' +
-          '<div class="chart-bar-wrap' + (isInne ? ' bar-tooltip' : '') + '">' + (isInne ? inneTooltip : '') + '<div class="chart-bar" style="width:0;background:' + bg + '" data-w="' + w + '"></div></div>' +
+          '<div class="chart-bar-wrap"><div class="chart-bar" style="width:0;background:' + bg + '" data-w="' + w + '"></div></div>' +
           '<span class="chart-val">' + val + '</span>' +
           '</div>';
       }).join('') +
@@ -1028,10 +1029,11 @@
           '+ 18 mniejszych krajów (57)' +
           '</span>'
         : '';
-      const barClass = tooltip ? ' bar-tooltip' : '';
-      return '<div class="stacked-row">' +
+      const rowClass = tooltip ? ' row-tooltip' : '';
+      return '<div class="stacked-row' + rowClass + '">' +
+        tooltip +
         '<span class="stacked-country">' + d.name + '</span>' +
-        '<div style="width:' + barW + '%" class="' + barClass + '">' + tooltip + '<div class="stacked-bar">' + segs + '</div></div>' +
+        '<div style="width:' + barW + '%"><div class="stacked-bar">' + segs + '</div></div>' +
         '<span class="stacked-val">~' + total + '</span>' +
         '</div>';
     }).join('') +
