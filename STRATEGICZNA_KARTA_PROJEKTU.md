@@ -187,9 +187,12 @@ Konsultanci doTERRA mogą nie rozumieć, że potrzebują takiego narzędzia — 
 ### Decyzje do podjęcia
 - [ ] **Podział free/paid** — które funkcje darmowe, które płatne?
 - [ ] **Ceny** — ile kosztuje płatny plan? Jeden plan czy kilka poziomów?
-- [ ] **Języki interfejsu** — obecny stan? Czy przed DE trzeba dodać niemiecki/angielski?
+- [x] **Języki interfejsu** — PL + DE + EN (gotowe)
 
 ### Do opracowania
-- [ ] **Plan marketingowy (Faza 2+)** — kanały, treści, strategia dotarcia poza znajomymi
-- [ ] **Landing page** — potrzebna do zbierania rejestracji
-- [ ] **Materiały demo** — jak pokazać wartość nowemu użytkownikowi na żywo
+- [x] **Plan marketingowy** — gotowy, patrz PLAN_MARKETINGOWY.md
+- [x] **Landing page** — gotowa, live na GitHub Pages
+- [ ] **Formularz rejestracji na landing page** — przyciski CTA prowadzą donikąd
+- [ ] **Materiały demo** — screencast 2 min (import → dashboard → "wow moment")
+- [ ] **Zbadać grupy online** — czy istnieją grupy FB/WhatsApp dla WA doTERRA w PL i DE?
+- [ ] **Profil na Instagramie / strona na Facebooku** — do content marketingu w Fazie 2
