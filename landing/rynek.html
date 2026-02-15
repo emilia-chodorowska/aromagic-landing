@@ -513,7 +513,7 @@
       <div class="section-head anim">
         <div class="section-label" id="chartLabel">Rozkład Gold+</div>
         <h2>Niemcy dominują. Rumunia zaskakuje.</h2>
-        <p id="chartDesc">~680 liderów od rangi Gold w górę z oficjalnymi danymi o kraju. Największa i najbardziej wiarygodna próba.</p>
+        <p id="chartDesc">~2600 liderów Silver+. Silver estymowane z nazwisk, Gold+ dane pewne.</p>
       </div>
 
       <div class="chart-tabs">
@@ -535,7 +535,7 @@
       <div class="section-head anim">
         <div class="section-label">Struktura rang</div>
         <h2>Podział rang w każdym kraju</h2>
-        <p>Jak wygląda piramida Silver → Gold → Platinum → Diamond+ per kraj. Silver estymowane z nazwisk.</p>
+        <p>Jak wygląda piramida Silver → Gold → Platinum → Diamond+ per kraj.</p>
       </div>
 
       <div class="anim" id="stackedChart"></div>
@@ -875,7 +875,7 @@
     const datasets = {
       gold: {
         label: 'Rozkład Gold+',
-        desc: '~680 liderów od rangi Gold w górę z oficjalnymi danymi o kraju.',
+        desc: '~680 liderów Gold+ z oficjalnymi danymi o kraju.',
         note: 'Źródło: doterra.com/ME/en_ME — strony Recognition. Dane pobrane luty 2026.',
         data: [
           ['Niemcy',167],['Rumunia',101],['Szwajcaria',42],['Polska',41],
@@ -887,7 +887,7 @@
       },
       platinum: {
         label: 'Rozkład Platinum+',
-        desc: '~437 liderów od rangi Platinum w górę. Pewne dane z oficjalnych stron doTERRA.',
+        desc: '~437 liderów Platinum+. Pewne dane z oficjalnych stron doTERRA.',
         note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Platinum, Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.',
         data: [
           ['Niemcy',120],['Rumunia',73],['Szwajcaria',32],['Polska',23],
@@ -899,7 +899,7 @@
       },
       diamond: {
         label: 'Rozkład Diamond+',
-        desc: '~256 liderów od rangi Diamond w górę. Pewne dane z oficjalnych stron doTERRA.',
+        desc: '~256 liderów Diamond+. Pewne dane z oficjalnych stron doTERRA.',
         note: 'Źródło: doterra.com/ME/en_ME — strony Recognition (Diamond, Blue Diamond, Presidential Diamond, Double Presidential Diamond). Dane pobrane luty 2026.',
         data: [
           ['Niemcy',78],['Rumunia',50],['Szwajcaria',25],['Węgry',14],
@@ -911,7 +911,7 @@
       },
       silver: {
         label: 'Rozkład Silver+',
-        desc: '~2600 liderów Silver i wyżej. Silver estymowane z nazwisk, Gold+ dane pewne.',
+        desc: '~2600 liderów Silver+. Silver estymowane z nazwisk, Gold+ dane pewne.',
         note: 'Silver: estymacja z analizy nazwisk (±15-20%). Gold+: dane pewne. Źródło: doterra.com/ME/en_ME. Luty 2026.',
         data: [
           ['Niemcy',507],['Rumunia',441],['Polska',166],['Węgry',130],
@@ -981,7 +981,7 @@
       { name:'Austria', silver:60, gold:19, platinum:2, diamond:10 },
       { name:'Hiszpania', silver:55, gold:5, platinum:4, diamond:7 },
       { name:'Bułgaria', silver:50, gold:2, platinum:4, diamond:5 },
-      { name:'Inne', silver:635, gold:0, platinum:0, diamond:0, inne:true }
+      { name:'Inne', silver:822, gold:0, platinum:0, diamond:0, inne:true }
     ];
 
     const stackedEl = document.getElementById('stackedChart');
