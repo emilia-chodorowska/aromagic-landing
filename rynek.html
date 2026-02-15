@@ -949,9 +949,9 @@
       noteEl.textContent = ds.note;
 
       const inneTooltip = '<span class="tooltip-box">' +
-        'Belgia (16), UK (14), Izrael (12),<br>' +
-        'Słowacja (12), Holandia (12), Norwegia (11),<br>' +
-        '+ 18 mniejszych krajów (57)' +
+        '18 mniejszych krajów m.in.:<br>' +
+        'Czechy, Chorwacja, Grecja, Portugalia,<br>' +
+        'Szwecja, Dania, Finlandia, Irlandia...' +
         '</span>';
       const total = ds.data.reduce((s, d) => s + d[1], 0);
       chartEl.innerHTML = ds.data.map(([name, val]) => {
@@ -1024,9 +1024,9 @@
       }
       const tooltip = d.name === 'Inne'
         ? '<span class="tooltip-box">' +
-          'Belgia (16), UK (14), Izrael (12),<br>' +
-          'Słowacja (12), Holandia (12), Norwegia (11),<br>' +
-          '+ 18 mniejszych krajów (57)' +
+          'Belgia, UK, Izrael, Słowacja,<br>' +
+          'Holandia, Norwegia<br>' +
+          '+ 18 mniejszych krajów' +
           '</span>'
         : '';
       const rowClass = tooltip ? ' row-tooltip' : '';
