@@ -503,7 +503,7 @@
       </div>
       <div class="stats-row anim">
         <div class="stat-card">
-          <div class="stat-value purple">~3 100</div>
+          <div class="stat-value purple">~3 160</div>
           <div class="stat-label">Liderów Silver+ łącznie</div>
         </div>
         <div class="stat-card">
@@ -528,7 +528,7 @@
       <div class="section-head anim">
         <div class="section-label" id="chartLabel">Rozkład Gold+</div>
         <h2>Niemcy dominują. Rumunia zaskakuje.</h2>
-        <p id="chartDesc">~2600 liderów Silver+.</p>
+        <p id="chartDesc">~3157 liderów Silver+.</p>
       </div>
 
       <div class="chart-tabs">
@@ -883,7 +883,8 @@
       'Włochy':'#42A5F5', Francja:'#AB47BC', Hiszpania:'#FF7043',
       Belgia:'#8D6E63', UK:'#EC407A', Izrael:'#66BB6A',
       'Słowacja':'#29B6F6', Holandia:'#26C6DA', 'Bułgaria':'#78909C',
-      Norwegia:'#1E88E5', Portugalia:'#FFA726', Cypr:'#7E57C2'
+      Norwegia:'#1E88E5', Portugalia:'#FFA726', Cypr:'#7E57C2',
+      Ukraina:'#FFCA28'
     };
     const OTHER = '#BDBDBD';
 
@@ -926,14 +927,14 @@
       },
       silver: {
         label: 'Rozkład Silver+',
-        desc: '~3100 liderów Silver+.',
-        note: 'Silver: estymacja z analizy nazwisk (±15-20%). Gold+: dane pewne. Źródło: doterra.com/ME/en_ME. Luty 2026.',
+        desc: '~3157 liderów Silver+.',
+        note: 'Silver: analiza 1920 nazwisk (±10-15%). Gold+: dane pewne. Źródło: doterra.com/ME/en_ME. Luty 2026.',
         data: [
-          ['Niemcy',1040],['Rumunia',601],['Węgry',228],['Polska',193],
-          ['Włochy',148],['Szwajcaria',145],['Francja',115],['Bułgaria',83],
-          ['Słowacja',83],['Austria',73],['UK',73],['Izrael',48],
-          ['Hiszpania',40],['Holandia',38],['Portugalia',30],['Norwegia',25],
-          ['Inne (17)',137]
+          ['Niemcy',1062],['Rumunia',649],['Węgry',256],['Polska',175],
+          ['Włochy',150],['Szwajcaria',132],['Francja',115],['Austria',90],
+          ['UK',85],['Bułgaria',71],['Słowacja',66],['Holandia',38],
+          ['Izrael',36],['Portugalia',35],['Norwegia',34],['Ukraina',33],
+          ['Inne (17)',130]
         ]
       }
     };
@@ -952,9 +953,9 @@
 
       const inneTooltips = {
         silver: '<span class="tooltip-box">' +
-          'Ukraina (~23), Belgia (~23), Dania (~18),<br>' +
-          'Cypr (~18), Mołdawia (~15), Słowenia (~13),<br>' +
-          '11 inn. (~27)' +
+          'Hiszpania (~31), Belgia (~19), Dania (~13),<br>' +
+          'Mołdawia (~12), Słowenia (~11), Cypr (~7),<br>' +
+          '~11 inn. (~37)' +
           '</span>',
         gold: '<span class="tooltip-box">' +
           'Belgia (~9), Ukraina (~9), Dania (~7),<br>' +
@@ -1012,23 +1013,23 @@
 
     // --- Stacked chart ---
     const stackedData = [
-      { name:'Niemcy', silver:625, gold:251, platinum:79, diamond:85 },
-      { name:'Rumunia', silver:361, gold:128, platinum:56, diamond:56 },
-      { name:'Węgry', silver:137, gold:62, platinum:12, diamond:17 },
-      { name:'Polska', silver:116, gold:46, platinum:17, diamond:14 },
-      { name:'Włochy', silver:89, gold:41, platinum:10, diamond:8 },
-      { name:'Szwajcaria', silver:87, gold:16, platinum:11, diamond:31 },
+      { name:'Niemcy', silver:647, gold:251, platinum:79, diamond:85 },
+      { name:'Rumunia', silver:409, gold:128, platinum:56, diamond:56 },
+      { name:'Węgry', silver:165, gold:62, platinum:12, diamond:17 },
+      { name:'Polska', silver:98, gold:46, platinum:17, diamond:14 },
+      { name:'Włochy', silver:91, gold:41, platinum:10, diamond:8 },
+      { name:'Szwajcaria', silver:74, gold:16, platinum:11, diamond:31 },
       { name:'Francja', silver:69, gold:34, platinum:6, diamond:6 },
-      { name:'Bułgaria', silver:50, gold:18, platinum:10, diamond:5 },
-      { name:'Słowacja', silver:50, gold:21, platinum:5, diamond:7 },
-      { name:'Austria', silver:44, gold:13, platinum:7, diamond:9 },
-      { name:'UK', silver:44, gold:15, platinum:7, diamond:7 },
-      { name:'Izrael', silver:29, gold:7, platinum:7, diamond:5 },
-      { name:'Hiszpania', silver:24, gold:3, platinum:6, diamond:7 },
+      { name:'Austria', silver:61, gold:13, platinum:7, diamond:9 },
+      { name:'UK', silver:56, gold:15, platinum:7, diamond:7 },
+      { name:'Bułgaria', silver:38, gold:18, platinum:10, diamond:5 },
+      { name:'Słowacja', silver:33, gold:21, platinum:5, diamond:7 },
       { name:'Holandia', silver:23, gold:7, platinum:4, diamond:4 },
-      { name:'Portugalia', silver:18, gold:8, platinum:0, diamond:4 },
-      { name:'Norwegia', silver:15, gold:5, platinum:2, diamond:3 },
-      { name:'Inne', silver:82, gold:26, platinum:13, diamond:16 }
+      { name:'Izrael', silver:17, gold:7, platinum:7, diamond:5 },
+      { name:'Portugalia', silver:23, gold:8, platinum:0, diamond:4 },
+      { name:'Norwegia', silver:24, gold:5, platinum:2, diamond:3 },
+      { name:'Ukraina', silver:24, gold:3, platinum:5, diamond:1 },
+      { name:'Inne', silver:68, gold:26, platinum:14, diamond:22 }
     ];
 
     const stackedEl = document.getElementById('stackedChart');
@@ -1049,9 +1050,9 @@
       }
       const tooltip = d.name === 'Inne'
         ? '<span class="tooltip-box">' +
-          'Ukraina (~23), Belgia (~23), Dania (~18),<br>' +
-          'Cypr (~18), Mołdawia (~15), Słowenia (~13),<br>' +
-          '11 inn. (~27)' +
+          'Hiszpania (~31), Belgia (~19), Dania (~13),<br>' +
+          'Mołdawia (~12), Słowenia (~11), Cypr (~7),<br>' +
+          '~11 inn. (~37)' +
           '</span>'
         : '';
       const rowClass = tooltip ? ' row-tooltip' : '';
