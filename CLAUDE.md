@@ -10,8 +10,9 @@ Gdy user zgłasza buga, zmianę lub nową funkcję:
 1. **Analizuj** co user ma na myśli
 2. **Kategoryzuj**: Bug, Feature, Improvement lub Pomysł
 3. **Ustaw priorytet**: Urgent / High / Medium / Low — zapytaj jeśli nie wiadomo
-4. **Stwórz issue** w Linear (po polsku, team: Aromagic, projekt: Aromagic)
-5. **Pokaż** link i krótkie podsumowanie
+4. **Zapytaj** czy przypisać do kogoś (assignee)
+5. **Stwórz issue** w Linear (po polsku, team: Aromagic, projekt: Aromagic)
+6. **Pokaż** link i krótkie podsumowanie
 
 - **Pomysły:** label `Pomysł`, status Backlog, priorytet None
 - **QA:** fix działa → user przenosi do Zweryfikowane; nie działa → user wraca do In Progress + komentarz
