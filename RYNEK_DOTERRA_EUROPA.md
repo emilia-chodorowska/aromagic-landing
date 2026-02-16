@@ -128,34 +128,37 @@ Dane zebrane z oficjalnych stron recognition doTERRA Europe (doterra.com/ME/en_M
 
 ---
 
-### Tabela 2: Platinum per kraj (214 liderów)
+### Tabela 2: Platinum per kraj (252 zweryfikowanych nazwisk)
 
-Źródło: doterra.com/ME/en_ME — Recognition Platinum. 203 liderów z krajem + 11 "Not Pictured" przypisanych po nazwiskach.
+Źródło: doterra.com/ME/en_ME — Recognition Platinum (strony A-L i M-Z). 214 liderów z krajem (pictured) + 38 "Not Pictured" przypisanych po nazwiskach (1 duplikat usunięty).
 
 | Kraj | Platinum | **%** |
 |---|---|---|
-| **Niemcy** | 72 | **33.6%** |
-| **Rumunia** | 45 | **21.0%** |
-| **Polska** | 12 | **5.6%** |
-| **Węgry** | 10 | **4.7%** |
-| **Bułgaria** | 10 | **4.7%** |
-| **Włochy** | 9 | **4.2%** |
-| **Szwajcaria** | 8 | **3.7%** |
-| **Austria** | 7 | **3.3%** |
-| **Izrael** | 7 | **3.3%** |
-| **Francja** | 5 | **2.3%** |
-| **Hiszpania** | 5 | **2.3%** |
-| **UK** | 4 | **1.9%** |
-| **Holandia** | 4 | **1.9%** |
-| **Czechy+Słowacja** | 4 | **1.9%** |
-| **Belgia** | ~3 | **~1.4%** |
-| **Norwegia** | 2 | **0.9%** |
-| **Inne (12)** | ~7 | **~3.3%** |
-| **RAZEM** | **214** | **100%** |
+| **Niemcy** | 79 | **31.3%** |
+| **Rumunia** | 56 | **22.2%** |
+| **Polska** | 17 | **6.7%** |
+| **Węgry** | 12 | **4.8%** |
+| **Szwajcaria** | 11 | **4.4%** |
+| **Włochy** | 10 | **4.0%** |
+| **Bułgaria** | 10 | **4.0%** |
+| **Austria** | 7 | **2.8%** |
+| **Izrael** | 7 | **2.8%** |
+| **UK** | 7 | **2.8%** |
+| **Francja** | 6 | **2.4%** |
+| **Hiszpania** | 6 | **2.4%** |
+| **Ukraina** | 5 | **2.0%** |
+| **Słowacja** | 5 | **2.0%** |
+| **Belgia** | 4 | **1.6%** |
+| **Holandia** | 4 | **1.6%** |
+| **Norwegia** | 2 | **0.8%** |
+| **Słowenia** | 2 | **0.8%** |
+| **Cypr** | 1 | **0.4%** |
+| **Dania** | 1 | **0.4%** |
+| **RAZEM** | **252** | **100%** |
 
-> **Dane pewne** dla krajów bez "~". Belgia i Inne — szacunek z analizy 11 "Not Pictured" nazwisk.
-> **Inne (12):** Cypr (~1), Dania (~1), Ukraina (~1), Słowenia (~1), + 8 krajów z łącznie ~3 Platinum.
-> **Czechy+Słowacja:** Słowacja 4, Czechy 0.
+> **Pewność:** ~90%. 214 liderów z oficjalnym krajem + 38 "Not Pictured" przypisanych po nazwisku (~85% pewność).
+> **Duplikat:** Ildikó Kecskeméti & Szabolcs Horváth — pojawia się na liście pictured (A-L, Węgry) i Not Pictured (M-Z). Policzony raz.
+> **Słowacja:** 5 Platinum, Czechy 0.
 
 ---
 
@@ -194,36 +197,36 @@ Dane zebrane z oficjalnych stron recognition doTERRA Europe (doterra.com/ME/en_M
 
 ---
 
-### Tabela 4: Silver per kraj (~1920 — estymacja)
+### Tabela 4: Silver per kraj (~1863 — estymacja)
 
-Źródło: doterra.com/ME/en_ME — Recognition Silver. ~1920 nazwisk bez informacji o kraju. Estymacja na podstawie analizy wzorców nazwisk (~37% sklasyfikowanych z wysoką pewnością). Per kraj rozłożone proporcjonalnie do Gold+.
+Źródło: doterra.com/ME/en_ME — Recognition Silver. ~1863 nazwisk bez informacji o kraju (Silver+ ~3100 minus Gold+ 1237). Per kraj rozłożone proporcjonalnie do Gold+.
 
 | Kraj | Silver (est.) | **%** |
 |---|---|---|
-| **Niemcy** | ~653 | **34.0%** |
-| **Rumunia** | ~367 | **19.1%** |
-| **Węgry** | ~142 | **7.4%** |
-| **Polska** | ~115 | **6.0%** |
-| **Włochy** | ~93 | **4.8%** |
-| **Szwajcaria** | ~88 | **4.6%** |
-| **Francja** | ~72 | **3.8%** |
-| **Bułgaria** | ~53 | **2.8%** |
-| **Czechy+Słowacja** | ~51 | **2.7%** |
-| **Austria** | ~46 | **2.4%** |
-| **UK** | ~42 | **2.2%** |
-| **Izrael** | ~30 | **1.6%** |
-| **Holandia** | ~24 | **1.3%** |
+| **Niemcy** | ~625 | **33.5%** |
+| **Rumunia** | ~361 | **19.4%** |
+| **Węgry** | ~137 | **7.4%** |
+| **Polska** | ~116 | **6.2%** |
+| **Włochy** | ~89 | **4.8%** |
+| **Szwajcaria** | ~87 | **4.7%** |
+| **Francja** | ~69 | **3.7%** |
+| **Bułgaria** | ~50 | **2.7%** |
+| **Czechy+Słowacja** | ~50 | **2.7%** |
+| **Austria** | ~44 | **2.4%** |
+| **UK** | ~44 | **2.4%** |
+| **Izrael** | ~29 | **1.6%** |
 | **Hiszpania** | ~24 | **1.3%** |
-| **Portugalia** | ~19 | **1.0%** |
-| **Norwegia** | ~16 | **0.8%** |
-| **Belgia** | ~13 | **0.7%** |
-| **Cypr** | ~11 | **0.6%** |
+| **Holandia** | ~23 | **1.2%** |
+| **Portugalia** | ~18 | **1.0%** |
+| **Norwegia** | ~15 | **0.8%** |
+| **Belgia** | ~14 | **0.8%** |
+| **Ukraina** | ~14 | **0.8%** |
 | **Dania** | ~11 | **0.6%** |
-| **Mołdawia** | ~10 | **0.5%** |
-| **Ukraina** | ~8 | **0.4%** |
-| **Słowenia** | ~6 | **0.3%** |
-| **Inne (11)** | ~24 | **1.3%** |
-| **RAZEM** | **~1920** | **100%** |
+| **Cypr** | ~11 | **0.6%** |
+| **Mołdawia** | ~9 | **0.5%** |
+| **Słowenia** | ~8 | **0.4%** |
+| **Inne (11)** | ~21 | **1.1%** |
+| **RAZEM** | **~1863** | **100%** |
 
 > **Margines błędu:** ±15-20% dla dużych krajów, ±30% dla mniejszych.
 
@@ -233,16 +236,16 @@ Dane zebrane z oficjalnych stron recognition doTERRA Europe (doterra.com/ME/en_M
 
 | Ranga | Liderów | Pewność | Źródło |
 |---|---|---|---|
-| **Silver** | ~1920 | estymacja (±15-20%) | Tabela 4 |
+| **Silver** | ~1863 | estymacja (±15-20%) | Tabela 4 |
 | **Gold** | 701 | zweryfikowane (~85-90%) | Tabela 1 |
-| **Platinum** | 214 | pewne (203 + 11 est.) | Tabela 2 |
+| **Platinum** | 252 | zweryfikowane (~90%) | Tabela 2 |
 | **Diamond+** | 284 | w pełni pewne | Tabela 3 |
-| **RAZEM Silver+** | **~3119** | | |
+| **RAZEM Silver+** | **~3100** | | |
 
 Wartości kumulatywne (do wyliczenia z powyższych tabel):
-- **Gold+** = Gold + Platinum + Diamond+ = 701 + 214 + 284 = **~1199**
-- **Platinum+** = Platinum + Diamond+ = 214 + 284 = **498**
-- **Silver+** = Silver + Gold+ = ~1920 + ~1199 = **~3119**
+- **Gold+** = Gold + Platinum + Diamond+ = 701 + 252 + 284 = **1237**
+- **Platinum+** = Platinum + Diamond+ = 252 + 284 = **536**
+- **Silver+** = Silver + Gold+ = ~1863 + 1237 = **~3100**
 
 ---
 
@@ -252,9 +255,9 @@ Wartości kumulatywne (do wyliczenia z powyższych tabel):
 
 | Metryka | Wartość |
 |---|---|
-| Liderów Gold+ | **~492** (41% Europy) |
+| Liderów Gold+ | **~502** (41% Europy) |
 | Liderów Diamond+ | **135** (47.5% Europy) |
-| Liderów Silver+ (est.) | **~1279** (41% Europy) |
+| Liderów Silver+ (est.) | **~1258** (41% Europy) |
 | Biuro korporacyjne | Monachium (od 2019) |
 | Konwencja Euro 2019 | Niemcy |
 
@@ -273,9 +276,9 @@ Wartości kumulatywne (do wyliczenia z powyższych tabel):
 
 | Metryka | Wartość |
 |---|---|
-| Liderów Gold+ | **~229** (19% Europy) |
+| Liderów Gold+ | **~240** (19% Europy) |
 | Liderów Diamond+ | **61** (21.5% Europy) |
-| Liderów Silver+ (est.) | **~596** (19% Europy) |
+| Liderów Silver+ (est.) | **~601** (19% Europy) |
 | Najwyższy lider | Double Presidential Diamond (Catalin & Elena Cimpoesu) — jedyny w Europie |
 
 **Wniosek:** Zaskakująco silny rynek #2. Jedyny Double Presidential Diamond w Europie jest z Rumunii. Wielu liderów cross-border (Rumuni w Niemczech, Hiszpanii, Irlandii). Potencjalnie interesujący rynek dla Aromagic, ale wymaga rumuńskiej wersji językowej.
@@ -292,9 +295,9 @@ Wartości kumulatywne (do wyliczenia z powyższych tabel):
 
 | Metryka | Wartość |
 |---|---|
-| Liderów Gold+ | **~72** (6% Europy) |
+| Liderów Gold+ | **~77** (6% Europy) |
 | Liderów Diamond+ | **15** (5.3% Europy) |
-| Liderów Silver+ (est.) | **~187** (6% Europy) |
+| Liderów Silver+ (est.) | **~193** (6% Europy) |
 | Najwyższy lider | Blue Diamond (5 osób) |
 | Konwencja doTERRA Europe 2026 | Katowice, Arena Spodek |
 
@@ -308,12 +311,12 @@ Wartości kumulatywne (do wyliczenia z powyższych tabel):
 
 | Ranga | PL | DE | RO |
 |---|---|---|---|
-| Gold | 46 (63%) | 251 (60%) | 128 (55%) |
-| Platinum | 12 (16%) | 72 (17%) | 45 (19%) |
-| Diamond | 10 (14%) | 71 (17%) | 40 (17%) |
-| Blue Diamond+ | 5 (7%) | 21 (5%) | 21 (9%) |
+| Gold | 46 (59%) | 251 (59%) | 128 (52%) |
+| Platinum | 17 (22%) | 79 (19%) | 56 (23%) |
+| Diamond | 10 (13%) | 71 (17%) | 40 (16%) |
+| Blue Diamond+ | 5 (6%) | 21 (5%) | 21 (9%) |
 
-Wszystkie trzy rynki mają 55–63% liderów na poziomie Gold — typowe dla dojrzałego MLM.
+Wszystkie trzy rynki mają 52–59% liderów na poziomie Gold — typowe dla dojrzałego MLM.
 Rumunia ma 9% na Blue Diamond+ (vs 5% w DE) — profil rynku z bardzo silnymi top liderami.
 
 ---
@@ -322,13 +325,13 @@ Rumunia ma 9% na Blue Diamond+ (vs 5% w DE) — profil rynku z bardzo silnymi to
 
 | Kraj | Gold+ | Uwagi |
 |---|---|---|
-| **Węgry** | ~89 (7.4%) | Call center doTERRA w Budapeszcie. Silny rynek CEE. |
-| **Włochy** | ~58 (4.8%) | Rośnie, dużo Goldów. Potencjał na IT jako kolejny język. |
-| **Francja** | ~45 (3.8%) | Rośnie. Potrzebna wersja FR. |
-| **Bułgaria** | ~33 (2.8%) | Zakład Esseterre. Lokalnie silny, dużo Platinów. |
-| **Czechy+Słowacja** | ~32 (2.7%) | Razem silny blok CEE. |
-| **UK** | ~26 (2.2%) | Mniej liderów niż oczekiwano. |
-| **Hiszpania** | ~15 (1.3%) | Wielu liderów to Rumuni mieszkający w ES. |
+| **Węgry** | ~91 (7.4%) | Call center doTERRA w Budapeszcie. Silny rynek CEE. |
+| **Włochy** | ~59 (4.8%) | Rośnie, dużo Goldów. Potencjał na IT jako kolejny język. |
+| **Francja** | ~46 (3.7%) | Rośnie. Potrzebna wersja FR. |
+| **Bułgaria** | ~33 (2.7%) | Zakład Esseterre. Lokalnie silny, dużo Platinów. |
+| **Czechy+Słowacja** | ~33 (2.7%) | Razem silny blok CEE. |
+| **UK** | ~29 (2.3%) | Mniej liderów niż oczekiwano. |
+| **Hiszpania** | ~16 (1.3%) | Wielu liderów to Rumuni mieszkający w ES. |
 
 ---
 
@@ -338,24 +341,24 @@ Rumunia ma 9% na Blue Diamond+ (vs 5% w DE) — profil rynku z bardzo silnymi to
 
 | Segment | Gold+ | Diamond+ | Silver+ (est.) | Strategia Aromagic |
 |---|---|---|---|---|
-| **Polska** | ~72 (6%) | 15 (5%) | ~187 (6%) | **TERAZ** — walidacja, Early Access, znani liderzy |
-| **DACH (DE+AT+CH)** | ~492 (41%) | 135 (48%) | ~1279 (41%) | **NASTĘPNY** — największy potencjał, gotowy język DE |
-| **Rumunia** | ~229 (19%) | 61 (21%) | ~596 (19%) | **DO ROZWAŻENIA** — duży rynek, wymaga RO |
-| **Reszta Europy** | ~406 (34%) | 73 (26%) | ~1057 (34%) | **PÓŹNIEJ** — fragmentaryczny, wiele języków |
+| **Polska** | ~77 (6%) | 15 (5%) | ~193 (6%) | **TERAZ** — walidacja, Early Access, znani liderzy |
+| **DACH (DE+AT+CH)** | ~502 (41%) | 135 (48%) | ~1258 (41%) | **NASTĘPNY** — największy potencjał, gotowy język DE |
+| **Rumunia** | ~240 (19%) | 61 (21%) | ~601 (19%) | **DO ROZWAŻENIA** — duży rynek, wymaga RO |
+| **Reszta Europy** | ~418 (34%) | 73 (26%) | ~1048 (34%) | **PÓŹNIEJ** — fragmentaryczny, wiele języków |
 
 ### Top 10 rynków — ranking potencjału dla Aromagic
 
 | # | Kraj | Gold+ | Gotowy język? | Priorytet |
 |---|---|---|---|---|
-| 1 | **Niemcy** | ~408 | TAK (DE) | Ekspansja Faza 3 |
-| 2 | **Rumunia** | ~229 | NIE (potrzebny RO) | Do rozważenia |
-| 3 | **Węgry** | ~89 | NIE (potrzebny HU) | Później |
-| 4 | **Polska** | ~72 | TAK (PL) | TERAZ — Early Access |
-| 5 | **Włochy** | ~58 | NIE (potrzebny IT) | Później |
-| 6 | **Szwajcaria** | ~55 | TAK (DE) | Razem z DE |
-| 7 | **Francja** | ~45 | NIE (potrzebny FR) | Później |
+| 1 | **Niemcy** | ~415 | TAK (DE) | Ekspansja Faza 3 |
+| 2 | **Rumunia** | ~240 | NIE (potrzebny RO) | Do rozważenia |
+| 3 | **Węgry** | ~91 | NIE (potrzebny HU) | Później |
+| 4 | **Polska** | ~77 | TAK (PL) | TERAZ — Early Access |
+| 5 | **Włochy** | ~59 | NIE (potrzebny IT) | Później |
+| 6 | **Szwajcaria** | ~58 | TAK (DE) | Razem z DE |
+| 7 | **Francja** | ~46 | NIE (potrzebny FR) | Później |
 | 8 | **Bułgaria** | ~33 | NIE (potrzebny BG) | Później |
-| 9 | **Czechy+Słowacja** | ~32 | NIE (potrzebny CZ/SK) | Później |
+| 9 | **Czechy+Słowacja** | ~33 | NIE (potrzebny CZ/SK) | Później |
 | 10 | **Austria** | ~29 | TAK (DE) | Razem z DE |
 
 ### Kluczowe wnioski
@@ -366,7 +369,7 @@ Rumunia ma 9% na Blue Diamond+ (vs 5% w DE) — profil rynku z bardzo silnymi to
 
 3. **Polska to idealny rynek startowy** — średni, znany, z rosnącą bazą. Konwencja 2026 w Katowicach to okno szans na pozyskanie użytkowników.
 
-4. **Obsługując PL + DE + EN** Aromagic pokrywa: Polskę (~72 Gold+), DACH (~492 Gold+), UK (~26 Gold+) + liderów używających EN jako lingua franca = **~590 Gold+ liderów** (49% Europy) bez dodatkowych tłumaczeń.
+4. **Obsługując PL + DE + EN** Aromagic pokrywa: Polskę (~77 Gold+), DACH (~502 Gold+), UK (~29 Gold+) + liderów używających EN jako lingua franca = **~608 Gold+ liderów** (49% Europy) bez dodatkowych tłumaczeń.
 
 ---
 
