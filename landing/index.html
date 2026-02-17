@@ -479,6 +479,264 @@
 
     .footer-links a:hover { color: var(--text-secondary); }
 
+    /* ---- PRICING ---- */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      column-gap: 16px;
+      row-gap: 2px;
+      margin-bottom: 48px;
+    }
+
+    .pricing-card {
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 5;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .pricing-card .pricing-target {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      margin-bottom: 8px;
+    }
+
+    .pricing-price .amount {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-price .period {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .pricing-price .free-label {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--green);
+    }
+
+    .pricing-tagline {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .pricing-features li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      background: var(--purple-soft);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%237E57C2' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.5 12.75 6 6 9-13.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .pricing-features .inherited {
+      color: var(--text-muted);
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .pricing-calc-title {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pricing-calc {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .pricing-calc label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .pricing-calc input {
+      width: 200px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.15s;
+      background: var(--bg);
+    }
+
+    .pricing-calc input:focus {
+      border-color: var(--purple);
+    }
+
+    .pricing-calc-result {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      min-height: 20px;
+    }
+
+    .pricing-calc-result strong {
+      color: var(--text);
+    }
+
+    .pricing-calc-result .calc-price {
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    /* ---- COMPARE TABLE ---- */
+    .compare-wrap {
+      overflow-x: auto;
+      margin-top: 48px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th {
+      font-weight: 600;
+      color: var(--text);
+      background: var(--bg-soft);
+      position: sticky;
+      top: 0;
+    }
+
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .compare-table .check {
+      color: var(--purple);
+    }
+
+    .compare-table .dash {
+      color: var(--text-muted);
+    }
+
+    /* ---- FAQ ---- */
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+
+    .faq-question svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+      margin-left: 16px;
+    }
+
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
     /* ---- ANIMATIONS ---- */
     .anim {
       opacity: 0;
@@ -524,6 +782,12 @@
 
       .roadmap-grid { flex-direction: column; }
 
+      .pricing-cards { grid-template-columns: 1fr; }
+      .pricing-calc { flex-direction: column; text-align: center; }
+
+      .compare-table { font-size: 0.7rem; }
+      .compare-table th, .compare-table td { padding: 8px 8px; }
+
       .final-cta { padding: 64px 0; }
       .final-cta h2 { font-size: 1.5rem; }
 
@@ -542,6 +806,7 @@
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#features">Funkcje</a>
+        <a href="#pricing">Cennik</a>
         <a href="#why">Dlaczego my</a>
         <a href="#for-who">Dla kogo</a>
         <a href="#cta" class="btn btn-primary">Dołącz za darmo</a>
@@ -653,6 +918,283 @@
           </div>
           <h3>Integracja z portalem</h3>
           <p>Rozszerzenie Chrome synchronizuje dane bezpośrednio z portalu doTERRA. Katalog i kalkulacje działają na każdym urządzeniu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="bg-soft" id="pricing">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">Cennik</div>
+        <h2>Plan dopasowany do Twojego biznesu</h2>
+        <p>Plan dopasowuje się automatycznie do rozmiaru Twojego zespołu. Mały zespół = niższa cena. Nigdy nie zapłacisz więcej niż powinieneś.</p>
+      </div>
+
+      <p class="pricing-calc-title anim">Sprawdź swój plan</p>
+      <div class="pricing-calc anim">
+        <label for="ovInput">Wpisz swoje średnie OV:</label>
+        <input type="text" inputmode="numeric" id="ovInput" placeholder="np. 12000">
+        <div class="pricing-calc-result" id="calcResult"></div>
+      </div>
+
+      <div class="pricing-cards anim">
+        <!-- Free -->
+        <div class="pricing-card">
+          <h3>Free</h3>
+          <p class="pricing-target">OV poniżej 3 000</p>
+          <div class="pricing-price">
+            <span class="free-label">0 PLN</span>
+          </div>
+          <p class="pricing-tagline">Zacznij za darmo. Katalog, kalkulacje i punkty — bez limitu.</p>
+          <ul class="pricing-features">
+            <li>Katalog produktów z cenami na rynkach europejskich</li>
+            <li>Kalkulacje cenowe — generuj link dla klienta</li>
+            <li>Kalkulator zamówień za punkty lojalnościowe</li>
+          </ul>
+        </div>
+
+        <!-- Starter -->
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <p class="pricing-target">OV 3 000 – 9 999</p>
+          <div class="pricing-price">
+            <span class="amount">29 PLN</span>
+            <span class="period"> / mies</span>
+          </div>
+          <p class="pricing-tagline">Wszystkie funkcje Aromagic dla rosnących zespołów.</p>
+          <ul class="pricing-features">
+            <li>Wszystko z Free</li>
+            <li>Pełna analityka zespołu</li>
+            <li>Zaawansowane filtrowanie struktury</li>
+            <li>Klastry PO3 i PGV</li>
+            <li>Retencja, historia danych, drzewo struktury</li>
+            <li>Planowanie rangi i skład obrotu</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="pricing-card">
+          <h3>Pro</h3>
+          <p class="pricing-target">OV 10 000 – 34 999</p>
+          <div class="pricing-price">
+            <span class="amount">79 PLN</span>
+            <span class="period"> / mies</span>
+          </div>
+          <p class="pricing-tagline">Wszystkie funkcje Aromagic dla liderów z dużym zespołem.</p>
+          <ul class="pricing-features">
+            <li>Wszystko z Free</li>
+            <li>Pełna analityka zespołu</li>
+            <li>Zaawansowane filtrowanie struktury</li>
+            <li>Klastry PO3 i PGV</li>
+            <li>Retencja, historia danych, drzewo struktury</li>
+            <li>Planowanie rangi i skład obrotu</li>
+          </ul>
+        </div>
+
+        <!-- Leader -->
+        <div class="pricing-card">
+          <h3>Leader</h3>
+          <p class="pricing-target">OV 35 000+</p>
+          <div class="pricing-price">
+            <span class="amount">199 PLN</span>
+            <span class="period"> / mies</span>
+          </div>
+          <p class="pricing-tagline">Wszystkie funkcje Aromagic dla top liderów.</p>
+          <ul class="pricing-features">
+            <li>Wszystko z Free</li>
+            <li>Pełna analityka zespołu</li>
+            <li>Zaawansowane filtrowanie struktury</li>
+            <li>Klastry PO3 i PGV</li>
+            <li>Retencja, historia danych, drzewo struktury</li>
+            <li>Planowanie rangi i skład obrotu</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pricing-note anim">Plan przypisywany automatycznie na podstawie średniego OV z 3 ostatnich miesięcy. Twoje OV rośnie — plan się podnosi. OV spada — płacisz mniej.</p>
+
+      <!-- Tabela porównawcza -->
+      <div class="compare-wrap anim">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Funkcja</th>
+              <th>Free</th>
+              <th>Starter 29 PLN</th>
+              <th>Pro 79 PLN</th>
+              <th>Leader 199 PLN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Katalog produktów</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Kalkulacje cenowe</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Kalkulator punktów</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Zamówienia w strukturze</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Wyszukiwanie członków</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Analityka zespołu</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Zaawansowane filtrowanie</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Klastry PO3 i PGV</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Retencja</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Historia danych powyżej 6 mies.</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Drzewo struktury</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Planowanie rangi</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Skład obrotu</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Tracking rejestracji</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Statystyki porównawcze</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Powroty po nieaktywności</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Nieopłacone zamówienia</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="w">
+      <div class="section-head section-head--center anim">
+        <div class="section-label">FAQ</div>
+        <h2>Często zadawane pytania</h2>
+      </div>
+      <div class="faq-list anim">
+        <div class="faq-item">
+          <button class="faq-question">
+            Jak ustalany jest mój plan?
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-answer">Na podstawie średniego OV z 3 ostatnich zamkniętych miesięcy. Plan aktualizuje się automatycznie — nie musisz nic zmieniać ręcznie.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Co jeśli moje OV spadnie?
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-answer">Automatycznie przechodzisz na niższy plan i płacisz mniej. Bez zobowiązań, bez dodatkowych opłat.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Co jeśli moje OV wzrośnie?
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-answer">Automatycznie przechodzisz na wyższy plan z dostępem do większej liczby funkcji. Twoje narzędzia rosną razem z Twoim biznesem.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Czy mogę testować za darmo?
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-answer">Tak, plan Free jest darmowy na stałe. Katalog produktów, kalkulacje cenowe i kalkulator punktów — bez limitu czasowego.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Czy ceny zmienią się w przyszłości?
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-answer">Ceny mogą się zmienić po zakończeniu Early Access. Obecne ceny w PLN dotyczą rynku polskiego — docelowo planujemy rozliczenia w EUR dla całej Europy.</div>
         </div>
       </div>
     </div>
@@ -808,6 +1350,27 @@
     document.querySelectorAll('#navLinks a').forEach(a =>
       a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
     );
+
+    // OV calculator
+    const ovInput = document.getElementById('ovInput');
+    const calcResult = document.getElementById('calcResult');
+    ovInput.addEventListener('input', () => {
+      const ov = parseInt(ovInput.value) || 0;
+      if (ov <= 0) { calcResult.innerHTML = ''; return; }
+      let plan, price;
+      if (ov < 3000) { plan = 'Free'; price = '0 PLN'; }
+      else if (ov < 10000) { plan = 'Starter'; price = '29 PLN'; }
+      else if (ov < 35000) { plan = 'Pro'; price = '79 PLN'; }
+      else { plan = 'Leader'; price = '199 PLN'; }
+      calcResult.innerHTML = '<strong>' + plan + '</strong> — <span class="calc-price">' + price + '/mies</span>';
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
 
     // Scroll animations
     const obs = new IntersectionObserver(entries => {
