@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aromagic — Narzędzia do prowadzenia biznesu doTERRA</title>
-  <meta name="description" content="Minuty zamiast godzin. Analityka zespołu prosto z portalu doTERRA — struktura, retencja, historia i więcej.">
+  <meta name="description" content="Minuty zamiast godzin. Analityka zespołu prosto z portalu doTERRA — struktura, historia i więcej.">
   <link rel="icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -652,6 +652,12 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 0.8rem;
+      table-layout: fixed;
+    }
+
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      width: 40%;
     }
 
     .compare-table th,
@@ -682,6 +688,69 @@
 
     .compare-table .dash {
       color: var(--text-muted);
+    }
+
+    /* Widok B — wyrazisty */
+    .compare-table.bold-view {
+      font-size: 0.875rem;
+    }
+
+    .compare-table.bold-view th {
+      background: var(--bg-soft);
+      color: var(--text);
+      font-size: 0.8rem;
+    }
+
+    .compare-table.bold-view .check {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .compare-table.bold-view .dash {
+      color: #ddd;
+    }
+
+    .compare-table.bold-view td:first-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .compare-table.bold-view tr:nth-child(even) td {
+      background: rgba(0,0,0,0.015);
+    }
+
+    /* Przełącznik widoku */
+    .view-toggle {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      gap: 0;
+    }
+
+    .view-toggle button {
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .view-toggle button:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+
+    .view-toggle button:last-child {
+      border-radius: 0 6px 6px 0;
+      border-left: none;
+    }
+
+    .view-toggle button.active {
+      background: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
     }
 
     /* ---- FAQ ---- */
@@ -823,7 +892,7 @@
     <div class="w">
       <div class="hero-label">Early Access</div>
       <h1>Wszystkie narzędzia do biznesu doTERRA w&nbsp;jednym miejscu</h1>
-      <p class="hero-sub">Minuty zamiast godzin. Analityka zespołu prosto z&nbsp;portalu doTERRA — struktura, retencja, historia i&nbsp;więcej.</p>
+      <p class="hero-sub">Minuty zamiast godzin. Analityka zespołu prosto z&nbsp;portalu doTERRA — struktura, historia i&nbsp;więcej.</p>
       <div class="hero-actions">
         <a href="#cta" class="btn btn-primary">Dołącz do Early Access</a>
       </div>
@@ -882,7 +951,7 @@
           <div class="feature-icon">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z"/></svg>
           </div>
-          <h3>Dashboard zespołu</h3>
+          <h3>Twój dashboard</h3>
           <p>Historia każdego klienta jednym kliknięciem. Zamówienia na żywo, powroty po nieaktywności, przypadkowe zamówienia przez koszyk. Pilnuj ciągłość LRP, żeby nikt nie stracił zniżki.</p>
         </div>
         <div class="feature">
@@ -890,7 +959,7 @@
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
           </div>
           <h3>Statystyki i analiza</h3>
-          <p>Skład obrotu, klastry PO3, kalkulator fast startu, retencja zespołu. Pełna historia zamówień i statystyk — porównuj miesiące i optymalizuj strukturę.</p>
+          <p>Skład obrotu, klastry PO3, kalkulator fast startu. Pełna historia zamówień i statystyk — porównuj miesiące i optymalizuj strukturę.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">
@@ -944,7 +1013,7 @@
         <!-- Free -->
         <div class="pricing-card">
           <h3>Free</h3>
-          <p class="pricing-target">OV poniżej 3 000</p>
+          <p class="pricing-target">Bez warunków OV</p>
           <div class="pricing-price">
             <span class="free-label">0 PLN</span>
           </div>
@@ -953,13 +1022,14 @@
             <li>Katalog produktów z filtrami i cenami na rynkach europejskich</li>
             <li>Kalkulacje cenowe — generuj link dla klienta</li>
             <li>Kalkulator zamówień za punkty lojalnościowe</li>
+            <li>Łatwe liczenie fast startów</li>
           </ul>
         </div>
 
         <!-- Starter -->
         <div class="pricing-card">
           <h3>Starter</h3>
-          <p class="pricing-target">OV 3 000 – 9 999</p>
+          <p class="pricing-target">OV 0 – 9 999</p>
           <div class="pricing-price">
             <span class="amount">29 PLN</span>
             <span class="period"> / mies</span>
@@ -967,11 +1037,12 @@
           <p class="pricing-tagline">Wszystkie funkcje Aromagic dla rosnących zespołów.</p>
           <ul class="pricing-features">
             <li>Wszystko z Free</li>
-            <li>Pełna analityka zespołu</li>
-            <li>Zaawansowane filtrowanie struktury</li>
-            <li>Klastry PO3 i PGV</li>
-            <li>Retencja, drzewo struktury, historia zamówień i statystyk pow. 6 mies.</li>
+            <li>Zamówienia na żywo i ciągłość LRP</li>
+            <li>Powroty po nieaktywności</li>
+            <li>Statystyki i analiza (OV, PO3, PGV)</li>
+            <li>Historia zamówień i statystyk pow. 6 mies.</li>
             <li>Skład obrotu i tracking rejestracji</li>
+            <li>Drzewo struktury z filtrowaniem i wyszukiwaniem</li>
           </ul>
         </div>
 
@@ -986,11 +1057,12 @@
           <p class="pricing-tagline">Wszystkie funkcje Aromagic dla liderów z dużym zespołem.</p>
           <ul class="pricing-features">
             <li>Wszystko z Free</li>
-            <li>Pełna analityka zespołu</li>
-            <li>Zaawansowane filtrowanie struktury</li>
-            <li>Klastry PO3 i PGV</li>
-            <li>Retencja, drzewo struktury, historia zamówień i statystyk pow. 6 mies.</li>
+            <li>Zamówienia na żywo i ciągłość LRP</li>
+            <li>Powroty po nieaktywności</li>
+            <li>Statystyki i analiza (OV, PO3, PGV)</li>
+            <li>Historia zamówień i statystyk pow. 6 mies.</li>
             <li>Skład obrotu i tracking rejestracji</li>
+            <li>Drzewo struktury z filtrowaniem i wyszukiwaniem</li>
           </ul>
         </div>
 
@@ -1005,11 +1077,12 @@
           <p class="pricing-tagline">Wszystkie funkcje Aromagic dla top liderów.</p>
           <ul class="pricing-features">
             <li>Wszystko z Free</li>
-            <li>Pełna analityka zespołu</li>
-            <li>Zaawansowane filtrowanie struktury</li>
-            <li>Klastry PO3 i PGV</li>
-            <li>Retencja, drzewo struktury, historia zamówień i statystyk pow. 6 mies.</li>
+            <li>Zamówienia na żywo i ciągłość LRP</li>
+            <li>Powroty po nieaktywności</li>
+            <li>Statystyki i analiza (OV, PO3, PGV)</li>
+            <li>Historia zamówień i statystyk pow. 6 mies.</li>
             <li>Skład obrotu i tracking rejestracji</li>
+            <li>Drzewo struktury z filtrowaniem i wyszukiwaniem</li>
           </ul>
         </div>
       </div>
@@ -1018,7 +1091,11 @@
 
       <!-- Tabela porównawcza -->
       <div class="compare-wrap anim">
-        <table class="compare-table">
+        <div class="view-toggle">
+          <button class="active" id="viewA">Obecny</button>
+          <button id="viewB">Wyrazisty</button>
+        </div>
+        <table class="compare-table" id="compareTable">
           <thead>
             <tr>
               <th>Funkcja</th>
@@ -1051,92 +1128,99 @@
               <td class="check">&#10003;</td>
             </tr>
             <tr>
-              <td>Zamówienia w strukturze</td>
-              <td class="dash">—</td>
+              <td>Liczenie fast startów</td>
+              <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
-              <td>Wyszukiwanie członków</td>
-              <td class="dash">—</td>
+              <td>Zamówienia w strukturze</td>
+              <td class="dash">✕</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Zaawansowane filtrowanie i wyszukiwanie</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Analityka zespołu</td>
-              <td class="dash">—</td>
-              <td class="check">&#10003;</td>
-              <td class="check">&#10003;</td>
-              <td class="check">&#10003;</td>
-            </tr>
-            <tr>
-              <td>Zaawansowane filtrowanie</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Klastry PO3 i PGV</td>
-              <td class="dash">—</td>
-              <td class="check">&#10003;</td>
-              <td class="check">&#10003;</td>
-              <td class="check">&#10003;</td>
-            </tr>
-            <tr>
-              <td>Retencja</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Historia zamówień i statystyk pow. 6 mies.</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Drzewo struktury</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Skład obrotu</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Tracking rejestracji</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Statystyki porównawcze</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
               <td>Powroty po nieaktywności</td>
-              <td class="dash">—</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
             </tr>
             <tr>
-              <td>Nieopłacone zamówienia</td>
-              <td class="dash">—</td>
+              <td>Ciągłość LRP</td>
+              <td class="dash">✕</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Przypadkowe zamówienia przez koszyk</td>
+              <td class="dash">✕</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Nieopłacone zamówienia — bezpośredni link</td>
+              <td class="dash">✕</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
               <td class="check">&#10003;</td>
@@ -1174,21 +1258,21 @@
             Co jeśli moje OV wzrośnie?
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
           </button>
-          <div class="faq-answer">Automatycznie przechodzisz na wyższy plan z dostępem do większej liczby funkcji. Twoje narzędzia rosną razem z Twoim biznesem.</div>
+          <div class="faq-answer">Automatycznie przechodzisz na wyższy plan. Twoje narzędzia rosną razem z Twoim biznesem.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
             Czy mogę testować za darmo?
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
           </button>
-          <div class="faq-answer">Tak, plan Free jest darmowy na stałe. Katalog produktów, kalkulacje cenowe i kalkulator punktów — bez limitu czasowego.</div>
+          <div class="faq-answer">Tak, plan Free jest darmowy na stałe. Katalog produktów, kalkulacje cenowe, kalkulator punktów i liczenie fast startów — bez limitu czasowego.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
             Czy ceny zmienią się w przyszłości?
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
           </button>
-          <div class="faq-answer">Ceny mogą się zmienić po zakończeniu Early Access. Obecne ceny w PLN dotyczą rynku polskiego — docelowo planujemy rozliczenia w EUR dla całej Europy.</div>
+          <div class="faq-answer">Ceny mogą się zmienić po zakończeniu Early Access. Każdy rynek ma ceny w swojej lokalnej walucie.</div>
         </div>
       </div>
     </div>
@@ -1352,8 +1436,7 @@
       const ov = parseInt(ovInput.value) || 0;
       if (ov <= 0) { calcResult.innerHTML = ''; return; }
       let plan, price;
-      if (ov < 3000) { plan = 'Free'; price = '0 PLN'; }
-      else if (ov < 10000) { plan = 'Starter'; price = '29 PLN'; }
+      if (ov < 10000) { plan = 'Starter'; price = '29 PLN'; }
       else if (ov < 35000) { plan = 'Pro'; price = '79 PLN'; }
       else { plan = 'Leader'; price = '199 PLN'; }
       calcResult.innerHTML = '<strong>' + plan + '</strong> — <span class="calc-price">' + price + '/mies</span>';
@@ -1364,6 +1447,21 @@
       btn.addEventListener('click', () => {
         btn.parentElement.classList.toggle('open');
       });
+    });
+
+    // View toggle
+    const viewA = document.getElementById('viewA');
+    const viewB = document.getElementById('viewB');
+    const compareTable = document.getElementById('compareTable');
+    viewA.addEventListener('click', () => {
+      compareTable.classList.remove('bold-view');
+      viewA.classList.add('active');
+      viewB.classList.remove('active');
+    });
+    viewB.addEventListener('click', () => {
+      compareTable.classList.add('bold-view');
+      viewB.classList.add('active');
+      viewA.classList.remove('active');
     });
 
     // Scroll animations
