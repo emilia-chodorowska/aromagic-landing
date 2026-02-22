@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Baza Wiedzy — Aromagic (Mobile Mockup)</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --bg: #ffffff;
+      --bg-soft: #F9FAFB;
+      --border: #E5E7EB;
+      --purple: #7E57C2;
+      --purple-soft: #F3EEFA;
+      --green: #4CAF50;
+      --green-hover: #43A047;
+      --pastel-lavender: #F3EEFA;
+      --pastel-mint: #E8F5E9;
+      --pastel-peach: #FFF3E0;
+      --pastel-sky: #E3F2FD;
+      --pastel-rose: #FCE4EC;
+      --pastel-lemon: #FFFDE7;
+    }
+
+    html { -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background: #f0f0f5;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ---- PHONE FRAME ---- */
+    .phone {
+      width: 375px;
+      height: 812px;
+      background: var(--bg);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      width: 160px;
+      height: 34px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    /* ---- SCREEN ---- */
+    .screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      animation: fadeIn 0.25s ease;
+    }
+    .screen.active { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadeInBack {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: none; }
+    }
+    .screen.back { animation: fadeInBack 0.25s ease; }
+
+    /* ---- HEADER ---- */
+    .header {
+      padding: 16px 20px 0;
+      background: var(--bg);
+      z-index: 5;
+      flex-shrink: 0;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .header-back {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .header-back:hover { background: var(--bg-soft); }
+    .header-back svg { width: 18px; height: 18px; color: var(--text); }
+
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ---- SEARCH ---- */
+    .search-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+    .search-bar svg { width: 18px; height: 18px; color: var(--text-muted); flex-shrink: 0; }
+    .search-bar input {
+      border: none; background: transparent;
+      font-size: 0.875rem; font-family: inherit; color: var(--text);
+      outline: none; flex: 1;
+    }
+    .search-bar input::placeholder { color: var(--text-muted); }
+
+    /* ---- CONTENT (scrollable) ---- */
+    .content {
+      flex: 1;
+      padding: 0 20px 24px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---- CATEGORY CARDS ---- */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .category-card {
+      padding: 20px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .category-card:active { transform: scale(0.97); }
+    .category-emoji { font-size: 1.75rem; margin-bottom: 10px; display: block; }
+    .category-name { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+    .category-count { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ---- SUBFOLDER LIST ---- */
+    .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
+    .subfolder-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--bg);
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .subfolder-card:active { transform: scale(0.98); }
+    .subfolder-card:hover { background: var(--bg-soft); }
+    .subfolder-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .subfolder-info { flex: 1; min-width: 0; }
+    .subfolder-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .subfolder-meta { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+    .subfolder-arrow { width: 18px; height: 18px; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ---- FILTER TABS ---- */
+    .filter-tabs {
+      display: flex; gap: 0;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-shrink: 0;
+    }
+    .filter-tab {
+      padding: 8px 14px 10px;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--text-muted);
+      border: none; background: none; cursor: pointer;
+      white-space: nowrap; position: relative;
+      font-family: inherit; transition: color 0.15s;
+    }
+    .filter-tab.active { color: var(--purple); font-weight: 600; }
+    .filter-tab.active::after {
+      content: ''; position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px; background: var(--purple); border-radius: 2px 2px 0 0;
+    }
+
+    /* ---- GALLERY GRID ---- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.1s;
+      background: var(--bg-soft);
+    }
+    .gallery-item:active { transform: scale(0.96); }
+    .gallery-item.hidden { display: none; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+    .type-badge {
+      position: absolute; bottom: 3px; right: 3px;
+      width: 20px; height: 20px; border-radius: 5px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem;
+    }
+
+    /* ---- FULLSCREEN ---- */
+    .fullscreen-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #000; z-index: 50;
+      flex-direction: column;
+    }
+    .fullscreen-overlay.active { display: flex; }
+    .fullscreen-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; color: #fff;
+    }
+    .fullscreen-close {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .fullscreen-close svg { width: 20px; height: 20px; }
+    .fullscreen-image {
+      flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px;
+    }
+    .fullscreen-image .thumb-placeholder {
+      width: 100%; height: 380px; border-radius: 12px;
+    }
+    .fullscreen-actions {
+      display: flex; justify-content: center; gap: 32px; padding: 20px; color: #fff;
+    }
+    .fullscreen-action {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: none; border: none; color: #fff;
+      font-size: 0.7rem; font-family: inherit; cursor: pointer; opacity: 0.8;
+    }
+    .fullscreen-action svg { width: 22px; height: 22px; }
+
+    /* ---- CONTEXT MENU ---- */
+    .context-menu-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      z-index: 40; align-items: flex-end; justify-content: center; padding: 20px;
+    }
+    .context-menu-overlay.active { display: flex; }
+    .context-menu {
+      width: 100%; background: var(--bg); border-radius: 16px; overflow: hidden;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .context-menu-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+    .context-menu-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .context-menu-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .context-menu-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px; font-size: 0.875rem; color: var(--text);
+      cursor: pointer; border: none; background: none; width: 100%;
+      font-family: inherit; text-align: left; transition: background 0.1s;
+    }
+    .context-menu-item:hover { background: var(--bg-soft); }
+    .context-menu-item svg { width: 20px; height: 20px; color: var(--text-secondary); flex-shrink: 0; }
+    .context-menu-cancel {
+      display: block; width: calc(100% - 40px); margin: 8px 20px 16px;
+      padding: 12px; border: none; background: var(--bg-soft); border-radius: 12px;
+      font-size: 0.875rem; font-weight: 600; color: var(--text);
+      cursor: pointer; font-family: inherit;
+    }
+
+    /* ---- FAB ---- */
+    .fab {
+      position: absolute; bottom: 24px; right: 20px;
+      width: 52px; height: 52px; border-radius: 16px;
+      background: var(--purple); color: #fff; border: none;
+      display: none; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 6px 24px rgba(126,87,194,0.35); z-index: 10;
+      transition: transform 0.15s;
+    }
+    .fab.visible { display: flex; }
+    .fab:active { transform: scale(0.95); }
+    .fab svg { width: 24px; height: 24px; }
+    .fab-menu-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+      z-index: 30; align-items: flex-end; justify-content: flex-end;
+      padding: 0 20px 90px;
+    }
+    .fab-menu-overlay.active { display: flex; }
+    .fab-menu { display: flex; flex-direction: column; gap: 8px; animation: fadeUp 0.2s ease; }
+    @keyframes fadeUp {
+      from { transform: translateY(16px); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .fab-menu-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; background: var(--bg); border-radius: 12px;
+      border: none; cursor: pointer; font-family: inherit;
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ---- SEARCH RESULTS ---- */
+    .search-results { display: flex; flex-direction: column; gap: 8px; }
+    .search-result {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--border); cursor: pointer;
+    }
+    .search-result:hover { background: var(--bg-soft); }
+    .search-result-thumb {
+      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; overflow: hidden;
+    }
+    .search-result-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .search-result-info { flex: 1; min-width: 0; }
+    .search-result-name { font-size: 0.825rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-result-path { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+
+    /* ---- ADMIN TOGGLE ---- */
+    .admin-toggle {
+      position: fixed; top: 20px; right: 20px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+      cursor: pointer; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-family: inherit;
+    }
+    .admin-toggle .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--text-muted); transition: background 0.2s;
+    }
+    .admin-toggle.on .dot { background: var(--green); }
+
+    .screen-label {
+      position: fixed; bottom: 20px; right: 20px;
+      padding: 6px 14px; background: var(--text); color: #fff;
+      font-size: 0.7rem; font-weight: 600; border-radius: 8px; z-index: 100;
+    }
+
+    @media (max-width: 420px) {
+      body { padding: 0; background: var(--bg); }
+      .phone { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; }
+      .phone-notch { display: none; }
+      .admin-toggle, .screen-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="admin-toggle" id="adminToggle" onclick="toggleAdmin()">
+  <span class="dot"></span>
+  <span id="adminLabel">Widok: czytelnik</span>
+</button>
+<div class="screen-label" id="screenLabel">Poziom 1 — Kategorie</div>
+
+<div class="phone">
+  <div class="phone-notch"></div>
+
+  <!-- ==================== HOME — Kategorie ==================== -->
+  <div class="screen active" id="screen-home" data-label="Poziom 1 — Kategorie">
+    <div class="header">
+      <div class="header-row">
+        <div style="display:flex;align-items:center;gap:8px">
+          <img src="logo.png" alt="" style="height:24px">
+        </div>
+        <div class="header-title">Baza Wiedzy</div>
+      </div>
+      <div class="search-bar" onclick="nav('screen-search')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+        <input type="text" placeholder="Szukaj materialy..." readonly>
+      </div>
+    </div>
+    <div class="content">
+      <div class="categories-grid">
+        <div class="category-card" style="background:var(--pastel-lavender)" onclick="nav('screen-podstawy')">
+          <span class="category-emoji">&#127807;</span>
+          <div class="category-name">Podstawy aromaterapii</div>
+          <div class="category-count">4 tematy &middot; 16 materialow</div>
+        </div>
+        <div class="category-card" style="background:var(--pastel-mint)" onclick="nav('screen-aromaterapia')">
+          <span class="category-emoji">&#129716;</span>
+          <div class="category-name">Aromaterapia</div>
+          <div class="category-count">3 tematy &middot; 12 materialow</div>
+        </div>
+        <div class="category-card" style="background:var(--pastel-sky)" onclick="nav('screen-suplementy')">
+          <span class="category-emoji">&#128138;</span>
+          <div class="category-name">Suplementy</div>
+          <div class="category-count">4 tematy &middot; 19 materialow</div>
+        </div>
+        <div class="category-card" style="background:var(--pastel-rose)" onclick="nav('screen-materialy')">
+          <span class="category-emoji">&#128218;</span>
+          <div class="category-name">Materialy</div>
+          <div class="category-count">2 tematy &middot; 10 materialow</div>
+        </div>
+        <div class="category-card" style="background:var(--pastel-peach)" onclick="nav('screen-aktualnosci')">
+          <span class="category-emoji">&#127873;</span>
+          <div class="category-name">Aktualnosci</div>
+          <div class="category-count">Oferta miesiaca</div>
+        </div>
+        <div class="category-card" style="background:var(--pastel-lemon)" onclick="nav('screen-akcesoria')">
+          <span class="category-emoji">&#128168;</span>
+          <div class="category-name">Akcesoria</div>
+          <div class="category-count">1 temat &middot; 1 film</div>
+        </div>
+      </div>
+    </div>
+    <button class="fab" id="fab-home" onclick="showFab('fabm-home')">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+    <div class="fab-menu-overlay" id="fabm-home" onclick="closeFab('fabm-home')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128193;</span> Nowy folder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Podstawy aromaterapii ==================== -->
+  <div class="screen" id="screen-podstawy" data-label="Poziom 2 — Podstawy aromaterapii">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Podstawy aromaterapii</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-apteczka')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#129514;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Apteczka olejkowa</div>
+            <div class="subfolder-meta">4 grafiki &middot; 1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-lekcja')">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">&#127891;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Lekcja olejkowa</div>
+            <div class="subfolder-meta">1 film YT</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-kadzidlowiec')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">&#129732;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Kadzidlowiec</div>
+            <div class="subfolder-meta">5 grafik &middot; 1 film &middot; 3 linki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-metapwr')">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#9889;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">MetaPWR</div>
+            <div class="subfolder-meta">1 grafika</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+    <button class="fab" onclick="showFab('fabm-sub')">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+    <div class="fab-menu-overlay" id="fabm-sub" onclick="closeFab('fabm-sub')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128193;</span> Nowy folder</button>
+        <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
+        <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
+        <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Apteczka olejkowa — GALERIA ==================== -->
+  <div class="screen" id="screen-apteczka" data-label="Galeria — Apteczka olejkowa">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Apteczka olejkowa</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 4 grafiki z Discorda -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (1/4)','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0)">
+            <span style="font-size:2rem">&#127807;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (2/4)','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c3b1e1,#a58fd3)">
+            <span style="font-size:2rem">&#127769;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (3/4)','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffd3b6,#ffb88c)">
+            <span style="font-size:2rem">&#129473;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (4/4)','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a0d8ef,#73c2e0)">
+            <span style="font-size:2rem">&#128170;</span>
+          </div>
+        </div>
+        <!-- Link: Google Photos album -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('photos.google.com/...','Link')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.4rem">&#128247;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="fab" onclick="showFab('fabm-apt')">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+    <div class="fab-menu-overlay" id="fabm-apt" onclick="closeFab('fabm-apt')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
+        <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
+        <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Lekcja olejkowa — GALERIA ==================== -->
+  <div class="screen" id="screen-lekcja" data-label="Galeria — Lekcja olejkowa">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Lekcja olejkowa</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('Film YT: Lekcja olejkowa','Film YT')">
+          <img src="https://img.youtube.com/vi/npvjyM_d9NM/mqdefault.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder style=background:linear-gradient(135deg,#ffcdd2,#ef9a9a)><span style=font-size:1.8rem>&#9654;&#65039;</span></div>'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Kadzidlowiec — GALERIA ==================== -->
+  <div class="screen" id="screen-kadzidlowiec" data-label="Galeria — Kadzidlowiec">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Kadzidlowiec</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 2 grafiki (najnowsze) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+        </div>
+        <!-- IG link 1 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DP4hV7kkX3S','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- 1 grafika -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+        </div>
+        <!-- IG link 2 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DQNP3tckl0_','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- IG link 3 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSDDeSiDWaW','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- YT -->
+        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
+          <img src="https://img.youtube.com/vi/J7jFZkNmwo4/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- 2 grafiki (najstarsze) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MetaPWR — GALERIA ==================== -->
+  <div class="screen" id="screen-metapwr" data-label="Galeria — MetaPWR">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">MetaPWR</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#bbdefb,#90caf9)">
+            <span style="font-size:2rem">&#9889;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Aromaterapia ==================== -->
+  <div class="screen" id="screen-aromaterapia" data-label="Poziom 2 — Aromaterapia">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Aromaterapia</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">&#129328;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Ciaza, porod, male dzieci</div>
+            <div class="subfolder-meta">3 filmy YT &middot; 1 link IG &middot; 1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-biofilm')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#129440;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Biofilm i bakterie</div>
+            <div class="subfolder-meta">3 filmy YT &middot; 2 grafiki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-wszy')">
+          <div class="subfolder-icon" style="background:var(--pastel-lemon)">&#128027;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Wszy</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 mapa mysli</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Ciaza, porod — GALERIA ==================== -->
+  <div class="screen" id="screen-ciaza" data-label="Galeria — Ciaza, porod, male dzieci">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Ciaza, porod, male dzieci</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- IG link -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSn6TdBjfiq','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- Link: Essential Midwife -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy, Birth and Babies','Link — theessentialmidwife.com')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.2rem">&#128218;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- YT 1 -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/-wUePH23jUs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT 2 -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT 3 -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/QTSCbKvdHCs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Biofilm — GALERIA ==================== -->
+  <div class="screen" id="screen-biofilm" data-label="Galeria — Biofilm i bakterie">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Biofilm i bakterie</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 2 grafiki -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
+            <span style="font-size:2rem">&#129440;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)">
+            <span style="font-size:2rem">&#129440;</span>
+          </div>
+        </div>
+        <!-- YT: qazzB9Bsdeg -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT: vXNwykKCP9g (Emilia Chodorowska) -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT: kH8zT5MOLXU (Emilia Chodorowska) -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Wszy — GALERIA ==================== -->
+  <div class="screen" id="screen-wszy" data-label="Galeria — Wszy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Wszy</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- YT: MEQp1yA6oJs -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/MEQp1yA6oJs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- Mapa mysli (grafika/zalacznik) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Mapa mysli z filmu o wszach','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176);color:var(--text)">
+            <span style="font-size:1.4rem">&#129504;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Suplementy ==================== -->
+  <div class="screen" id="screen-suplementy" data-label="Poziom 2 — Suplementy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Suplementy</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-vmg')">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">&#128140;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">VMG (Vegan Meal Gummies)</div>
+            <div class="subfolder-meta">5 grafik &middot; 2 filmy YT &middot; 2 linki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-bialko')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#127793;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Bialko roslinne</div>
+            <div class="subfolder-meta">5 grafik</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-probiotyki')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">&#129440;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Probiotyki</div>
+            <div class="subfolder-meta">3 grafiki &middot; 1 link doTERRA</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#128214;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Przewodnik po suplementach</div>
+            <div class="subfolder-meta">2 grafiki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== VMG — GALERIA ==================== -->
+  <div class="screen" id="screen-vmg" data-label="Galeria — VMG">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">VMG</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 4 grafiki -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e1bee7,#ce93d8)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c5cae9,#9fa8da)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <!-- YT: T_a-GliV0Ac -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/T_a-GliV0Ac/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- Link: doTERRA VMG page -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- YT: g4fhLRwQQdk -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/g4fhLRwQQdk/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- 1 grafika -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <!-- Link: doTERRA VMG -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Bialko roslinne — GALERIA ==================== -->
+  <div class="screen" id="screen-bialko" data-label="Galeria — Bialko roslinne">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Bialko roslinne</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#dcedc8,#c5e1a5)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a5d6a7,#81c784)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Probiotyki — GALERIA ==================== -->
+  <div class="screen" id="screen-probiotyki" data-label="Galeria — Probiotyki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Probiotyki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffd180,#ffab40)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <!-- Link: doTERRA digestion -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../more-nutrition-digestion','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Materialy ==================== -->
+  <div class="screen" id="screen-materialy" data-label="Poziom 2 — Materialy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Materialy</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ksiazki')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">&#128218;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Ksiazki</div>
+            <div class="subfolder-meta">6 grafik &middot; 2 linki NotebookLM</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-ebooki')">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#128214;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">doTERRA Ebooki</div>
+            <div class="subfolder-meta">1 link doTERRA</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Ksiazki — GALERIA ==================== -->
+  <div class="screen" id="screen-ksiazki" data-label="Galeria — Ksiazki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Ksiazki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- NotebookLM link 1 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — mozna pogadac z ta ksiazka','Link — NotebookLM')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
+            <span style="font-size:1.1rem">&#129302; NLM</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- NotebookLM link 2 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — a tu z ta ksiazka','Link — NotebookLM')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9);color:var(--text)">
+            <span style="font-size:1.1rem">&#129302; NLM</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- 6 grafik (okladki ksiazek) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffccbc,#ff8a65)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f8bbd0,#f48fb1)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2ebf2,#80deea)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d7ccc8,#bcaaa4)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== doTERRA Ebooki — GALERIA ==================== -->
+  <div class="screen" id="screen-ebooki" data-label="Galeria — doTERRA Ebooki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">doTERRA Ebooki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- Link: doTERRA brochures -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../brochures-magazines','Link — doTERRA Broszury i magazyny')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.1rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Aktualnosci ==================== -->
+  <div class="screen" id="screen-aktualnosci" data-label="Galeria — Oferta miesiaca">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Oferta miesiaca</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 1 grafika (oferta miesiaca) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Oferta miesiaca — luty 2026','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ff9800)">
+            <span style="font-size:2rem">&#127873;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Akcesoria ==================== -->
+  <div class="screen" id="screen-akcesoria" data-label="Galeria — Dyfuzor Bubble">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Dyfuzor Bubble</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- YT: sbjYtKSPFGs -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/sbjYtKSPFGs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Wyszukiwarka ==================== -->
+  <div class="screen" id="screen-search" data-label="Wyszukiwarka">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div style="flex:1">
+          <div class="search-bar" style="margin-bottom:0">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+            <input type="text" placeholder="Szukaj materialy..." value="biofilm" autofocus>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:16px">
+      <div class="search-results">
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="background:var(--pastel-mint)">&#129440;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Biofilm i bakterie</div>
+            <div class="search-result-path">Aromaterapia</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Biofilm</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FULLSCREEN OVERLAY ==================== -->
+  <div class="fullscreen-overlay" id="fullscreen">
+    <div class="fullscreen-header">
+      <div></div>
+      <button class="fullscreen-close" onclick="closeFullscreen()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="fullscreen-image">
+      <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0);border-radius:12px">
+        <span style="font-size:4rem">&#127807;</span>
+      </div>
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        Pobierz
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+        Kopiuj link
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== CONTEXT MENU ==================== -->
+  <div class="context-menu-overlay" id="contextMenu" onclick="closeCtx()">
+    <div class="context-menu" onclick="event.stopPropagation()">
+      <div class="context-menu-header">
+        <div class="context-menu-title" id="ctxTitle">-</div>
+        <div class="context-menu-subtitle" id="ctxSub">-</div>
+      </div>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij na WhatsApp
+      </button>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        Pobierz
+      </button>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+        Kopiuj link
+      </button>
+      <button class="context-menu-cancel" onclick="closeCtx()">Anuluj</button>
+    </div>
+  </div>
+
+</div><!-- /phone -->
+
+<script>
+  let isAdmin = false;
+
+  function nav(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','back'));
+    const s = document.getElementById(id);
+    s.classList.add('active');
+    document.getElementById('screenLabel').textContent = s.dataset.label || '';
+    updateFabs();
+  }
+
+  function back(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','back'));
+    const s = document.getElementById(id);
+    s.classList.add('active','back');
+    document.getElementById('screenLabel').textContent = s.dataset.label || '';
+    updateFabs();
+  }
+
+  function toggleAdmin() {
+    isAdmin = !isAdmin;
+    const t = document.getElementById('adminToggle');
+    t.classList.toggle('on', isAdmin);
+    document.getElementById('adminLabel').textContent = isAdmin ? 'Widok: tworca' : 'Widok: czytelnik';
+    updateFabs();
+  }
+
+  function updateFabs() {
+    document.querySelectorAll('.fab').forEach(f => {
+      const inActive = f.closest('.screen')?.classList.contains('active');
+      f.classList.toggle('visible', isAdmin && inActive);
+    });
+  }
+
+  function showFab(id) { document.getElementById(id).classList.add('active'); }
+  function closeFab(id) { document.getElementById(id).classList.remove('active'); }
+  function showFullscreen() { document.getElementById('fullscreen').classList.add('active'); }
+  function closeFullscreen() { document.getElementById('fullscreen').classList.remove('active'); }
+
+  function ctxMenu(title, sub) {
+    document.getElementById('ctxTitle').textContent = title;
+    document.getElementById('ctxSub').textContent = sub;
+    document.getElementById('contextMenu').classList.add('active');
+  }
+  function closeCtx() { document.getElementById('contextMenu').classList.remove('active'); }
+
+  function filterTab(btn) {
+    btn.parentElement.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    const grid = btn.closest('.screen').querySelector('.gallery-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.gallery-item').forEach(item => {
+      if (filter === 'all' || item.dataset.type === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+</script>
+</body>
+</html>
