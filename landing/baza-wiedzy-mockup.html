@@ -1043,7 +1043,7 @@
           <div class="subfolder-icon" style="background:var(--pastel-rose)">&#129328;</div>
           <div class="subfolder-info">
             <div class="subfolder-name">Ciaza, porod, male dzieci</div>
-            <div class="subfolder-meta">3 filmy YT &middot; 1 link IG &middot; 1 link</div>
+            <div class="subfolder-meta">4 podfoldery &middot; 8 materialow</div>
           </div>
           <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
         </div>
@@ -1067,12 +1067,97 @@
     </div>
   </div>
 
-  <!-- ==================== Ciaza, porod — GALERIA ==================== -->
-  <div class="screen" id="screen-ciaza" data-label="Galeria — Ciaza, porod, male dzieci">
+  <!-- ==================== Ciaza — PODFOLDERY (poziom 3) ==================== -->
+  <div class="screen" id="screen-ciaza" data-label="Poziom 3 — Ciaza, porod, male dzieci">
     <div class="header">
       <div class="header-row">
         <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Ciaza, porod, male dzieci</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza-1trymestr')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">1</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Pierwszy trymestr</div>
+            <div class="subfolder-meta">2 filmy YT &middot; 1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-ciaza-2trymestr')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">2</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Drugi trymestr</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 link IG</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">3</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Trzeci trymestr i porod</div>
+            <div class="subfolder-meta">1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#128118;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Noworodek i niemowle</div>
+            <div class="subfolder-meta">2 grafiki &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Pierwszy trymestr — GALERIA (poziom 4) ==================== -->
+  <div class="screen" id="screen-ciaza-1trymestr" data-label="Galeria — Pierwszy trymestr (poziom 4)">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Pierwszy trymestr</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- Link: Essential Midwife -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy','Link — theessentialmidwife.com')">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.2rem">&#128218;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Essential Oils for Pregnancy...</div>
+        </div>
+        <!-- YT 1 -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/-wUePH23jUs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Bezpieczne olejki w I tryme...</div>
+        </div>
+        <!-- YT 2 -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Mdlosci poranne — olejki kt...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Drugi trymestr — GALERIA (poziom 4) ==================== -->
+  <div class="screen" id="screen-ciaza-2trymestr" data-label="Galeria — Drugi trymestr (poziom 4)">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Drugi trymestr</div>
       </div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
@@ -1088,28 +1173,13 @@
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
           </div>
+          <div class="card-label">Olejki w II trymestrze — co...</div>
         </div>
-        <!-- Link: Essential Midwife -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy, Birth and Babies','Link — theessentialmidwife.com')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
-            <span style="font-size:1.2rem">&#128218;</span>
-            <span class="type-badge">&#128279;</span>
-          </div>
-        </div>
-        <!-- YT 1 -->
-        <div class="gallery-item" data-type="film">
-          <img src="https://img.youtube.com/vi/-wUePH23jUs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
-          <span class="type-badge">&#127916;</span>
-        </div>
-        <!-- YT 2 -->
-        <div class="gallery-item" data-type="film">
-          <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
-          <span class="type-badge">&#127916;</span>
-        </div>
-        <!-- YT 3 -->
+        <!-- YT -->
         <div class="gallery-item" data-type="film">
           <img src="https://img.youtube.com/vi/QTSCbKvdHCs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
+          <div class="card-label">Rozstepy i olejki eteryczne...</div>
         </div>
       </div>
     </div>
