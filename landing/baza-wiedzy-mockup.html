@@ -226,8 +226,8 @@
       border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
-    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .category-count { display: none; }
+    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .category-count { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
 
     /* ---- SUBFOLDER LIST ---- */
     .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
@@ -775,51 +775,61 @@
         <div class="category-item" onclick="nav('screen-podstawy')">
           <div class="category-card" style="background:var(--pastel-lavender)">
             <div class="category-label"><span class="category-dot" style="color:var(--purple)"></span><span class="category-name">Podstawy aromaterapii</span></div>
+            <div class="category-count">9 tematow &middot; 28 materialow</div>
           </div>
         </div>
         <div class="category-item" onclick="nav('screen-aromaterapia')">
           <div class="category-card" style="background:var(--pastel-mint)">
             <div class="category-label"><span class="category-dot" style="color:#4CAF50"></span><span class="category-name">Aromaterapia</span></div>
+            <div class="category-count">3 tematy &middot; 17 materialow</div>
           </div>
         </div>
         <div class="category-item" onclick="nav('screen-suplementy')">
           <div class="category-card" style="background:var(--pastel-sky)">
             <div class="category-label"><span class="category-dot" style="color:#42A5F5"></span><span class="category-name">Suplementy</span></div>
+            <div class="category-count">4 tematy &middot; 18 materialow</div>
           </div>
         </div>
         <div class="category-item" onclick="nav('screen-materialy')">
           <div class="category-card" style="background:var(--pastel-rose)">
             <div class="category-label"><span class="category-dot" style="color:#E91E63"></span><span class="category-name">Materialy</span></div>
+            <div class="category-count">2 tematy &middot; 9 materialow</div>
           </div>
         </div>
         <div class="category-item" onclick="nav('screen-aktualnosci')">
           <div class="category-card" style="background:var(--pastel-peach)">
             <div class="category-label"><span class="category-dot" style="color:#FF9800"></span><span class="category-name">Aktualnosci</span></div>
+            <div class="category-count">1 galeria</div>
           </div>
         </div>
         <div class="category-item" onclick="nav('screen-akcesoria')">
           <div class="category-card" style="background:var(--pastel-lemon)">
             <div class="category-label"><span class="category-dot" style="color:#FDD835"></span><span class="category-name">Akcesoria</span></div>
+            <div class="category-count">1 galeria</div>
           </div>
         </div>
         <div class="category-item">
           <div class="category-card" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)">
             <div class="category-label"><span class="category-dot" style="color:#5C6BC0"></span><span class="category-name">Biznes doTERRA</span></div>
+            <div class="category-count">wkrotce</div>
           </div>
         </div>
         <div class="category-item">
           <div class="category-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)">
             <div class="category-label"><span class="category-dot" style="color:#AB47BC"></span><span class="category-name">Przepisy i DIY</span></div>
+            <div class="category-count">wkrotce</div>
           </div>
         </div>
         <div class="category-item">
           <div class="category-card" style="background:linear-gradient(135deg,#E0F2F1,#B2DFDB)">
             <div class="category-label"><span class="category-dot" style="color:#26A69A"></span><span class="category-name">Emocje i wellbeing</span></div>
+            <div class="category-count">wkrotce</div>
           </div>
         </div>
         <div class="category-item">
           <div class="category-card" style="background:linear-gradient(135deg,#FBE9E7,#FFCCBC)">
             <div class="category-label"><span class="category-dot" style="color:#FF7043"></span><span class="category-name">Zwierzeta</span></div>
+            <div class="category-count">wkrotce</div>
           </div>
         </div>
       </div>
