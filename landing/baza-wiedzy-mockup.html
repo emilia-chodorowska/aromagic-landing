@@ -219,6 +219,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      min-width: 0;
     }
     .category-dot {
       width: 8px; height: 8px;
@@ -226,8 +227,8 @@
       border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
-    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
-    .category-count { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .category-count { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; opacity: 0.7; }
 
     /* ---- SUBFOLDER LIST ---- */
     .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
@@ -738,6 +739,101 @@
       font-size: 0.7rem; font-weight: 600; border-radius: 8px; z-index: 100;
     }
 
+    /* ---- BREADCRUMBS ---- */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      padding: 0 0 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .breadcrumbs span { cursor: pointer; }
+    .breadcrumbs span:hover { color: var(--text-secondary); }
+    .breadcrumbs .bc-sep { color: var(--border); cursor: default; }
+    .breadcrumbs .bc-sep:hover { color: var(--border); }
+    .breadcrumbs .bc-current { color: var(--text-secondary); font-weight: 500; cursor: default; }
+    .breadcrumbs .bc-current:hover { color: var(--text-secondary); }
+
+    /* ---- MULTI-SELECT ---- */
+    .multiselect-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      animation: slideDown 0.2s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: none; }
+    }
+    .multiselect-bar.active { display: flex; }
+    .multiselect-bar-actions { display: flex; gap: 12px; align-items: center; }
+    .multiselect-bar-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .multiselect-bar-close {
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,0.2);
+      border: none; border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .gallery-item.selected::after {
+      content: '\2713';
+      position: absolute;
+      top: 6px; left: 6px;
+      width: 22px; height: 22px;
+      background: var(--purple);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 5;
+    }
+
+    /* ---- EMPTY STATE ---- */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .empty-state-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    /* ---- SWIPE HINT ---- */
+    .swipe-hint {
+      text-align: center;
+      padding: 2px 0 8px;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
     @media (max-width: 430px) {
       body { padding: 0; background: var(--bg); }
       .phone { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; }
@@ -756,6 +852,16 @@
 
 <div class="phone">
   <div class="phone-notch"></div>
+
+  <div class="multiselect-bar" id="multiselectBar">
+    <div><span id="multiselectCount">0</span> zaznaczonych</div>
+    <div class="multiselect-bar-actions">
+      <button class="multiselect-bar-btn" onclick="alert('Udostepnij')">Udostepnij</button>
+      <button class="multiselect-bar-btn" onclick="alert('Pobierz')">Pobierz</button>
+      <button class="multiselect-bar-btn admin-only" style="color:#ffcdd2" onclick="alert('Usun')">Usun</button>
+      <button class="multiselect-bar-close" onclick="exitMultiselect()">&#10005;</button>
+    </div>
+  </div>
 
   <!-- ==================== HOME — Kategorie ==================== -->
   <div class="screen active" id="screen-home" data-label="Poziom 1 — Kategorie">
@@ -848,6 +954,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Podstawy aromaterapii</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Podstawy aromaterapii</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -946,6 +1053,7 @@
         <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Apteczka olejkowa</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Apteczka olejkowa</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1019,6 +1127,7 @@
         <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Lekcja olejkowa</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Lekcja olejkowa</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
@@ -1041,6 +1150,7 @@
         <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Kadzidlowiec</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Kadzidlowiec</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1132,6 +1242,7 @@
         <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">MetaPWR</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">MetaPWR</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1155,6 +1266,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Aromaterapia</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Aromaterapia</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1193,6 +1305,7 @@
         <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Ciaza, porod, male dzieci</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Ciaza, porod, male dzieci</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1239,6 +1352,7 @@
         <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Pierwszy trymestr</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza')">Ciaza, porod...</span><span class="bc-sep">&#8250;</span><span class="bc-current">Pierwszy trymestr</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1269,6 +1383,7 @@
         <button class="header-back" onclick="back('screen-ciaza-1trymestr')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Mdlosci poranne</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza-1trymestr')">1. trymestr</span><span class="bc-sep">&#8250;</span><span class="bc-current">Mdlosci poranne</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
@@ -1302,6 +1417,7 @@
         <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Drugi trymestr</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza')">Ciaza, porod...</span><span class="bc-sep">&#8250;</span><span class="bc-current">Drugi trymestr</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
@@ -1335,6 +1451,7 @@
         <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Biofilm i bakterie</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Biofilm i bakterie</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1380,6 +1497,7 @@
         <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Wszy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Wszy</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1410,6 +1528,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Suplementy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Suplementy</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1456,6 +1575,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">VMG</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">VMG</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1517,6 +1637,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Bialko roslinne</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Bialko roslinne</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1550,6 +1671,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Probiotyki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Probiotyki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1585,6 +1707,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Materialy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Materialy</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1615,6 +1738,7 @@
         <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Ksiazki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-materialy')">Materialy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Ksiazki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1667,6 +1791,7 @@
         <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">doTERRA Ebooki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-materialy')">Materialy</span><span class="bc-sep">&#8250;</span><span class="bc-current">doTERRA Ebooki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
@@ -1692,6 +1817,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Oferta miesiaca</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Aktualnosci</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1716,6 +1842,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Dyfuzor Bubble</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Akcesoria</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>

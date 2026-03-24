@@ -219,6 +219,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      min-width: 0;
     }
     .category-dot {
       width: 8px; height: 8px;
@@ -226,8 +227,8 @@
       border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
-    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
-    .category-count { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .category-count { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; opacity: 0.7; }
 
     /* ---- SUBFOLDER LIST ---- */
     .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
@@ -1496,6 +1497,7 @@
         <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Wszy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Wszy</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1526,6 +1528,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Suplementy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Suplementy</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1572,6 +1575,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">VMG</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">VMG</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1633,6 +1637,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Bialko roslinne</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Bialko roslinne</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1666,6 +1671,7 @@
         <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Probiotyki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-suplementy')">Suplementy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Probiotyki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1701,6 +1707,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Materialy</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Materialy</span></div>
     </div>
     <div class="content">
       <div class="subfolder-list">
@@ -1731,6 +1738,7 @@
         <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Ksiazki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-materialy')">Materialy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Ksiazki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1783,6 +1791,7 @@
         <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">doTERRA Ebooki</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-materialy')">Materialy</span><span class="bc-sep">&#8250;</span><span class="bc-current">doTERRA Ebooki</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
@@ -1808,6 +1817,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Oferta miesiaca</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Aktualnosci</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
@@ -1832,6 +1842,7 @@
         <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Dyfuzor Bubble</div>
       </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Akcesoria</span></div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
