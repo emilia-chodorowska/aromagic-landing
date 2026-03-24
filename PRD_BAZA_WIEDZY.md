@@ -24,6 +24,8 @@ Baza Wiedzy to moduł Aromagic służący do organizacji i udostępniania materi
 | Edytuj / Usuń | tak | nie |
 | Dodawanie tagów | tak | nie |
 | Tworzenie/edycja notatek | tak | nie |
+| Multi-select + udostępnij zbiorczo | tak | tak |
+| Multi-select + usuń zbiorczo | tak | nie |
 | Zarządzanie kategoriami/folderami | tak | nie |
 
 ## 3. Architektura nawigacji
@@ -140,7 +142,16 @@ Ujednolicony dla wszystkich typów:
   - Admin: + Edytuj (tylko notatki), Usuń
 - "Dodano X dni temu"
 
-## 8. Tryb Admin
+## 8. Multi-select i udostępnianie zbiorcze
+- W galerii materiałów użytkownik może **zaznaczyć wiele elementów** (long press lub tryb zaznaczania)
+- Po zaznaczeniu pojawia się pasek akcji z liczbą zaznaczonych + opcje:
+  - **Udostępnij** — wysyłka zaznaczonych materiałów (WhatsApp, link, kopiuj)
+  - **Pobierz** — pobranie zaznaczonych grafik/PDF jako paczka
+  - **Usuń** (tylko admin) — usunięcie zaznaczonych
+- Działa na wszystkich typach materiałów (grafiki, filmy, linki, notatki)
+- Umożliwia np. wybranie 3 grafik + 1 notatki z tematu "Kadzidłowiec" i wysłanie jednym udostępnieniem
+
+## 9. Tryb admin
 
 ### Przez UI
 - W produkcji: rola z Keycloak (nie toggle UI, toggle jest tylko w mockupie)
@@ -158,11 +169,11 @@ Pełny CRUD na materiałach i folderach:
 - **Bulk operations**: masowe dodawanie materiałów (np. import z Discorda)
 - Sync z Discorda (kanały mirror/) jako źródło treści
 
-## 9. Źródła treści
+## 10. Źródła treści
 - **Claude Code CLI / MCP** (główne): pełny CRUD, sync z Discorda, bulk import
 - **UI** (pełne): ręczny upload grafik/PDF, wklejanie linków/filmów YT, tworzenie notatek w edytorze, zarządzanie folderami
 
-## 10. Design
+## 11. Design
 
 ### Paleta kolorów
 - Pastelowe tła kategorii (przypisywane przez admina): lavender, mint, sky, rose, peach, lemon i inne
@@ -184,18 +195,18 @@ Pełny CRUD na materiałach i folderach:
 - Scrollbary ukryte (natywny mobile look)
 - Mobile-first: 393x852 (iPhone 17 Pro)
 
-## 11. Wersja desktopowa
+## 12. Wersja desktopowa
 > **TODO** — do zaprojektowania. Wstępne założenia:
 > - 3-4 kolumny masonry zamiast 2
 > - Sidebar z kategoriami (zamiast nawigacji ekranowej)
 > - Reszta interfejsu identyczna
 
-## 12. Mockup
+## 13. Mockup
 - **Live**: https://emilia-chodorowska.github.io/aromagic-landing/baza-wiedzy-mockup/
 - **Plik**: `landing/baza-wiedzy-mockup.html`
 - Toggle "czytelnik / twórca" u góry po prawej (tylko w mockupie, w produkcji rola z Keycloak)
 
-## 13. Stack techniczny
+## 14. Stack techniczny
 - **Frontend**: React 18 + Vite + MUI (repo: aromagic-frontend)
 - **Backend**: Spring Boot + PostgreSQL (repo: aromagic-backend, port 8080)
 - **Auth**: Keycloak (role admin/czytelnik)
@@ -203,7 +214,7 @@ Pełny CRUD na materiałach i folderach:
 - **CLI**: Claude Code CLI z MCP — pełny CRUD na materiałach i folderach
 - **Sync**: MCP connectors (Discord mirror/ i inne źródła)
 
-## 14. Istniejący kod (do przebudowy)
+## 15. Istniejący kod (do przebudowy)
 Obecna implementacja w `aromagic-frontend` obsługuje tylko pliki (PDF/DOC/TXT) z folderami:
 - `src/pages/KnowledgeBasePage.jsx` — strona główna (desktop, MUI)
 - `src/components/document/FolderView.jsx` — widok folderów
