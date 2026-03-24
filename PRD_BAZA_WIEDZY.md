@@ -216,6 +216,8 @@ Pełny CRUD na materiałach i folderach:
 
 ## 15. Funkcje do rozbudowy (backlog)
 - **Notyfikacje** — powiadomienia dla czytelników o nowych materiałach (push/in-app). Np. "Dodano 3 nowe materiały w Aromaterapia > Kadzidłowiec"
+- **Okładki kategorii** — admin może ustawić własną grafikę jako okładkę kategorii/folderu (zamiast pastelowego tła)
+- **Toggle widoku podfolderów** — przełącznik lista/grid na ekranach z podfolderami. Lista (jak teraz) lub kwadratowe karty (jak na ekranie startowym)
 - **Wersja desktopowa** — 3-4 kolumny masonry, sidebar z kategoriami
 - **Ulubione / Zapisane** — czytelnik może oznaczać materiały jako ulubione i mieć do nich szybki dostęp
 - **Historia przeglądania** — ostatnio oglądane materiały
