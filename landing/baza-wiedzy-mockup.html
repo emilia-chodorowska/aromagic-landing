@@ -1098,7 +1098,7 @@
           <div class="card-label">Wsparcie odpornosci i energii</div>
         </div>
         <!-- Link: Google Photos album -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('photos.google.com/...','Link')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('photos.google.com/...','Link')">
           <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
             <span style="font-size:1.4rem">&#128247;</span>
             <span class="type-badge">&#128279;</span>
@@ -1135,7 +1135,7 @@
     </div>
     <div class="content">
       <div class="gallery-grid">
-        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('Film YT: Lekcja olejkowa','Film YT')">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()" oncontextmenu="event.preventDefault();ctxMenu('Film YT: Lekcja olejkowa','Film YT')">
           <img src="https://img.youtube.com/vi/npvjyM_d9NM/mqdefault.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder style=background:linear-gradient(135deg,#ffcdd2,#ef9a9a)><span style=font-size:1.8rem>&#9654;&#65039;</span></div>'">
           <span class="type-badge">&#127916;</span>
         </div>
@@ -1169,7 +1169,7 @@
           <div class="card-label">Frankincense — wlasciwosci lecznicze</div>
         </div>
         <!-- IG link 1 -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DP4hV7kkX3S','Link — Instagram')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DP4hV7kkX3S','Link — Instagram')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);color:var(--text)">
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
@@ -1197,7 +1197,7 @@
           <div class="card-label">DIY serum z frankincense i jojoba</div>
         </div>
         <!-- IG link 2 -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DQNP3tckl0_','Link — Instagram')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DQNP3tckl0_','Link — Instagram')">
           <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
@@ -1205,13 +1205,13 @@
           <div class="card-label">Wlasciwosci przeciwzapalne Boswellii</div>
         </div>
         <!-- YT -->
-        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
           <img src="https://img.youtube.com/vi/J7jFZkNmwo4/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
           <div class="card-label">Wszystko o Frankincense — film edukacyjny</div>
         </div>
         <!-- IG link 3 -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSDDeSiDWaW','Link — Instagram')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSDDeSiDWaW','Link — Instagram')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
@@ -1393,7 +1393,7 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- Link: Essential Midwife -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy','Link — theessentialmidwife.com')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy','Link — theessentialmidwife.com')">
           <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
             <span style="font-size:1.2rem">&#128218;</span>
             <span class="type-badge">&#128279;</span>
@@ -1401,7 +1401,7 @@
           <div class="card-label">Olejki na mdlosci — poradnik</div>
         </div>
         <!-- YT -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
           <div class="card-label">Mdlosci poranne — olejki kt...</div>
@@ -1427,7 +1427,7 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- IG link -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSn6TdBjfiq','Link — Instagram')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSn6TdBjfiq','Link — Instagram')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
@@ -1435,7 +1435,7 @@
           <div class="card-label">Olejki w II trymestrze — co...</div>
         </div>
         <!-- YT -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/QTSCbKvdHCs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
           <div class="card-label">Rozstepy i olejki eteryczne...</div>
@@ -1472,17 +1472,17 @@
           </div>
         </div>
         <!-- YT: qazzB9Bsdeg -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
         <!-- YT: vXNwykKCP9g (Emilia Chodorowska) -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
         <!-- YT: kH8zT5MOLXU (Emilia Chodorowska) -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
@@ -1507,7 +1507,7 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- YT: MEQp1yA6oJs -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/MEQp1yA6oJs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
@@ -1599,19 +1599,19 @@
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c5cae9,#9fa8da)"><span style="font-size:2rem">&#128140;</span></div>
         </div>
         <!-- YT: T_a-GliV0Ac -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/T_a-GliV0Ac/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
         <!-- Link: doTERRA VMG page -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
             <span style="font-size:1.2rem">d&#333;TERRA</span>
             <span class="type-badge">&#128279;</span>
           </div>
         </div>
         <!-- YT: g4fhLRwQQdk -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/g4fhLRwQQdk/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
@@ -1620,7 +1620,7 @@
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9)"><span style="font-size:2rem">&#128140;</span></div>
         </div>
         <!-- Link: doTERRA VMG -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
             <span style="font-size:1.2rem">d&#333;TERRA</span>
             <span class="type-badge">&#128279;</span>
@@ -1690,7 +1690,7 @@
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffd180,#ffab40)"><span style="font-size:2rem">&#129440;</span></div>
         </div>
         <!-- Link: doTERRA digestion -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../more-nutrition-digestion','Link — doTERRA')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../more-nutrition-digestion','Link — doTERRA')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
             <span style="font-size:1.2rem">d&#333;TERRA</span>
             <span class="type-badge">&#128279;</span>
@@ -1748,14 +1748,14 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- NotebookLM link 1 -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — mozna pogadac z ta ksiazka','Link — NotebookLM')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — mozna pogadac z ta ksiazka','Link — NotebookLM')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
             <span style="font-size:1.1rem">&#129302; NLM</span>
             <span class="type-badge">&#128279;</span>
           </div>
         </div>
         <!-- NotebookLM link 2 -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — a tu z ta ksiazka','Link — NotebookLM')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — a tu z ta ksiazka','Link — NotebookLM')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9);color:var(--text)">
             <span style="font-size:1.1rem">&#129302; NLM</span>
             <span class="type-badge">&#128279;</span>
@@ -1800,7 +1800,7 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- Link: doTERRA brochures -->
-        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../brochures-magazines','Link — doTERRA Broszury i magazyny')">
+        <div class="gallery-item" data-type="link" onclick="showLinkOverlay()" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../brochures-magazines','Link — doTERRA Broszury i magazyny')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
             <span style="font-size:1.1rem">d&#333;TERRA</span>
             <span class="type-badge">&#128279;</span>
@@ -1851,7 +1851,7 @@
     <div class="content">
       <div class="gallery-grid">
         <!-- YT: sbjYtKSPFGs -->
-        <div class="gallery-item" data-type="film">
+        <div class="gallery-item" data-type="film" onclick="showYtOverlay()">
           <img src="https://img.youtube.com/vi/sbjYtKSPFGs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
         </div>
@@ -1916,6 +1916,10 @@
           </div>
         </div>
       </div>
+      <div class="empty-state" style="display:none">
+        <div class="empty-state-icon">&#128270;</div>
+        <div>Brak wynikow dla tego zapytania.<br>Sprobuj innych slow kluczowych.</div>
+      </div>
     </div>
   </div>
 
@@ -1973,6 +1977,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
+    <div class="swipe-hint">&larr; swipe aby nawigowac &rarr;</div>
   </div>
 
   <!-- ==================== CONTEXT MENU ==================== -->
@@ -2062,6 +2067,7 @@
       </button>
     </div>
     <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
+    <div class="swipe-hint">&larr; swipe aby nawigowac &rarr;</div>
   </div>
 
   <!-- ==================== NOTE EDITOR OVERLAY (admin) ==================== -->
@@ -2099,6 +2105,116 @@
     </div>
   </div>
 
+  <!-- ==================== YOUTUBE DETAIL OVERLAY ==================== -->
+  <div class="fullscreen-overlay" id="ytOverlay">
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeYtOverlay()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title" id="ytOverlayTitle">Film</div>
+      </div>
+    </div>
+    <div class="fullscreen-body">
+      <div style="padding:20px 16px 0">
+        <div style="position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9">
+          <img id="ytOverlayThumb" src="https://img.youtube.com/vi/npvjyM_d9NM/hqdefault.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.85" alt="">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center">
+              <svg style="width:28px;height:28px;color:#fff;margin-left:3px" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </div>
+        <button onclick="alert('Otworz YouTube')" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:12px;border:none;border-radius:12px;background:#FF0000;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit">
+          <svg style="width:22px;height:22px" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814Z"/><path fill="#fff" d="m9.545 15.568 6.273-3.568-6.273-3.568v7.136Z"/></svg>
+          Ogladaj na YouTube
+        </button>
+      </div>
+      <div class="detail-section" style="margin-top:20px">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr" id="ytOverlayTldr">Film edukacyjny o olejkach eterycznych — wprowadzenie do aromaterapii i codziennego stosowania</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add admin-only">+ Dodaj tag</button>
+          <span class="detail-tag">Film YT</span>
+          <span class="detail-tag">aromaterapia</span>
+          <span class="detail-tag ai">edukacja</span>
+          <span class="detail-tag ai">olejki eteryczne</span>
+        </div>
+      </div>
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        Kopiuj URL
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action admin-only" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
+      </button>
+    </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 3 dni temu</div>
+    <div class="swipe-hint">&larr; swipe aby nawigowac &rarr;</div>
+  </div>
+
+  <!-- ==================== LINK DETAIL OVERLAY ==================== -->
+  <div class="fullscreen-overlay" id="linkOverlay">
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeLinkOverlay()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Link</div>
+      </div>
+    </div>
+    <div class="fullscreen-body">
+      <div style="padding:20px 16px 0">
+        <div style="border-radius:12px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--border);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center">
+            <div style="font-size:2.5rem;margin-bottom:8px">&#128279;</div>
+            <div style="font-size:0.75rem;color:var(--text-muted)">photos.google.com</div>
+          </div>
+        </div>
+        <button onclick="alert('Otworz w przegladarce')" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:12px;border:none;border-radius:12px;background:var(--purple);color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit">
+          <svg style="width:18px;height:18px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+          Otworz w przegladarce
+        </button>
+      </div>
+      <div class="detail-section" style="margin-top:20px">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr">Album ze zdjeciami olejkow eterycznych — kolekcja grafik do wykorzystania w postach i prezentacjach</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add admin-only">+ Dodaj tag</button>
+          <span class="detail-tag">Link</span>
+          <span class="detail-tag">Google Photos</span>
+          <span class="detail-tag ai">grafiki</span>
+          <span class="detail-tag ai">olejki eteryczne</span>
+        </div>
+      </div>
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        Kopiuj URL
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action admin-only" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
+      </button>
+    </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 12 dni temu</div>
+    <div class="swipe-hint">&larr; swipe aby nawigowac &rarr;</div>
+  </div>
+
 </div><!-- /phone -->
 
 <script>
@@ -2110,6 +2226,7 @@
     s.classList.add('active');
     document.getElementById('screenLabel').textContent = s.dataset.label || '';
     updateFabs();
+    initFilterTabs(s);
   }
 
   function back(id) {
@@ -2118,6 +2235,7 @@
     s.classList.add('active','back');
     document.getElementById('screenLabel').textContent = s.dataset.label || '';
     updateFabs();
+    initFilterTabs(s);
   }
 
   function toggleAdmin() {
@@ -2166,6 +2284,82 @@
         item.classList.add('hidden');
       }
     });
+  }
+
+  function initFilterTabs(screen) {
+    const grid = screen.querySelector('.gallery-grid');
+    if (!grid) return;
+    const tabs = screen.querySelectorAll('.filter-tab');
+    tabs.forEach(tab => {
+      const filter = tab.dataset.filter;
+      if (filter === 'all') return;
+      const hasItems = grid.querySelector('.gallery-item[data-type="' + filter + '"]');
+      tab.style.display = hasItems ? '' : 'none';
+    });
+  }
+
+  // YouTube overlay
+  function showYtOverlay() { document.getElementById('ytOverlay').classList.add('active'); }
+  function closeYtOverlay() { document.getElementById('ytOverlay').classList.remove('active'); }
+
+  // Link overlay
+  function showLinkOverlay() { document.getElementById('linkOverlay').classList.add('active'); }
+  function closeLinkOverlay() { document.getElementById('linkOverlay').classList.remove('active'); }
+
+  // Multi-select mode
+  let multiSelectMode = false;
+  let selectedItems = new Set();
+  let longPressTimer = null;
+
+  document.addEventListener('pointerdown', function(e) {
+    const item = e.target.closest('.gallery-item');
+    if (!item) return;
+    longPressTimer = setTimeout(() => {
+      multiSelectMode = true;
+      toggleSelectItem(item);
+      updateMultiselectBar();
+    }, 500);
+  });
+
+  document.addEventListener('pointerup', function() {
+    clearTimeout(longPressTimer);
+  });
+
+  document.addEventListener('pointermove', function() {
+    clearTimeout(longPressTimer);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!multiSelectMode) return;
+    const item = e.target.closest('.gallery-item');
+    if (!item) return;
+    e.preventDefault();
+    e.stopPropagation();
+    toggleSelectItem(item);
+    updateMultiselectBar();
+  }, true);
+
+  function toggleSelectItem(item) {
+    if (item.classList.contains('selected')) {
+      item.classList.remove('selected');
+      selectedItems.delete(item);
+    } else {
+      item.classList.add('selected');
+      selectedItems.add(item);
+    }
+  }
+
+  function updateMultiselectBar() {
+    const bar = document.getElementById('multiselectBar');
+    document.getElementById('multiselectCount').textContent = selectedItems.size;
+    bar.classList.toggle('active', multiSelectMode && selectedItems.size > 0);
+  }
+
+  function exitMultiselect() {
+    multiSelectMode = false;
+    selectedItems.forEach(item => item.classList.remove('selected'));
+    selectedItems.clear();
+    updateMultiselectBar();
   }
 </script>
 </body>
