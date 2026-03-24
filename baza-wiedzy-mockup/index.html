@@ -194,13 +194,15 @@
     /* ---- CATEGORY CARDS (styl MyMind Spaces) ---- */
     .categories-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       padding: 16px 8px 0;
       align-items: start;
     }
     .category-item {
       cursor: pointer;
+      min-width: 0;
+      overflow: hidden;
     }
     .category-card {
       aspect-ratio: 1;
@@ -213,6 +215,7 @@
       justify-content: flex-end;
       padding: 12px;
       position: relative;
+      overflow: hidden;
     }
     .category-item:active .category-card { transform: scale(0.97); }
     .category-emoji { display: none; }
@@ -221,6 +224,7 @@
       align-items: center;
       gap: 5px;
       min-width: 0;
+      max-width: 100%;
     }
     .category-dot {
       width: 8px; height: 8px;
@@ -228,8 +232,8 @@
       border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
-    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .category-count { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; opacity: 0.7; }
+    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .category-count { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; opacity: 0.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* ---- SUBFOLDER LIST ---- */
     .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
