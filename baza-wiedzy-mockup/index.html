@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Baza Wiedzy — Aromagic (Mobile Mockup)</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+      --bg: #ffffff;
+      --bg-soft: #F9FAFB;
+      --border: #E5E7EB;
+      --purple: #7E57C2;
+      --purple-soft: #F3EEFA;
+      --green: #4CAF50;
+      --green-hover: #43A047;
+      --pastel-lavender: #F3EEFA;
+      --pastel-mint: #E8F5E9;
+      --pastel-peach: #FFF3E0;
+      --pastel-sky: #E3F2FD;
+      --pastel-rose: #FCE4EC;
+      --pastel-lemon: #FFFDE7;
+    }
+
+    html { -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      color: var(--text);
+      background: #f0f0f5;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ---- PHONE FRAME ---- */
+    .phone {
+      width: 393px;
+      height: 852px;
+      background: var(--bg);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      width: 160px;
+      height: 34px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    /* ---- SCREEN ---- */
+    .screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      animation: fadeIn 0.25s ease;
+    }
+    .screen.active { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadeInBack {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: none; }
+    }
+    .screen.back { animation: fadeInBack 0.25s ease; }
+
+    /* ---- HEADER ---- */
+    .header {
+      padding: 16px 20px 0;
+      background: var(--bg);
+      z-index: 5;
+      flex-shrink: 0;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .header-back {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .header-back:hover { background: var(--bg-soft); }
+    .header-back svg { width: 18px; height: 18px; color: var(--text); }
+
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ---- HOME TOPBAR (styl MyMind) ---- */
+    .home-topbar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px;
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+    .topbar-menu {
+      width: 40px; height: 40px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .topbar-menu svg { width: 20px; height: 20px; color: var(--text-secondary); }
+    .topbar-search {
+      flex: 1; display: flex; align-items: center;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px 14px; gap: 8px;
+      cursor: pointer;
+    }
+    .topbar-search input {
+      border: none; background: transparent;
+      font-size: 0.85rem; font-family: inherit; color: var(--text-muted);
+      outline: none; flex: 1; cursor: pointer;
+    }
+    .topbar-add {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: var(--purple); border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(126,87,194,0.3);
+    }
+    .topbar-add svg { width: 22px; height: 22px; }
+    .topbar-add.admin-only-topbar { display: none; }
+    body.is-admin .topbar-add.admin-only-topbar { display: flex; }
+
+    /* ---- SEARCH (podstrony) ---- */
+    .search-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+    .search-bar svg { width: 18px; height: 18px; color: var(--text-muted); flex-shrink: 0; }
+    .search-bar input {
+      border: none; background: transparent;
+      font-size: 0.875rem; font-family: inherit; color: var(--text);
+      outline: none; flex: 1;
+    }
+    .search-bar input::placeholder { color: var(--text-muted); }
+
+    /* ---- CONTENT (scrollable) ---- */
+    .content {
+      flex: 1;
+      padding: 0 16px 24px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .content::-webkit-scrollbar { display: none; }
+
+    /* ---- CATEGORY CARDS (styl MyMind Spaces) ---- */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 16px;
+      padding: 16px 8px 0;
+    }
+    .category-item {
+      cursor: pointer;
+    }
+    .category-card {
+      aspect-ratio: 1;
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+      position: relative;
+    }
+    .category-item:active .category-card { transform: scale(0.97); }
+    .category-emoji { display: none; }
+    .category-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .category-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      flex-shrink: 0;
+    }
+    .category-name { font-size: 0.78rem; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .category-count { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ---- SUBFOLDER LIST ---- */
+    .subfolder-list { display: flex; flex-direction: column; gap: 8px; }
+    .subfolder-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--bg);
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .subfolder-card:active { transform: scale(0.98); }
+    .subfolder-card:hover { background: var(--bg-soft); }
+    .subfolder-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .subfolder-info { flex: 1; min-width: 0; }
+    .subfolder-name { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .subfolder-meta { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+    .subfolder-arrow { width: 18px; height: 18px; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ---- FILTER TABS ---- */
+    .filter-tabs {
+      display: flex; gap: 0;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-shrink: 0;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab {
+      padding: 8px 14px 10px;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--text-muted);
+      border: none; background: none; cursor: pointer;
+      white-space: nowrap; position: relative;
+      font-family: inherit; transition: color 0.15s;
+    }
+    .filter-tab.active { color: var(--purple); font-weight: 600; }
+    .filter-tab.active::after {
+      content: ''; position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px; background: var(--purple); border-radius: 2px 2px 0 0;
+    }
+
+    /* ---- GALLERY GRID (MyMind masonry style) ---- */
+    .gallery-grid {
+      columns: 2;
+      column-gap: 8px;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 0;
+      overflow: visible;
+      cursor: pointer;
+      transition: transform 0.1s;
+      background: none;
+      break-inside: avoid;
+      margin-bottom: 8px;
+      display: inline-block;
+      width: 100%;
+    }
+    .gallery-item .thumb-placeholder,
+    .gallery-item img {
+      border-radius: 8px;
+    }
+    .gallery-item:active { transform: scale(0.96); }
+    .gallery-item.hidden { display: none !important; }
+    .gallery-item img {
+      width: 100%; height: auto; display: block;
+      border-radius: 8px;
+    }
+
+    /* Tytuł pod kartą (styl MyMind — AI-generated) */
+    .card-label {
+      padding: 6px 0 0;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* AI-generated tagi — widoczne tylko w widoku szczegolowym */
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .detail-tag {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--bg-soft);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 400;
+    }
+    .detail-tag.ai { color: var(--text-muted); background: #f3f4f6; }
+    /* Elementy widoczne tylko dla admina */
+    .admin-only { display: none !important; }
+    body.is-admin .admin-only { display: inline-flex !important; }
+    body.is-admin .admin-only-flex { display: flex !important; }
+
+    .detail-tag-add {
+      font-size: 0.75rem;
+      color: #fff;
+      background: var(--purple);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      border-radius: 8px;
+    }
+    /* Taller placeholders for variety */
+    .thumb-placeholder.tall { aspect-ratio: 3/4; }
+    .thumb-placeholder.wide { aspect-ratio: 4/3; }
+
+    .type-badge {
+      position: absolute; top: 8px; right: 8px;
+      width: 24px; height: 24px; border-radius: 8px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+    }
+
+    /* ---- DETAIL VIEW (styl MyMind) ---- */
+    .fullscreen-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 50;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .fullscreen-overlay.active { display: flex; }
+    .fullscreen-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px;
+      background: linear-gradient(135deg,#a8e6cf,#88d8b0);
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .fullscreen-header-title {
+      font-size: 0.82rem; font-weight: 600;
+      flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin: 0 12px;
+    }
+    .fullscreen-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      flex-shrink: 0;
+    }
+    .fullscreen-close svg { width: 18px; height: 18px; }
+    .fullscreen-more {
+      width: 32px; height: 32px;
+      background: none; border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.2rem; letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .fullscreen-body {
+      flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .fullscreen-body::-webkit-scrollbar { display: none; }
+    .fullscreen-image {
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 40px 16px;
+      background: linear-gradient(180deg, rgba(168,230,207,0.3) 0%, var(--bg) 100%);
+    }
+    .fullscreen-image .thumb-placeholder {
+      width: 100%; height: auto; aspect-ratio: 4/5; border-radius: 12px;
+      max-height: 280px;
+    }
+    /* Color palette dots */
+    .color-palette {
+      display: flex; justify-content: center; gap: 4px;
+      padding: 8px 0 20px;
+    }
+    .color-dot {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    /* TLDR section */
+    .detail-section {
+      padding: 0 20px; margin-bottom: 20px;
+    }
+    .detail-section-label {
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--purple); text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .detail-tldr {
+      font-size: 0.82rem; color: var(--text-secondary);
+      line-height: 1.6; padding: 12px 14px;
+      background: var(--bg-soft); border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    /* Bottom actions */
+    .fullscreen-actions {
+      display: flex; justify-content: center; gap: 6px;
+      padding: 10px 12px; border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .fullscreen-action {
+      display: flex; align-items: center; gap: 4px;
+      padding: 8px 12px; border-radius: 20px;
+      background: var(--bg-soft); border: none;
+      color: var(--text-secondary);
+      font-size: 0.68rem; font-weight: 500; font-family: inherit; cursor: pointer;
+    }
+    .fullscreen-action:active { opacity: 0.7; }
+    .fullscreen-action svg { width: 16px; height: 16px; }
+
+    /* ---- CONTEXT MENU ---- */
+    .context-menu-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      z-index: 40; align-items: flex-end; justify-content: center; padding: 20px;
+    }
+    .context-menu-overlay.active { display: flex; }
+    .context-menu {
+      width: 100%; background: var(--bg); border-radius: 16px; overflow: hidden;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .context-menu-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+    .context-menu-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .context-menu-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .context-menu-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px; font-size: 0.875rem; color: var(--text);
+      cursor: pointer; border: none; background: none; width: 100%;
+      font-family: inherit; text-align: left; transition: background 0.1s;
+    }
+    .context-menu-item:hover { background: var(--bg-soft); }
+    .context-menu-item svg { width: 20px; height: 20px; color: var(--text-secondary); flex-shrink: 0; }
+    .context-menu-cancel {
+      display: block; width: calc(100% - 40px); margin: 8px 20px 16px;
+      padding: 12px; border: none; background: var(--bg-soft); border-radius: 12px;
+      font-size: 0.875rem; font-weight: 600; color: var(--text);
+      cursor: pointer; font-family: inherit;
+    }
+
+    /* ---- FAB ---- */
+    .fab {
+      position: absolute; bottom: 24px; right: 20px;
+      width: 52px; height: 52px; border-radius: 16px;
+      background: var(--purple); color: #fff; border: none;
+      display: none; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 6px 24px rgba(126,87,194,0.35); z-index: 10;
+      transition: transform 0.15s;
+    }
+    .fab.visible { display: flex; }
+    .fab:active { transform: scale(0.95); }
+    .fab svg { width: 24px; height: 24px; }
+    .fab-menu-overlay {
+      display: none; position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+      z-index: 30; align-items: flex-end; justify-content: flex-end;
+      padding: 0 20px 90px;
+    }
+    .fab-menu-overlay.active { display: flex; }
+    .fab-menu { display: flex; flex-direction: column; gap: 8px; animation: fadeUp 0.2s ease; }
+    @keyframes fadeUp {
+      from { transform: translateY(16px); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .fab-menu-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; background: var(--bg); border-radius: 12px;
+      border: none; cursor: pointer; font-family: inherit;
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ---- NOTE CARDS (MyMind style) ---- */
+    .gallery-item[data-type="notatka"] {
+      border-radius: 8px;
+      padding: 12px;
+      display: flex !important;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      max-height: 240px;
+    }
+    .gallery-item[data-type="notatka"].hidden { display: none !important; }
+    .gallery-item[data-type="notatka"]:active { transform: scale(0.98); }
+    .note-title {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .note-body {
+      font-size: 0.55rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .note-body b { font-weight: 700; }
+    .note-body em { font-style: italic; color: var(--text-secondary); }
+
+    /* ---- NOTE DETAIL (tresc wewnatrz fullscreen-overlay) ---- */
+    .note-overlay-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .note-overlay-content::-webkit-scrollbar { display: none; }
+    .note-overlay-content h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .note-overlay-content .note-detail-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .note-overlay-content p {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .note-overlay-content p b { font-weight: 600; }
+    .note-overlay-content ul {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+    .note-overlay-content li { margin-bottom: 4px; }
+    .note-overlay-content .note-highlight {
+      background: var(--pastel-lemon);
+      border-left: 3px solid #FDD835;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    /* ---- NOTE EDITOR (admin) ---- */
+    .note-editor-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      z-index: 25;
+      flex-direction: column;
+      animation: fadeIn 0.25s ease;
+    }
+    .note-editor-overlay.active { display: flex; }
+    .note-editor-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .note-editor-field {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      background: transparent;
+    }
+    .note-editor-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding: 0;
+    }
+    .note-editor-title::placeholder { color: var(--text-muted); }
+    .note-editor-body {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 300px;
+      padding: 0;
+    }
+    .note-editor-body::placeholder { color: var(--text-muted); }
+    .note-editor-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-soft);
+      flex-shrink: 0;
+    }
+    .toolbar-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: none; background: none; border-radius: 8px;
+      color: var(--text-secondary); cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; font-family: inherit;
+    }
+    .toolbar-btn:active { background: var(--border); }
+    .toolbar-btn svg { width: 18px; height: 18px; }
+    .toolbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+    .note-editor-actions {
+      display: flex;
+      gap: 8px;
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .btn-save {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-save:active { background: #6A45A8; }
+    .btn-cancel-note {
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ---- SEARCH RESULTS ---- */
+    .search-results { display: flex; flex-direction: column; gap: 8px; }
+    .search-result {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--border); cursor: pointer;
+    }
+    .search-result:hover { background: var(--bg-soft); }
+    .search-result-thumb {
+      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; overflow: hidden;
+    }
+    .search-result-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .search-result-info { flex: 1; min-width: 0; }
+    .search-result-name { font-size: 0.825rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-result-path { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+
+    /* ---- ADMIN TOGGLE ---- */
+    .admin-toggle {
+      position: fixed; top: 20px; right: 20px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+      cursor: pointer; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-family: inherit;
+    }
+    .admin-toggle .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--text-muted); transition: background 0.2s;
+    }
+    .admin-toggle.on .dot { background: var(--green); }
+
+    .screen-label {
+      position: fixed; bottom: 20px; right: 20px;
+      padding: 6px 14px; background: var(--text); color: #fff;
+      font-size: 0.7rem; font-weight: 600; border-radius: 8px; z-index: 100;
+    }
+
+    /* ---- BREADCRUMBS ---- */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      padding: 0 0 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .breadcrumbs span { cursor: pointer; }
+    .breadcrumbs span:hover { color: var(--text-secondary); }
+    .breadcrumbs .bc-sep { color: var(--border); cursor: default; }
+    .breadcrumbs .bc-sep:hover { color: var(--border); }
+    .breadcrumbs .bc-current { color: var(--text-secondary); font-weight: 500; cursor: default; }
+    .breadcrumbs .bc-current:hover { color: var(--text-secondary); }
+
+    /* ---- MULTI-SELECT ---- */
+    .multiselect-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      animation: slideDown 0.2s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: none; }
+    }
+    .multiselect-bar.active { display: flex; }
+    .multiselect-bar-actions { display: flex; gap: 12px; align-items: center; }
+    .multiselect-bar-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .multiselect-bar-close {
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,0.2);
+      border: none; border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .gallery-item.selected::after {
+      content: '\2713';
+      position: absolute;
+      top: 6px; left: 6px;
+      width: 22px; height: 22px;
+      background: var(--purple);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 5;
+    }
+
+    /* ---- EMPTY STATE ---- */
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .empty-state-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    /* ---- SWIPE HINT ---- */
+    .swipe-hint {
+      text-align: center;
+      padding: 2px 0 8px;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 430px) {
+      body { padding: 0; background: var(--bg); }
+      .phone { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; }
+      .phone-notch { display: none; }
+      .admin-toggle, .screen-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="admin-toggle" id="adminToggle" onclick="toggleAdmin()">
+  <span class="dot"></span>
+  <span id="adminLabel">Widok: czytelnik</span>
+</button>
+<div class="screen-label" id="screenLabel">Poziom 1 — Kategorie</div>
+
+<div class="phone">
+  <div class="phone-notch"></div>
+
+  <div class="multiselect-bar" id="multiselectBar">
+    <div><span id="multiselectCount">0</span> zaznaczonych</div>
+    <div class="multiselect-bar-actions">
+      <button class="multiselect-bar-btn" onclick="alert('Udostepnij')">Udostepnij</button>
+      <button class="multiselect-bar-btn" onclick="alert('Pobierz')">Pobierz</button>
+      <button class="multiselect-bar-btn admin-only" style="color:#ffcdd2" onclick="alert('Usun')">Usun</button>
+      <button class="multiselect-bar-close" onclick="exitMultiselect()">&#10005;</button>
+    </div>
+  </div>
+
+  <!-- ==================== HOME — Kategorie ==================== -->
+  <div class="screen active" id="screen-home" data-label="Poziom 1 — Kategorie">
+    <div class="home-topbar">
+      <button class="topbar-menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <div class="topbar-search" onclick="nav('screen-search')">
+        <input type="text" placeholder="Szukaj w bazie wiedzy..." readonly>
+      </div>
+      <button class="topbar-add admin-only-topbar" onclick="showFab('fabm-home')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+      </button>
+    </div>
+    <div class="content">
+      <div class="categories-grid">
+        <div class="category-item" onclick="nav('screen-podstawy')">
+          <div class="category-card" style="background:var(--pastel-lavender)">
+            <div class="category-label"><span class="category-dot" style="color:var(--purple)"></span><span class="category-name">Podstawy aromaterapii</span></div>
+            <div class="category-count">9 tematow &middot; 28 materialow</div>
+          </div>
+        </div>
+        <div class="category-item" onclick="nav('screen-aromaterapia')">
+          <div class="category-card" style="background:var(--pastel-mint)">
+            <div class="category-label"><span class="category-dot" style="color:#4CAF50"></span><span class="category-name">Aromaterapia</span></div>
+            <div class="category-count">3 tematy &middot; 17 materialow</div>
+          </div>
+        </div>
+        <div class="category-item" onclick="nav('screen-suplementy')">
+          <div class="category-card" style="background:var(--pastel-sky)">
+            <div class="category-label"><span class="category-dot" style="color:#42A5F5"></span><span class="category-name">Suplementy</span></div>
+            <div class="category-count">4 tematy &middot; 18 materialow</div>
+          </div>
+        </div>
+        <div class="category-item" onclick="nav('screen-materialy')">
+          <div class="category-card" style="background:var(--pastel-rose)">
+            <div class="category-label"><span class="category-dot" style="color:#E91E63"></span><span class="category-name">Materialy</span></div>
+            <div class="category-count">2 tematy &middot; 9 materialow</div>
+          </div>
+        </div>
+        <div class="category-item" onclick="nav('screen-aktualnosci')">
+          <div class="category-card" style="background:var(--pastel-peach)">
+            <div class="category-label"><span class="category-dot" style="color:#FF9800"></span><span class="category-name">Aktualnosci</span></div>
+            <div class="category-count">1 galeria</div>
+          </div>
+        </div>
+        <div class="category-item" onclick="nav('screen-akcesoria')">
+          <div class="category-card" style="background:var(--pastel-lemon)">
+            <div class="category-label"><span class="category-dot" style="color:#FDD835"></span><span class="category-name">Akcesoria</span></div>
+            <div class="category-count">1 galeria</div>
+          </div>
+        </div>
+        <div class="category-item">
+          <div class="category-card" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)">
+            <div class="category-label"><span class="category-dot" style="color:#5C6BC0"></span><span class="category-name">Biznes doTERRA</span></div>
+            <div class="category-count">wkrotce</div>
+          </div>
+        </div>
+        <div class="category-item">
+          <div class="category-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)">
+            <div class="category-label"><span class="category-dot" style="color:#AB47BC"></span><span class="category-name">Przepisy i DIY</span></div>
+            <div class="category-count">wkrotce</div>
+          </div>
+        </div>
+        <div class="category-item">
+          <div class="category-card" style="background:linear-gradient(135deg,#E0F2F1,#B2DFDB)">
+            <div class="category-label"><span class="category-dot" style="color:#26A69A"></span><span class="category-name">Emocje i wellbeing</span></div>
+            <div class="category-count">wkrotce</div>
+          </div>
+        </div>
+        <div class="category-item">
+          <div class="category-card" style="background:linear-gradient(135deg,#FBE9E7,#FFCCBC)">
+            <div class="category-label"><span class="category-dot" style="color:#FF7043"></span><span class="category-name">Zwierzeta</span></div>
+            <div class="category-count">wkrotce</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fab-menu-overlay" id="fabm-home" onclick="closeFab('fabm-home')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128193;</span> Nowy folder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Podstawy aromaterapii ==================== -->
+  <div class="screen" id="screen-podstawy" data-label="Poziom 2 — Podstawy aromaterapii">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Podstawy aromaterapii</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Podstawy aromaterapii</span></div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-apteczka')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#129514;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Apteczka olejkowa</div>
+            <div class="subfolder-meta">4 grafiki &middot; 1 link &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-lekcja')">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">&#127891;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Lekcja olejkowa</div>
+            <div class="subfolder-meta">1 film YT</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-kadzidlowiec')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">&#129732;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Kadzidlowiec</div>
+            <div class="subfolder-meta">5 grafik &middot; 1 film &middot; 3 linki &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-metapwr')">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#9889;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">MetaPWR</div>
+            <div class="subfolder-meta">1 grafika</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">&#128144;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Geranium i roza</div>
+            <div class="subfolder-meta">2 grafiki &middot; 1 film YT</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-lemon)">&#127819;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Olejki cytrusowe</div>
+            <div class="subfolder-meta">3 grafiki &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#127807;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Dyfuzja i mieszanki</div>
+            <div class="subfolder-meta">4 grafiki &middot; 2 notatki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">&#128170;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Sport i regeneracja</div>
+            <div class="subfolder-meta">1 film YT &middot; 2 linki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)">&#128716;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Sen i relaks</div>
+            <div class="subfolder-meta">2 grafiki &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+    <button class="fab" onclick="showFab('fabm-sub')">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+    <div class="fab-menu-overlay" id="fabm-sub" onclick="closeFab('fabm-sub')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128193;</span> Nowy folder</button>
+        <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
+        <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
+        <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+        <button class="fab-menu-item" onclick="closeFab('fabm-sub');showNoteEditor()"><span>&#128221;</span> Nowa notatka</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Apteczka olejkowa — GALERIA ==================== -->
+  <div class="screen" id="screen-apteczka" data-label="Galeria — Apteczka olejkowa">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Apteczka olejkowa</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Apteczka olejkowa</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="notatka" onclick="filterTab(this)">Notatki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- grafika 1 — tall -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (1/4)','Grafika')">
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0)">
+            <span style="font-size:2.5rem">&#127807;</span>
+          </div>
+          <div class="card-label">Olejki na co dzien — infografika</div>
+        </div>
+        <!-- NOTATKA -->
+        <div class="gallery-item" data-type="notatka" onclick="showNote()">
+          <div class="note-title">Jak zbudowac apteczke olejkowa?</div>
+          <div class="note-body">Zacznij od <b>5 podstawowych olejkow</b>: lawenda, lemon, peppermint, tea tree, frankincense.<br><br><b>Lawenda</b> — ukojenie, sen, drobne oparzenia<br><b>Lemon</b> — oczyszczanie, trawienie<br><b>Peppermint</b> — bole glowy, energia<br><b>Tea Tree</b> — antybakteryjny<br><b>Frankincense</b> — odpornosc, regeneracja</div>
+          <div class="card-label">Apteczka olejkowa — podst...</div>
+        </div>
+        <!-- grafika 2 -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (2/4)','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c3b1e1,#a58fd3)">
+            <span style="font-size:2rem">&#127769;</span>
+          </div>
+          <div class="card-label">Mieszanki na spokojny sen</div>
+        </div>
+        <!-- grafika 3 — wide -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (3/4)','Grafika')">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#ffd3b6,#ffb88c)">
+            <span style="font-size:2rem">&#129473;</span>
+          </div>
+          <div class="card-label">Pierwsza pomoc olejkowa</div>
+        </div>
+        <!-- grafika 4 — tall -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (4/4)','Grafika')">
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#a0d8ef,#73c2e0)">
+            <span style="font-size:2.5rem">&#128170;</span>
+          </div>
+          <div class="card-label">Wsparcie odpornosci i energii</div>
+        </div>
+        <!-- Link: Google Photos album -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('photos.google.com/...','Link')">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.4rem">&#128247;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Album ze zdjeciami olejkow</div>
+        </div>
+      </div>
+    </div>
+    <button class="fab" onclick="showFab('fabm-apt')">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+    <div class="fab-menu-overlay" id="fabm-apt" onclick="closeFab('fabm-apt')">
+      <div class="fab-menu" onclick="event.stopPropagation()">
+        <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
+        <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
+        <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+        <button class="fab-menu-item" onclick="closeFab('fabm-apt');showNoteEditor()"><span>&#128221;</span> Nowa notatka</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Lekcja olejkowa — GALERIA ==================== -->
+  <div class="screen" id="screen-lekcja" data-label="Galeria — Lekcja olejkowa">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Lekcja olejkowa</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Lekcja olejkowa</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('Film YT: Lekcja olejkowa','Film YT')">
+          <img src="https://img.youtube.com/vi/npvjyM_d9NM/mqdefault.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=thumb-placeholder style=background:linear-gradient(135deg,#ffcdd2,#ef9a9a)><span style=font-size:1.8rem>&#9654;&#65039;</span></div>'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Kadzidlowiec — GALERIA ==================== -->
+  <div class="screen" id="screen-kadzidlowiec" data-label="Galeria — Kadzidlowiec">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Kadzidlowiec</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">Kadzidlowiec</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+        <button class="filter-tab" data-filter="notatka" onclick="filterTab(this)">Notatki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- grafika tall -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)">
+            <span style="font-size:2.5rem">&#129732;</span>
+          </div>
+          <div class="card-label">Frankincense — wlasciwosci lecznicze</div>
+        </div>
+        <!-- IG link 1 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DP4hV7kkX3S','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Jak stosowac kadzidlowiec na co dzien</div>
+        </div>
+        <!-- NOTATKA -->
+        <div class="gallery-item" data-type="notatka" onclick="showNote()">
+          <div class="note-title">Kadzidlowiec — zastosowania i dawkowanie</div>
+          <div class="note-body">Frankincense (Boswellia) to jeden z <b>najcenniejszych olejkow</b> w aromaterapii.<br><br><b>Zastosowania:</b><br>— wsparcie ukladu odpornosciowego<br>— redukcja stanow zapalnych<br>— regeneracja skory<br>— medytacja i skupienie<br><br><b>Dawkowanie:</b><br>1-2 krople pod jezyk lub w kapsulce wegetalnej. Na skore: rozciencyc z olejem kokosowym (1:1). W dyfuzorze: 3-4 krople na 100ml wody.<br><br><em>Jak dzialaja olejki eteryczne?</em></div>
+          <div class="card-label">Zrodlo: Jodi Cohen, Olejki et...</div>
+        </div>
+        <!-- grafika -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+          <div class="card-label">Schemat dawkowania kadzidlowca</div>
+        </div>
+        <!-- grafika wide -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+          <div class="card-label">DIY serum z frankincense i jojoba</div>
+        </div>
+        <!-- IG link 2 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DQNP3tckl0_','Link — Instagram')">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Wlasciwosci przeciwzapalne Boswellii</div>
+        </div>
+        <!-- YT -->
+        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
+          <img src="https://img.youtube.com/vi/J7jFZkNmwo4/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Wszystko o Frankincense — film edukacyjny</div>
+        </div>
+        <!-- IG link 3 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSDDeSiDWaW','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Dawkowanie kadzidlowca — praktyczny poradnik</div>
+        </div>
+        <!-- grafiki -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
+            <span style="font-size:2.5rem">&#129732;</span>
+          </div>
+          <div class="card-label">Frankincense na problemy skorne</div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+          <div class="card-label">Jak laczyc kadzidlowiec z innymi olejkami</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MetaPWR — GALERIA ==================== -->
+  <div class="screen" id="screen-metapwr" data-label="Galeria — MetaPWR">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-podstawy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">MetaPWR</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-podstawy')">Podstawy aromaterapii</span><span class="bc-sep">&#8250;</span><span class="bc-current">MetaPWR</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#bbdefb,#90caf9)">
+            <span style="font-size:2rem">&#9889;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Aromaterapia ==================== -->
+  <div class="screen" id="screen-aromaterapia" data-label="Poziom 2 — Aromaterapia">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Aromaterapia</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span class="bc-current">Aromaterapia</span></div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">&#129328;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Ciaza, porod, male dzieci</div>
+            <div class="subfolder-meta">4 podfoldery &middot; 8 materialow</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-biofilm')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#129440;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Biofilm i bakterie</div>
+            <div class="subfolder-meta">3 filmy YT &middot; 2 grafiki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-wszy')">
+          <div class="subfolder-icon" style="background:var(--pastel-lemon)">&#128027;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Wszy</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 mapa mysli</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Ciaza — PODFOLDERY (poziom 3) ==================== -->
+  <div class="screen" id="screen-ciaza" data-label="Poziom 3 — Ciaza, porod, male dzieci">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Ciaza, porod, male dzieci</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Ciaza, porod, male dzieci</span></div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza-1trymestr')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">1</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Pierwszy trymestr</div>
+            <div class="subfolder-meta">2 podfoldery &middot; 4 materialy</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-ciaza-2trymestr')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">2</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Drugi trymestr</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 link IG</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">3</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Trzeci trymestr i porod</div>
+            <div class="subfolder-meta">1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#128118;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Noworodek i niemowle</div>
+            <div class="subfolder-meta">2 grafiki &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Pierwszy trymestr — PODFOLDERY (poziom 4) ==================== -->
+  <div class="screen" id="screen-ciaza-1trymestr" data-label="Poziom 4 — Pierwszy trymestr">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Pierwszy trymestr</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza')">Ciaza, porod...</span><span class="bc-sep">&#8250;</span><span class="bc-current">Pierwszy trymestr</span></div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza-mdlosci')">
+          <div class="subfolder-icon" style="background:var(--pastel-lemon)">&#129326;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Mdlosci poranne</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#128154;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Bezpieczne olejki</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Mdlosci poranne — GALERIA (poziom 5) ==================== -->
+  <div class="screen" id="screen-ciaza-mdlosci" data-label="Galeria — Mdlosci poranne (poziom 5)">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza-1trymestr')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Mdlosci poranne</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza-1trymestr')">1. trymestr</span><span class="bc-sep">&#8250;</span><span class="bc-current">Mdlosci poranne</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- Link: Essential Midwife -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('Essential Oils for Pregnancy','Link — theessentialmidwife.com')">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.2rem">&#128218;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Olejki na mdlosci — poradnik</div>
+        </div>
+        <!-- YT -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Mdlosci poranne — olejki kt...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Drugi trymestr — GALERIA (poziom 4) ==================== -->
+  <div class="screen" id="screen-ciaza-2trymestr" data-label="Galeria — Drugi trymestr (poziom 4)">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Drugi trymestr</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span>...</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-ciaza')">Ciaza, porod...</span><span class="bc-sep">&#8250;</span><span class="bc-current">Drugi trymestr</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- IG link -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSn6TdBjfiq','Link — Instagram')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
+            <span style="font-size:1.3rem">&#128248;</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+          <div class="card-label">Olejki w II trymestrze — co...</div>
+        </div>
+        <!-- YT -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/QTSCbKvdHCs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Rozstepy i olejki eteryczne...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Biofilm — GALERIA ==================== -->
+  <div class="screen" id="screen-biofilm" data-label="Galeria — Biofilm i bakterie">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Biofilm i bakterie</div>
+      </div>
+      <div class="breadcrumbs"><span onclick="nav('screen-home')">Baza Wiedzy</span><span class="bc-sep">&#8250;</span><span onclick="nav('screen-aromaterapia')">Aromaterapia</span><span class="bc-sep">&#8250;</span><span class="bc-current">Biofilm i bakterie</span></div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 2 grafiki -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
+            <span style="font-size:2rem">&#129440;</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)">
+            <span style="font-size:2rem">&#129440;</span>
+          </div>
+        </div>
+        <!-- YT: qazzB9Bsdeg -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT: vXNwykKCP9g (Emilia Chodorowska) -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- YT: kH8zT5MOLXU (Emilia Chodorowska) -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Wszy — GALERIA ==================== -->
+  <div class="screen" id="screen-wszy" data-label="Galeria — Wszy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-aromaterapia')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Wszy</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- YT: MEQp1yA6oJs -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/MEQp1yA6oJs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- Mapa mysli (grafika/zalacznik) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Mapa mysli z filmu o wszach','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176);color:var(--text)">
+            <span style="font-size:1.4rem">&#129504;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Suplementy ==================== -->
+  <div class="screen" id="screen-suplementy" data-label="Poziom 2 — Suplementy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Suplementy</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-vmg')">
+          <div class="subfolder-icon" style="background:var(--pastel-lavender)">&#128140;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">VMG (Vegan Meal Gummies)</div>
+            <div class="subfolder-meta">5 grafik &middot; 2 filmy YT &middot; 2 linki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-bialko')">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#127793;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Bialko roslinne</div>
+            <div class="subfolder-meta">5 grafik</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-probiotyki')">
+          <div class="subfolder-icon" style="background:var(--pastel-peach)">&#129440;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Probiotyki</div>
+            <div class="subfolder-meta">3 grafiki &middot; 1 link doTERRA</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#128214;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Przewodnik po suplementach</div>
+            <div class="subfolder-meta">2 grafiki</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== VMG — GALERIA ==================== -->
+  <div class="screen" id="screen-vmg" data-label="Galeria — VMG">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">VMG</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 4 grafiki -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e1bee7,#ce93d8)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c5cae9,#9fa8da)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <!-- YT: T_a-GliV0Ac -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/T_a-GliV0Ac/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- Link: doTERRA VMG page -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- YT: g4fhLRwQQdk -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/g4fhLRwQQdk/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+        <!-- 1 grafika -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9)"><span style="font-size:2rem">&#128140;</span></div>
+        </div>
+        <!-- Link: doTERRA VMG -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../foundational-wellness-vmg-plus','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Bialko roslinne — GALERIA ==================== -->
+  <div class="screen" id="screen-bialko" data-label="Galeria — Bialko roslinne">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Bialko roslinne</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#dcedc8,#c5e1a5)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a5d6a7,#81c784)"><span style="font-size:2rem">&#127793;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Probiotyki — GALERIA ==================== -->
+  <div class="screen" id="screen-probiotyki" data-label="Galeria — Probiotyki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-suplementy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Probiotyki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffd180,#ffab40)"><span style="font-size:2rem">&#129440;</span></div>
+        </div>
+        <!-- Link: doTERRA digestion -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../more-nutrition-digestion','Link — doTERRA')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.2rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Materialy ==================== -->
+  <div class="screen" id="screen-materialy" data-label="Poziom 2 — Materialy">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Materialy</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ksiazki')">
+          <div class="subfolder-icon" style="background:var(--pastel-rose)">&#128218;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Ksiazki</div>
+            <div class="subfolder-meta">6 grafik &middot; 2 linki NotebookLM</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card" onclick="nav('screen-ebooki')">
+          <div class="subfolder-icon" style="background:var(--pastel-sky)">&#128214;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">doTERRA Ebooki</div>
+            <div class="subfolder-meta">1 link doTERRA</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Ksiazki — GALERIA ==================== -->
+  <div class="screen" id="screen-ksiazki" data-label="Galeria — Ksiazki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Ksiazki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- NotebookLM link 1 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — mozna pogadac z ta ksiazka','Link — NotebookLM')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);color:var(--text)">
+            <span style="font-size:1.1rem">&#129302; NLM</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- NotebookLM link 2 -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('NotebookLM — a tu z ta ksiazka','Link — NotebookLM')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9);color:var(--text)">
+            <span style="font-size:1.1rem">&#129302; NLM</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+        <!-- 6 grafik (okladki ksiazek) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffccbc,#ff8a65)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#f8bbd0,#f48fb1)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2ebf2,#80deea)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d7ccc8,#bcaaa4)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)"><span style="font-size:2rem">&#128218;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== doTERRA Ebooki — GALERIA ==================== -->
+  <div class="screen" id="screen-ebooki" data-label="Galeria — doTERRA Ebooki">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-materialy')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">doTERRA Ebooki</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- Link: doTERRA brochures -->
+        <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('doterra.com/.../brochures-magazines','Link — doTERRA Broszury i magazyny')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);color:var(--text)">
+            <span style="font-size:1.1rem">d&#333;TERRA</span>
+            <span class="type-badge">&#128279;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Aktualnosci ==================== -->
+  <div class="screen" id="screen-aktualnosci" data-label="Galeria — Oferta miesiaca">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Oferta miesiaca</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- 1 grafika (oferta miesiaca) -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Oferta miesiaca — luty 2026','Grafika')">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ff9800)">
+            <span style="font-size:2rem">&#127873;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Akcesoria ==================== -->
+  <div class="screen" id="screen-akcesoria" data-label="Galeria — Dyfuzor Bubble">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Dyfuzor Bubble</div>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
+        <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="gallery-grid">
+        <!-- YT: sbjYtKSPFGs -->
+        <div class="gallery-item" data-type="film">
+          <img src="https://img.youtube.com/vi/sbjYtKSPFGs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Wyszukiwarka ==================== -->
+  <div class="screen" id="screen-search" data-label="Wyszukiwarka">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-home')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div style="flex:1">
+          <div class="search-bar" style="margin-bottom:0">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+            <input type="text" placeholder="Szukaj materialy..." value="biofilm" autofocus>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:16px">
+      <div class="search-results">
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="background:var(--pastel-mint)">&#129440;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Biofilm i bakterie</div>
+            <div class="search-result-path">Aromaterapia</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Biofilm</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="nav('screen-biofilm')">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
+            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="showNote()">
+          <div class="search-result-thumb" style="background:var(--pastel-peach)">&#128221;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Kadzidlowiec — zastosowania</div>
+            <div class="search-result-path">Podstawy aromaterapii > Kadzidlowiec</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DETAIL VIEW (styl MyMind) ==================== -->
+  <div class="fullscreen-overlay" id="fullscreen">
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeFullscreen()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Olejki na co dzien</div>
+      </div>
+    </div>
+    <div class="fullscreen-body">
+      <div class="fullscreen-image">
+        <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0);border-radius:8px">
+          <span style="font-size:4rem">&#127807;</span>
+        </div>
+      </div>
+      <div class="color-palette">
+        <div class="color-dot" style="background:#a8e6cf"></div>
+        <div class="color-dot" style="background:#88d8b0"></div>
+        <div class="color-dot" style="background:#5cb87a"></div>
+        <div class="color-dot" style="background:#2e7d4f"></div>
+        <div class="color-dot" style="background:#f5f5f0"></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr">Infografika przedstawiajaca 5 podstawowych olejkow eterycznych do codziennego stosowania: lawenda, lemon, peppermint, tea tree i frankincense</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add admin-only">+ Dodaj tag</button>
+          <span class="detail-tag">Grafika</span>
+          <span class="detail-tag">apteczka olejkowa</span>
+          <span class="detail-tag">lawenda</span>
+          <span class="detail-tag">peppermint</span>
+          <span class="detail-tag">lemon</span>
+          <span class="detail-tag ai">codzienne stosowanie</span>
+          <span class="detail-tag ai">aromaterapia</span>
+        </div>
+      </div>
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        Pobierz
+      </button>
+      <button class="fullscreen-action admin-only" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
+      </button>
+    </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
+  </div>
+
+  <!-- ==================== CONTEXT MENU ==================== -->
+  <div class="context-menu-overlay" id="contextMenu" onclick="closeCtx()">
+    <div class="context-menu" onclick="event.stopPropagation()">
+      <div class="context-menu-header">
+        <div class="context-menu-title" id="ctxTitle">-</div>
+        <div class="context-menu-subtitle" id="ctxSub">-</div>
+      </div>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij na WhatsApp
+      </button>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        Pobierz
+      </button>
+      <button class="context-menu-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+        Kopiuj link
+      </button>
+      <button class="context-menu-cancel" onclick="closeCtx()">Anuluj</button>
+    </div>
+  </div>
+
+  <!-- ==================== NOTE DETAIL OVERLAY (styl MyMind) ==================== -->
+  <div class="fullscreen-overlay" id="noteOverlay">
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeNote()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Notatka</div>
+      </div>
+    </div>
+    <div class="fullscreen-body">
+      <!-- Tresc notatki -->
+      <div class="note-overlay-content">
+        <h2>Jak zbudowac apteczke olejkowa?</h2>
+        <div class="note-detail-meta">Dodano 18 marca 2026</div>
+        <p>Zacznij od <b>5 podstawowych olejkow</b>, ktore pokryja wiekszosz codziennych potrzeb Twojej rodziny:</p>
+        <ul>
+          <li><b>Lawenda</b> — ukojenie, sen, drobne oparzenia</li>
+          <li><b>Lemon</b> — oczyszczanie, wsparcie trawienia</li>
+          <li><b>Peppermint</b> — bole glowy, energia</li>
+          <li><b>Tea Tree</b> — antybakteryjny, grzyby</li>
+          <li><b>Frankincense</b> — odpornosc, regeneracja</li>
+        </ul>
+        <div class="note-highlight">Te 5 olejkow to absolutne minimum. Z czasem warto rozszerzac apteczke o oregano, On Guard i DigestZen.</div>
+        <p>Kazdy z tych olejkow mozesz stosowac na <b>3 sposoby</b>: aromatycznie (dyfuzor), topikalnie (na skore z olejem bazowym) i wewnetrznie (1-2 krople w kapsulce).</p>
+      </div>
+      <!-- TLDR -->
+      <div class="detail-section">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr">Poradnik budowania apteczki olejkowej — 5 podstawowych olejkow (lawenda, lemon, peppermint, tea tree, frankincense) i 3 sposoby stosowania</div>
+      </div>
+      <!-- Mind Tags -->
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add admin-only">+ Dodaj tag</button>
+          <span class="detail-tag">Notatka</span>
+          <span class="detail-tag">apteczka olejkowa</span>
+          <span class="detail-tag">lawenda</span>
+          <span class="detail-tag">peppermint</span>
+          <span class="detail-tag">frankincense</span>
+          <span class="detail-tag ai">aromaterapia</span>
+          <span class="detail-tag ai">podstawy</span>
+        </div>
+      </div>
+      <!-- Mind Notes -->
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        Kopiuj
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action admin-only">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/></svg>
+        Edytuj
+      </button>
+      <button class="fullscreen-action admin-only" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
+      </button>
+    </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
+  </div>
+
+  <!-- ==================== NOTE EDITOR OVERLAY (admin) ==================== -->
+  <div class="note-editor-overlay" id="noteEditor">
+    <div class="header" style="padding-bottom:12px">
+      <div class="header-row">
+        <button class="header-back" onclick="closeNoteEditor()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Nowa notatka</div>
+      </div>
+    </div>
+    <div class="note-editor-content">
+      <input class="note-editor-field note-editor-title" type="text" placeholder="Tytul notatki...">
+      <textarea class="note-editor-field note-editor-body" placeholder="Zacznij pisac..."></textarea>
+    </div>
+    <div class="note-editor-toolbar">
+      <button class="toolbar-btn" style="font-weight:800">B</button>
+      <button class="toolbar-btn" style="font-style:italic">I</button>
+      <button class="toolbar-btn" style="text-decoration:underline">U</button>
+      <span class="toolbar-sep"></span>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12M8.25 17.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+      </button>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/></svg>
+      </button>
+      <span class="toolbar-sep"></span>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"/></svg>
+      </button>
+      <button class="toolbar-btn" style="font-size:0.75rem;font-weight:600;letter-spacing:-0.3px;width:auto;padding:0 6px">H2</button>
+    </div>
+    <div class="note-editor-actions">
+      <button class="btn-cancel-note" onclick="closeNoteEditor()">Anuluj</button>
+      <button class="btn-save" onclick="closeNoteEditor()">Zapisz notatke</button>
+    </div>
+  </div>
+
+</div><!-- /phone -->
+
+<script>
+  let isAdmin = false;
+
+  function nav(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','back'));
+    const s = document.getElementById(id);
+    s.classList.add('active');
+    document.getElementById('screenLabel').textContent = s.dataset.label || '';
+    updateFabs();
+  }
+
+  function back(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','back'));
+    const s = document.getElementById(id);
+    s.classList.add('active','back');
+    document.getElementById('screenLabel').textContent = s.dataset.label || '';
+    updateFabs();
+  }
+
+  function toggleAdmin() {
+    isAdmin = !isAdmin;
+    const t = document.getElementById('adminToggle');
+    t.classList.toggle('on', isAdmin);
+    document.getElementById('adminLabel').textContent = isAdmin ? 'Widok: tworca' : 'Widok: czytelnik';
+    document.body.classList.toggle('is-admin', isAdmin);
+    updateFabs();
+  }
+
+  function updateFabs() {
+    document.querySelectorAll('.fab').forEach(f => {
+      const inActive = f.closest('.screen')?.classList.contains('active');
+      f.classList.toggle('visible', isAdmin && inActive);
+    });
+  }
+
+  function showFab(id) { document.getElementById(id).classList.add('active'); }
+  function closeFab(id) { document.getElementById(id).classList.remove('active'); }
+  function showFullscreen() { document.getElementById('fullscreen').classList.add('active'); }
+  function closeFullscreen() { document.getElementById('fullscreen').classList.remove('active'); }
+
+  function ctxMenu(title, sub) {
+    document.getElementById('ctxTitle').textContent = title;
+    document.getElementById('ctxSub').textContent = sub;
+    document.getElementById('contextMenu').classList.add('active');
+  }
+  function closeCtx() { document.getElementById('contextMenu').classList.remove('active'); }
+
+  function showNote() { document.getElementById('noteOverlay').classList.add('active'); }
+  function closeNote() { document.getElementById('noteOverlay').classList.remove('active'); }
+  function showNoteEditor() { document.getElementById('noteEditor').classList.add('active'); }
+  function closeNoteEditor() { document.getElementById('noteEditor').classList.remove('active'); }
+
+  function filterTab(btn) {
+    btn.parentElement.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    const grid = btn.closest('.screen').querySelector('.gallery-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.gallery-item').forEach(item => {
+      if (filter === 'all' || item.dataset.type === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+</script>
+</body>
+</html>
