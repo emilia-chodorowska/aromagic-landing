@@ -1081,7 +1081,7 @@
           <div class="subfolder-icon" style="background:var(--pastel-rose)">1</div>
           <div class="subfolder-info">
             <div class="subfolder-name">Pierwszy trymestr</div>
-            <div class="subfolder-meta">2 filmy YT &middot; 1 link</div>
+            <div class="subfolder-meta">2 podfoldery &middot; 4 materialy</div>
           </div>
           <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
         </div>
@@ -1113,12 +1113,42 @@
     </div>
   </div>
 
-  <!-- ==================== Pierwszy trymestr — GALERIA (poziom 4) ==================== -->
-  <div class="screen" id="screen-ciaza-1trymestr" data-label="Galeria — Pierwszy trymestr (poziom 4)">
+  <!-- ==================== Pierwszy trymestr — PODFOLDERY (poziom 4) ==================== -->
+  <div class="screen" id="screen-ciaza-1trymestr" data-label="Poziom 4 — Pierwszy trymestr">
     <div class="header">
       <div class="header-row">
         <button class="header-back" onclick="back('screen-ciaza')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
         <div class="header-title">Pierwszy trymestr</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="subfolder-list">
+        <div class="subfolder-card" onclick="nav('screen-ciaza-mdlosci')">
+          <div class="subfolder-icon" style="background:var(--pastel-lemon)">&#129326;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Mdlosci poranne</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 link</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+        <div class="subfolder-card">
+          <div class="subfolder-icon" style="background:var(--pastel-mint)">&#128154;</div>
+          <div class="subfolder-info">
+            <div class="subfolder-name">Bezpieczne olejki</div>
+            <div class="subfolder-meta">1 film YT &middot; 1 notatka</div>
+          </div>
+          <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Mdlosci poranne — GALERIA (poziom 5) ==================== -->
+  <div class="screen" id="screen-ciaza-mdlosci" data-label="Galeria — Mdlosci poranne (poziom 5)">
+    <div class="header">
+      <div class="header-row">
+        <button class="header-back" onclick="back('screen-ciaza-1trymestr')"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Mdlosci poranne</div>
       </div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
@@ -1134,15 +1164,9 @@
             <span style="font-size:1.2rem">&#128218;</span>
             <span class="type-badge">&#128279;</span>
           </div>
-          <div class="card-label">Essential Oils for Pregnancy...</div>
+          <div class="card-label">Olejki na mdlosci — poradnik</div>
         </div>
-        <!-- YT 1 -->
-        <div class="gallery-item" data-type="film">
-          <img src="https://img.youtube.com/vi/-wUePH23jUs/mqdefault.jpg" alt="" onerror="this.style.display='none'">
-          <span class="type-badge">&#127916;</span>
-          <div class="card-label">Bezpieczne olejki w I tryme...</div>
-        </div>
-        <!-- YT 2 -->
+        <!-- YT -->
         <div class="gallery-item" data-type="film">
           <img src="https://img.youtube.com/vi/DeR7XqEtMjg/mqdefault.jpg" alt="" onerror="this.style.display='none'">
           <span class="type-badge">&#127916;</span>
