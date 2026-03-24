@@ -47,8 +47,8 @@
 
     /* ---- PHONE FRAME ---- */
     .phone {
-      width: 375px;
-      height: 812px;
+      width: 393px;
+      height: 852px;
       background: var(--bg);
       border-radius: 40px;
       overflow: hidden;
@@ -147,10 +147,13 @@
     /* ---- CONTENT (scrollable) ---- */
     .content {
       flex: 1;
-      padding: 0 20px 24px;
+      padding: 0 16px 24px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
+    .content::-webkit-scrollbar { display: none; }
 
     /* ---- CATEGORY CARDS ---- */
     .categories-grid {
@@ -197,7 +200,9 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       flex-shrink: 0;
+      scrollbar-width: none; -ms-overflow-style: none;
     }
+    .filter-tabs::-webkit-scrollbar { display: none; }
     .filter-tab {
       padding: 8px 14px 10px;
       font-size: 0.78rem; font-weight: 500;
@@ -213,76 +218,183 @@
       height: 2px; background: var(--purple); border-radius: 2px 2px 0 0;
     }
 
-    /* ---- GALLERY GRID ---- */
+    /* ---- GALLERY GRID (MyMind masonry style) ---- */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 3px;
+      columns: 2;
+      column-gap: 8px;
     }
     .gallery-item {
       position: relative;
-      aspect-ratio: 1;
-      border-radius: 6px;
-      overflow: hidden;
+      border-radius: 0;
+      overflow: visible;
       cursor: pointer;
       transition: transform 0.1s;
-      background: var(--bg-soft);
+      background: none;
+      break-inside: avoid;
+      margin-bottom: 8px;
+      display: inline-block;
+      width: 100%;
+    }
+    .gallery-item .thumb-placeholder,
+    .gallery-item img {
+      border-radius: 8px;
     }
     .gallery-item:active { transform: scale(0.96); }
-    .gallery-item.hidden { display: none; }
+    .gallery-item.hidden { display: none !important; }
     .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      width: 100%; height: auto; display: block;
+      border-radius: 8px;
+    }
+
+    /* Tytuł pod kartą (styl MyMind — AI-generated) */
+    .card-label {
+      padding: 6px 0 0;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* AI-generated tagi — widoczne tylko w widoku szczegolowym */
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .detail-tag {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--bg-soft);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 400;
+    }
+    .detail-tag.ai { color: var(--text-muted); background: #f3f4f6; }
+    .detail-tag-add {
+      font-size: 0.75rem;
+      color: #fff;
+      background: var(--purple);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
     }
 
     .thumb-placeholder {
-      width: 100%; height: 100%;
+      width: 100%;
+      aspect-ratio: 1;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.65rem; font-weight: 600;
       color: rgba(255,255,255,0.9);
       text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      border-radius: 8px;
     }
+    /* Taller placeholders for variety */
+    .thumb-placeholder.tall { aspect-ratio: 3/4; }
+    .thumb-placeholder.wide { aspect-ratio: 4/3; }
+
     .type-badge {
-      position: absolute; bottom: 3px; right: 3px;
-      width: 20px; height: 20px; border-radius: 5px;
-      background: rgba(0,0,0,0.55);
+      position: absolute; top: 8px; right: 8px;
+      width: 24px; height: 24px; border-radius: 8px;
+      background: rgba(0,0,0,0.45);
       backdrop-filter: blur(4px);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
     }
 
-    /* ---- FULLSCREEN ---- */
+    /* ---- DETAIL VIEW (styl MyMind) ---- */
     .fullscreen-overlay {
       display: none; position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: #000; z-index: 50;
+      background: var(--bg); z-index: 50;
       flex-direction: column;
+      overflow: hidden;
     }
     .fullscreen-overlay.active { display: flex; }
     .fullscreen-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; color: #fff;
+      padding: 14px 16px;
+      background: linear-gradient(135deg,#a8e6cf,#88d8b0);
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .fullscreen-header-title {
+      font-size: 0.82rem; font-weight: 600;
+      flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin: 0 12px;
     }
     .fullscreen-close {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,0.15); border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); border: none; color: #fff;
       display: flex; align-items: center; justify-content: center; cursor: pointer;
+      flex-shrink: 0;
     }
-    .fullscreen-close svg { width: 20px; height: 20px; }
+    .fullscreen-close svg { width: 18px; height: 18px; }
+    .fullscreen-more {
+      width: 32px; height: 32px;
+      background: none; border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.2rem; letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .fullscreen-body {
+      flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .fullscreen-body::-webkit-scrollbar { display: none; }
     .fullscreen-image {
-      flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 40px 16px;
+      background: linear-gradient(180deg, rgba(168,230,207,0.3) 0%, var(--bg) 100%);
     }
     .fullscreen-image .thumb-placeholder {
-      width: 100%; height: 380px; border-radius: 12px;
+      width: 100%; height: auto; aspect-ratio: 4/5; border-radius: 12px;
+      max-height: 280px;
     }
+    /* Color palette dots */
+    .color-palette {
+      display: flex; justify-content: center; gap: 4px;
+      padding: 8px 0 20px;
+    }
+    .color-dot {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    /* TLDR section */
+    .detail-section {
+      padding: 0 20px; margin-bottom: 20px;
+    }
+    .detail-section-label {
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--purple); text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .detail-tldr {
+      font-size: 0.82rem; color: var(--text-secondary);
+      line-height: 1.6; padding: 12px 14px;
+      background: var(--bg-soft); border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    /* Bottom actions */
     .fullscreen-actions {
-      display: flex; justify-content: center; gap: 32px; padding: 20px; color: #fff;
+      display: flex; justify-content: center; gap: 6px;
+      padding: 10px 12px; border-top: 1px solid var(--border);
+      flex-shrink: 0;
     }
     .fullscreen-action {
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
-      background: none; border: none; color: #fff;
-      font-size: 0.7rem; font-family: inherit; cursor: pointer; opacity: 0.8;
+      display: flex; align-items: center; gap: 4px;
+      padding: 8px 12px; border-radius: 20px;
+      background: var(--bg-soft); border: none;
+      color: var(--text-secondary);
+      font-size: 0.68rem; font-weight: 500; font-family: inherit; cursor: pointer;
     }
-    .fullscreen-action svg { width: 22px; height: 22px; }
+    .fullscreen-action:active { opacity: 0.7; }
+    .fullscreen-action svg { width: 16px; height: 16px; }
 
     /* ---- CONTEXT MENU ---- */
     .context-menu-overlay {
@@ -351,6 +463,179 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
+    /* ---- NOTE CARDS (MyMind style) ---- */
+    .gallery-item[data-type="notatka"] {
+      border-radius: 8px;
+      padding: 12px;
+      display: flex !important;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      max-height: 240px;
+    }
+    .gallery-item[data-type="notatka"].hidden { display: none !important; }
+    .gallery-item[data-type="notatka"]:active { transform: scale(0.98); }
+    .note-title {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .note-body {
+      font-size: 0.55rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .note-body b { font-weight: 700; }
+    .note-body em { font-style: italic; color: var(--text-secondary); }
+
+    /* ---- NOTE DETAIL (tresc wewnatrz fullscreen-overlay) ---- */
+    .note-overlay-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .note-overlay-content::-webkit-scrollbar { display: none; }
+    .note-overlay-content h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .note-overlay-content .note-detail-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .note-overlay-content p {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .note-overlay-content p b { font-weight: 600; }
+    .note-overlay-content ul {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+    .note-overlay-content li { margin-bottom: 4px; }
+    .note-overlay-content .note-highlight {
+      background: var(--pastel-lemon);
+      border-left: 3px solid #FDD835;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    /* ---- NOTE EDITOR (admin) ---- */
+    .note-editor-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      z-index: 25;
+      flex-direction: column;
+      animation: fadeIn 0.25s ease;
+    }
+    .note-editor-overlay.active { display: flex; }
+    .note-editor-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .note-editor-field {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      background: transparent;
+    }
+    .note-editor-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding: 0;
+    }
+    .note-editor-title::placeholder { color: var(--text-muted); }
+    .note-editor-body {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 300px;
+      padding: 0;
+    }
+    .note-editor-body::placeholder { color: var(--text-muted); }
+    .note-editor-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-soft);
+      flex-shrink: 0;
+    }
+    .toolbar-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: none; background: none; border-radius: 8px;
+      color: var(--text-secondary); cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; font-family: inherit;
+    }
+    .toolbar-btn:active { background: var(--border); }
+    .toolbar-btn svg { width: 18px; height: 18px; }
+    .toolbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+    .note-editor-actions {
+      display: flex;
+      gap: 8px;
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .btn-save {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-save:active { background: #6A45A8; }
+    .btn-cancel-note {
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
     /* ---- SEARCH RESULTS ---- */
     .search-results { display: flex; flex-direction: column; gap: 8px; }
     .search-result {
@@ -391,7 +676,7 @@
       font-size: 0.7rem; font-weight: 600; border-radius: 8px; z-index: 100;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 430px) {
       body { padding: 0; background: var(--bg); }
       .phone { width: 100%; height: 100vh; border-radius: 0; box-shadow: none; }
       .phone-notch { display: none; }
@@ -482,7 +767,7 @@
           <div class="subfolder-icon" style="background:var(--pastel-mint)">&#129514;</div>
           <div class="subfolder-info">
             <div class="subfolder-name">Apteczka olejkowa</div>
-            <div class="subfolder-meta">4 grafiki &middot; 1 link</div>
+            <div class="subfolder-meta">4 grafiki &middot; 1 link &middot; 1 notatka</div>
           </div>
           <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
         </div>
@@ -498,7 +783,7 @@
           <div class="subfolder-icon" style="background:var(--pastel-peach)">&#129732;</div>
           <div class="subfolder-info">
             <div class="subfolder-name">Kadzidlowiec</div>
-            <div class="subfolder-meta">5 grafik &middot; 1 film &middot; 3 linki</div>
+            <div class="subfolder-meta">5 grafik &middot; 1 film &middot; 3 linki &middot; 1 notatka</div>
           </div>
           <svg class="subfolder-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
         </div>
@@ -521,6 +806,7 @@
         <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
         <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
         <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+        <button class="fab-menu-item" onclick="closeFab('fabm-sub');showNoteEditor()"><span>&#128221;</span> Nowa notatka</button>
       </div>
     </div>
   </div>
@@ -536,37 +822,52 @@
         <button class="filter-tab active" data-filter="all" onclick="filterTab(this)">Wszystko</button>
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
+        <button class="filter-tab" data-filter="notatka" onclick="filterTab(this)">Notatki</button>
       </div>
     </div>
     <div class="content">
       <div class="gallery-grid">
-        <!-- 4 grafiki z Discorda -->
+        <!-- grafika 1 — tall -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (1/4)','Grafika')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0)">
-            <span style="font-size:2rem">&#127807;</span>
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0)">
+            <span style="font-size:2.5rem">&#127807;</span>
           </div>
+          <div class="card-label">Olejki na co dzien — infografika</div>
         </div>
+        <!-- NOTATKA -->
+        <div class="gallery-item" data-type="notatka" onclick="showNote()">
+          <div class="note-title">Jak zbudowac apteczke olejkowa?</div>
+          <div class="note-body">Zacznij od <b>5 podstawowych olejkow</b>: lawenda, lemon, peppermint, tea tree, frankincense.<br><br><b>Lawenda</b> — ukojenie, sen, drobne oparzenia<br><b>Lemon</b> — oczyszczanie, trawienie<br><b>Peppermint</b> — bole glowy, energia<br><b>Tea Tree</b> — antybakteryjny<br><b>Frankincense</b> — odpornosc, regeneracja</div>
+          <div class="card-label">Apteczka olejkowa — podst...</div>
+        </div>
+        <!-- grafika 2 -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (2/4)','Grafika')">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c3b1e1,#a58fd3)">
             <span style="font-size:2rem">&#127769;</span>
           </div>
+          <div class="card-label">Mieszanki na spokojny sen</div>
         </div>
+        <!-- grafika 3 — wide -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (3/4)','Grafika')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffd3b6,#ffb88c)">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#ffd3b6,#ffb88c)">
             <span style="font-size:2rem">&#129473;</span>
           </div>
+          <div class="card-label">Pierwsza pomoc olejkowa</div>
         </div>
+        <!-- grafika 4 — tall -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()" oncontextmenu="event.preventDefault();ctxMenu('Grafika z apteczki (4/4)','Grafika')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a0d8ef,#73c2e0)">
-            <span style="font-size:2rem">&#128170;</span>
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#a0d8ef,#73c2e0)">
+            <span style="font-size:2.5rem">&#128170;</span>
           </div>
+          <div class="card-label">Wsparcie odpornosci i energii</div>
         </div>
         <!-- Link: Google Photos album -->
         <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('photos.google.com/...','Link')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--text)">
             <span style="font-size:1.4rem">&#128247;</span>
             <span class="type-badge">&#128279;</span>
           </div>
+          <div class="card-label">Album ze zdjeciami olejkow</div>
         </div>
       </div>
     </div>
@@ -578,6 +879,7 @@
         <button class="fab-menu-item"><span>&#128248;</span> Dodaj grafike / PDF</button>
         <button class="fab-menu-item"><span>&#128279;</span> Dodaj link</button>
         <button class="fab-menu-item"><span>&#127916;</span> Dodaj film YT</button>
+        <button class="fab-menu-item" onclick="closeFab('fabm-apt');showNoteEditor()"><span>&#128221;</span> Nowa notatka</button>
       </div>
     </div>
   </div>
@@ -616,20 +918,17 @@
         <button class="filter-tab" data-filter="grafika" onclick="filterTab(this)">Grafiki</button>
         <button class="filter-tab" data-filter="link" onclick="filterTab(this)">Linki</button>
         <button class="filter-tab" data-filter="film" onclick="filterTab(this)">Filmy</button>
+        <button class="filter-tab" data-filter="notatka" onclick="filterTab(this)">Notatki</button>
       </div>
     </div>
     <div class="content">
       <div class="gallery-grid">
-        <!-- 2 grafiki (najnowsze) -->
+        <!-- grafika tall -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)">
-            <span style="font-size:2rem">&#129732;</span>
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#ffe0b2,#ffcc80)">
+            <span style="font-size:2.5rem">&#129732;</span>
           </div>
-        </div>
-        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176)">
-            <span style="font-size:2rem">&#129732;</span>
-          </div>
+          <div class="card-label">Frankincense — wlasciwosci lecznicze</div>
         </div>
         <!-- IG link 1 -->
         <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DP4hV7kkX3S','Link — Instagram')">
@@ -637,19 +936,41 @@
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
           </div>
+          <div class="card-label">Jak stosowac kadzidlowiec na co dzien</div>
         </div>
-        <!-- 1 grafika -->
+        <!-- NOTATKA -->
+        <div class="gallery-item" data-type="notatka" onclick="showNote()">
+          <div class="note-title">Kadzidlowiec — zastosowania i dawkowanie</div>
+          <div class="note-body">Frankincense (Boswellia) to jeden z <b>najcenniejszych olejkow</b> w aromaterapii.<br><br><b>Zastosowania:</b><br>— wsparcie ukladu odpornosciowego<br>— redukcja stanow zapalnych<br>— regeneracja skory<br>— medytacja i skupienie<br><br><b>Dawkowanie:</b><br>1-2 krople pod jezyk lub w kapsulce wegetalnej. Na skore: rozciencyc z olejem kokosowym (1:1). W dyfuzorze: 3-4 krople na 100ml wody.<br><br><em>Jak dzialaja olejki eteryczne?</em></div>
+          <div class="card-label">Zrodlo: Jodi Cohen, Olejki et...</div>
+        </div>
+        <!-- grafika -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)">
+          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fff9c4,#fff176)">
             <span style="font-size:2rem">&#129732;</span>
           </div>
+          <div class="card-label">Schemat dawkowania kadzidlowca</div>
+        </div>
+        <!-- grafika wide -->
+        <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#d1c4e9,#b39ddb)">
+            <span style="font-size:2rem">&#129732;</span>
+          </div>
+          <div class="card-label">DIY serum z frankincense i jojoba</div>
         </div>
         <!-- IG link 2 -->
         <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DQNP3tckl0_','Link — Instagram')">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
+          <div class="thumb-placeholder wide" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);color:var(--text)">
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
           </div>
+          <div class="card-label">Wlasciwosci przeciwzapalne Boswellii</div>
+        </div>
+        <!-- YT -->
+        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
+          <img src="https://img.youtube.com/vi/J7jFZkNmwo4/mqdefault.jpg" alt="" onerror="this.style.display='none'">
+          <span class="type-badge">&#127916;</span>
+          <div class="card-label">Wszystko o Frankincense — film edukacyjny</div>
         </div>
         <!-- IG link 3 -->
         <div class="gallery-item" data-type="link" oncontextmenu="event.preventDefault();ctxMenu('instagram.com/p/DSDDeSiDWaW','Link — Instagram')">
@@ -657,22 +978,20 @@
             <span style="font-size:1.3rem">&#128248;</span>
             <span class="type-badge">&#128279;</span>
           </div>
+          <div class="card-label">Dawkowanie kadzidlowca — praktyczny poradnik</div>
         </div>
-        <!-- YT -->
-        <div class="gallery-item" data-type="film" oncontextmenu="event.preventDefault();ctxMenu('youtube.com/watch?v=J7jFZkNmwo4','Film YT')">
-          <img src="https://img.youtube.com/vi/J7jFZkNmwo4/mqdefault.jpg" alt="" onerror="this.style.display='none'">
-          <span class="type-badge">&#127916;</span>
-        </div>
-        <!-- 2 grafiki (najstarsze) -->
+        <!-- grafiki -->
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
-          <div class="thumb-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
-            <span style="font-size:2rem">&#129732;</span>
+          <div class="thumb-placeholder tall" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7)">
+            <span style="font-size:2.5rem">&#129732;</span>
           </div>
+          <div class="card-label">Frankincense na problemy skorne</div>
         </div>
         <div class="gallery-item" data-type="grafika" onclick="showFullscreen()">
           <div class="thumb-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#80cbc4)">
             <span style="font-size:2rem">&#129732;</span>
           </div>
+          <div class="card-label">Jak laczyc kadzidlowiec z innymi olejkami</div>
         </div>
       </div>
     </div>
@@ -1240,37 +1559,71 @@
             <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
           </div>
         </div>
+        <div class="search-result" onclick="showNote()">
+          <div class="search-result-thumb" style="background:var(--pastel-peach)">&#128221;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Kadzidlowiec — zastosowania</div>
+            <div class="search-result-path">Podstawy aromaterapii > Kadzidlowiec</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== FULLSCREEN OVERLAY ==================== -->
+  <!-- ==================== DETAIL VIEW (styl MyMind) ==================== -->
   <div class="fullscreen-overlay" id="fullscreen">
-    <div class="fullscreen-header">
-      <div></div>
-      <button class="fullscreen-close" onclick="closeFullscreen()">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
-      </button>
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeFullscreen()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Olejki na co dzien</div>
+      </div>
     </div>
-    <div class="fullscreen-image">
-      <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0);border-radius:12px">
-        <span style="font-size:4rem">&#127807;</span>
+    <div class="fullscreen-body">
+      <div class="fullscreen-image">
+        <div class="thumb-placeholder" style="background:linear-gradient(135deg,#a8e6cf,#88d8b0);border-radius:8px">
+          <span style="font-size:4rem">&#127807;</span>
+        </div>
+      </div>
+      <div class="color-palette">
+        <div class="color-dot" style="background:#a8e6cf"></div>
+        <div class="color-dot" style="background:#88d8b0"></div>
+        <div class="color-dot" style="background:#5cb87a"></div>
+        <div class="color-dot" style="background:#2e7d4f"></div>
+        <div class="color-dot" style="background:#f5f5f0"></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr">Infografika przedstawiajaca 5 podstawowych olejkow eterycznych do codziennego stosowania: lawenda, lemon, peppermint, tea tree i frankincense</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add">+ Dodaj tag</button>
+          <span class="detail-tag">Grafika</span>
+          <span class="detail-tag">apteczka olejkowa</span>
+          <span class="detail-tag">lawenda</span>
+          <span class="detail-tag">peppermint</span>
+          <span class="detail-tag">lemon</span>
+          <span class="detail-tag ai">codzienne stosowanie</span>
+          <span class="detail-tag ai">aromaterapia</span>
+        </div>
       </div>
     </div>
     <div class="fullscreen-actions">
       <button class="fullscreen-action">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
         Udostepnij
       </button>
       <button class="fullscreen-action">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
         Pobierz
       </button>
-      <button class="fullscreen-action">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
-        Kopiuj link
+      <button class="fullscreen-action" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
       </button>
     </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
   </div>
 
   <!-- ==================== CONTEXT MENU ==================== -->
@@ -1293,6 +1646,107 @@
         Kopiuj link
       </button>
       <button class="context-menu-cancel" onclick="closeCtx()">Anuluj</button>
+    </div>
+  </div>
+
+  <!-- ==================== NOTE DETAIL OVERLAY (styl MyMind) ==================== -->
+  <div class="fullscreen-overlay" id="noteOverlay">
+    <div class="header" style="padding-bottom:12px;border-bottom:1px solid var(--border)">
+      <div class="header-row">
+        <button class="header-back" onclick="closeNote()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Notatka</div>
+      </div>
+    </div>
+    <div class="fullscreen-body">
+      <!-- Tresc notatki -->
+      <div class="note-overlay-content">
+        <h2>Jak zbudowac apteczke olejkowa?</h2>
+        <div class="note-detail-meta">Dodano 18 marca 2026</div>
+        <p>Zacznij od <b>5 podstawowych olejkow</b>, ktore pokryja wiekszosz codziennych potrzeb Twojej rodziny:</p>
+        <ul>
+          <li><b>Lawenda</b> — ukojenie, sen, drobne oparzenia</li>
+          <li><b>Lemon</b> — oczyszczanie, wsparcie trawienia</li>
+          <li><b>Peppermint</b> — bole glowy, energia</li>
+          <li><b>Tea Tree</b> — antybakteryjny, grzyby</li>
+          <li><b>Frankincense</b> — odpornosc, regeneracja</li>
+        </ul>
+        <div class="note-highlight">Te 5 olejkow to absolutne minimum. Z czasem warto rozszerzac apteczke o oregano, On Guard i DigestZen.</div>
+        <p>Kazdy z tych olejkow mozesz stosowac na <b>3 sposoby</b>: aromatycznie (dyfuzor), topikalnie (na skore z olejem bazowym) i wewnetrznie (1-2 krople w kapsulce).</p>
+      </div>
+      <!-- TLDR -->
+      <div class="detail-section">
+        <div class="detail-section-label">TLDR</div>
+        <div class="detail-tldr">Poradnik budowania apteczki olejkowej — 5 podstawowych olejkow (lawenda, lemon, peppermint, tea tree, frankincense) i 3 sposoby stosowania</div>
+      </div>
+      <!-- Mind Tags -->
+      <div class="detail-section">
+        <div class="detail-section-label">Mind Tags</div>
+        <div class="detail-tags">
+          <button class="detail-tag-add">+ Dodaj tag</button>
+          <span class="detail-tag">Notatka</span>
+          <span class="detail-tag">apteczka olejkowa</span>
+          <span class="detail-tag">lawenda</span>
+          <span class="detail-tag">peppermint</span>
+          <span class="detail-tag">frankincense</span>
+          <span class="detail-tag ai">aromaterapia</span>
+          <span class="detail-tag ai">podstawy</span>
+        </div>
+      </div>
+      <!-- Mind Notes -->
+    </div>
+    <div class="fullscreen-actions">
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        Kopiuj
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg>
+        Udostepnij
+      </button>
+      <button class="fullscreen-action">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/></svg>
+        Edytuj
+      </button>
+      <button class="fullscreen-action" style="color:#ef4444">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        Usun
+      </button>
+    </div>
+    <div style="text-align:center;padding:4px 0 12px;font-size:0.68rem;color:var(--text-muted)">Dodano 6 dni temu</div>
+  </div>
+
+  <!-- ==================== NOTE EDITOR OVERLAY (admin) ==================== -->
+  <div class="note-editor-overlay" id="noteEditor">
+    <div class="header" style="padding-bottom:12px">
+      <div class="header-row">
+        <button class="header-back" onclick="closeNoteEditor()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg></button>
+        <div class="header-title">Nowa notatka</div>
+      </div>
+    </div>
+    <div class="note-editor-content">
+      <input class="note-editor-field note-editor-title" type="text" placeholder="Tytul notatki...">
+      <textarea class="note-editor-field note-editor-body" placeholder="Zacznij pisac..."></textarea>
+    </div>
+    <div class="note-editor-toolbar">
+      <button class="toolbar-btn" style="font-weight:800">B</button>
+      <button class="toolbar-btn" style="font-style:italic">I</button>
+      <button class="toolbar-btn" style="text-decoration:underline">U</button>
+      <span class="toolbar-sep"></span>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12M8.25 17.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+      </button>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/></svg>
+      </button>
+      <span class="toolbar-sep"></span>
+      <button class="toolbar-btn">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"/></svg>
+      </button>
+      <button class="toolbar-btn" style="font-size:0.75rem;font-weight:600;letter-spacing:-0.3px;width:auto;padding:0 6px">H2</button>
+    </div>
+    <div class="note-editor-actions">
+      <button class="btn-cancel-note" onclick="closeNoteEditor()">Anuluj</button>
+      <button class="btn-save" onclick="closeNoteEditor()">Zapisz notatke</button>
     </div>
   </div>
 
@@ -1343,6 +1797,11 @@
     document.getElementById('contextMenu').classList.add('active');
   }
   function closeCtx() { document.getElementById('contextMenu').classList.remove('active'); }
+
+  function showNote() { document.getElementById('noteOverlay').classList.add('active'); }
+  function closeNote() { document.getElementById('noteOverlay').classList.remove('active'); }
+  function showNoteEditor() { document.getElementById('noteEditor').classList.add('active'); }
+  function closeNoteEditor() { document.getElementById('noteEditor').classList.remove('active'); }
 
   function filterTab(btn) {
     btn.parentElement.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
