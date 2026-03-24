@@ -214,7 +214,16 @@ Pełny CRUD na materiałach i folderach:
 - **CLI**: Claude Code CLI z MCP — pełny CRUD na materiałach i folderach
 - **Sync**: MCP connectors (Discord mirror/ i inne źródła)
 
-## 15. Istniejący kod (do przebudowy)
+## 15. Funkcje do rozbudowy (backlog)
+- **Notyfikacje** — powiadomienia dla czytelników o nowych materiałach (push/in-app). Np. "Dodano 3 nowe materiały w Aromaterapia > Kadzidłowiec"
+- **Wersja desktopowa** — 3-4 kolumny masonry, sidebar z kategoriami
+- **Ulubione / Zapisane** — czytelnik może oznaczać materiały jako ulubione i mieć do nich szybki dostęp
+- **Historia przeglądania** — ostatnio oglądane materiały
+- **Komentarze** — czytelnik może dodać komentarz do materiału (pytanie, feedback)
+- **Statystyki** (admin) — ile osób otworzyło materiał, najpopularniejsze treści
+- **Wersjonowanie notatek** — historia edycji notatek
+
+## 16. Istniejący kod (do przebudowy)
 Obecna implementacja w `aromagic-frontend` obsługuje tylko pliki (PDF/DOC/TXT) z folderami:
 - `src/pages/KnowledgeBasePage.jsx` — strona główna (desktop, MUI)
 - `src/components/document/FolderView.jsx` — widok folderów
