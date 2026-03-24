@@ -199,9 +199,6 @@
       padding: 16px 8px 0;
     }
     .category-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       cursor: pointer;
     }
     .category-card {
@@ -210,23 +207,26 @@
       border-radius: 10px;
       transition: transform 0.15s, box-shadow 0.15s;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+      position: relative;
     }
     .category-item:active .category-card { transform: scale(0.97); }
     .category-emoji { display: none; }
     .category-label {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 0 0;
+      gap: 5px;
     }
     .category-dot {
-      width: 10px; height: 10px;
+      width: 8px; height: 8px;
       border-radius: 50%;
-      border: 2px solid currentColor;
+      border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
-    .category-name { font-size: 0.82rem; font-weight: 500; color: var(--text); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+    .category-name { font-size: 0.72rem; font-weight: 500; color: var(--text); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .category-count { display: none; }
 
     /* ---- SUBFOLDER LIST ---- */
@@ -773,44 +773,54 @@
     <div class="content">
       <div class="categories-grid">
         <div class="category-item" onclick="nav('screen-podstawy')">
-          <div class="category-card" style="background:var(--pastel-lavender)"></div>
-          <div class="category-label"><span class="category-dot" style="color:var(--purple)"></span><span class="category-name">Podstawy aromaterapii</span></div>
+          <div class="category-card" style="background:var(--pastel-lavender)">
+            <div class="category-label"><span class="category-dot" style="color:var(--purple)"></span><span class="category-name">Podstawy aromaterapii</span></div>
+          </div>
         </div>
         <div class="category-item" onclick="nav('screen-aromaterapia')">
-          <div class="category-card" style="background:var(--pastel-mint)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#4CAF50"></span><span class="category-name">Aromaterapia</span></div>
+          <div class="category-card" style="background:var(--pastel-mint)">
+            <div class="category-label"><span class="category-dot" style="color:#4CAF50"></span><span class="category-name">Aromaterapia</span></div>
+          </div>
         </div>
         <div class="category-item" onclick="nav('screen-suplementy')">
-          <div class="category-card" style="background:var(--pastel-sky)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#42A5F5"></span><span class="category-name">Suplementy</span></div>
+          <div class="category-card" style="background:var(--pastel-sky)">
+            <div class="category-label"><span class="category-dot" style="color:#42A5F5"></span><span class="category-name">Suplementy</span></div>
+          </div>
         </div>
         <div class="category-item" onclick="nav('screen-materialy')">
-          <div class="category-card" style="background:var(--pastel-rose)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#E91E63"></span><span class="category-name">Materialy</span></div>
+          <div class="category-card" style="background:var(--pastel-rose)">
+            <div class="category-label"><span class="category-dot" style="color:#E91E63"></span><span class="category-name">Materialy</span></div>
+          </div>
         </div>
         <div class="category-item" onclick="nav('screen-aktualnosci')">
-          <div class="category-card" style="background:var(--pastel-peach)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#FF9800"></span><span class="category-name">Aktualnosci</span></div>
+          <div class="category-card" style="background:var(--pastel-peach)">
+            <div class="category-label"><span class="category-dot" style="color:#FF9800"></span><span class="category-name">Aktualnosci</span></div>
+          </div>
         </div>
         <div class="category-item" onclick="nav('screen-akcesoria')">
-          <div class="category-card" style="background:var(--pastel-lemon)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#FDD835"></span><span class="category-name">Akcesoria</span></div>
+          <div class="category-card" style="background:var(--pastel-lemon)">
+            <div class="category-label"><span class="category-dot" style="color:#FDD835"></span><span class="category-name">Akcesoria</span></div>
+          </div>
         </div>
         <div class="category-item">
-          <div class="category-card" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#5C6BC0"></span><span class="category-name">Biznes doTERRA</span></div>
+          <div class="category-card" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)">
+            <div class="category-label"><span class="category-dot" style="color:#5C6BC0"></span><span class="category-name">Biznes doTERRA</span></div>
+          </div>
         </div>
         <div class="category-item">
-          <div class="category-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#AB47BC"></span><span class="category-name">Przepisy i DIY</span></div>
+          <div class="category-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)">
+            <div class="category-label"><span class="category-dot" style="color:#AB47BC"></span><span class="category-name">Przepisy i DIY</span></div>
+          </div>
         </div>
         <div class="category-item">
-          <div class="category-card" style="background:linear-gradient(135deg,#E0F2F1,#B2DFDB)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#26A69A"></span><span class="category-name">Emocje i wellbeing</span></div>
+          <div class="category-card" style="background:linear-gradient(135deg,#E0F2F1,#B2DFDB)">
+            <div class="category-label"><span class="category-dot" style="color:#26A69A"></span><span class="category-name">Emocje i wellbeing</span></div>
+          </div>
         </div>
         <div class="category-item">
-          <div class="category-card" style="background:linear-gradient(135deg,#FBE9E7,#FFCCBC)"></div>
-          <div class="category-label"><span class="category-dot" style="color:#FF7043"></span><span class="category-name">Zwierzeta</span></div>
+          <div class="category-card" style="background:linear-gradient(135deg,#FBE9E7,#FFCCBC)">
+            <div class="category-label"><span class="category-dot" style="color:#FF7043"></span><span class="category-name">Zwierzeta</span></div>
+          </div>
         </div>
       </div>
     </div>
