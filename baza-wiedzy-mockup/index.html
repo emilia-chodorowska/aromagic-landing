@@ -825,6 +825,22 @@
       opacity: 0.5;
     }
 
+    /* ---- SEARCH SUGGESTIONS ---- */
+    .search-suggestion {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .search-suggestion:hover { background: var(--bg-soft); border-color: var(--purple); color: var(--purple); }
+    .search-suggestion:active { background: var(--purple-soft); }
+
     /* ---- SWIPE HINT ---- */
     .swipe-hint {
       text-align: center;
@@ -1867,58 +1883,145 @@
         <div style="flex:1">
           <div class="search-bar" style="margin-bottom:0">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
-            <input type="text" placeholder="Szukaj materialy..." value="biofilm" autofocus>
+            <input type="text" id="searchInput" placeholder="Szukaj materialy..." value="" autofocus oninput="searchFilter(this.value)">
+            <button onclick="document.getElementById('searchInput').value='';searchFilter('')" style="background:none;border:none;cursor:pointer;padding:0;display:none" id="searchClear">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--text-muted)"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="content" style="padding-top:16px">
-      <div class="search-results">
-        <div class="search-result" onclick="nav('screen-biofilm')">
+      <!-- Podpowiedzi przed wpisaniem -->
+      <div id="searchSuggestions" style="padding:8px 0">
+        <div style="font-size:0.72rem;font-weight:600;color:var(--text-secondary);margin-bottom:12px">Popularne wyszukiwania</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='lawenda';searchFilter('lawenda')">lawenda</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='biofilm';searchFilter('biofilm')">biofilm</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='kadzidlowiec';searchFilter('kadzidlowiec')">kadzidlowiec</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='apteczka';searchFilter('apteczka')">apteczka</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='sen';searchFilter('sen')">sen</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='VMG';searchFilter('VMG')">VMG</button>
+          <button class="search-suggestion" onclick="document.getElementById('searchInput').value='probiotyki';searchFilter('probiotyki')">probiotyki</button>
+        </div>
+      </div>
+      <!-- Wyniki wyszukiwania -->
+      <div class="search-results" id="searchResults" style="display:none">
+        <!-- Foldery -->
+        <div class="search-result" data-search="biofilm bakterie" onclick="nav('screen-biofilm')">
           <div class="search-result-thumb" style="background:var(--pastel-mint)">&#129440;</div>
           <div class="search-result-info">
             <div class="search-result-name">Biofilm i bakterie</div>
             <div class="search-result-path">Aromaterapia</div>
           </div>
         </div>
-        <div class="search-result" onclick="nav('screen-biofilm')">
+        <div class="search-result" data-search="apteczka olejkowa olejki codzienne" onclick="nav('screen-apteczka')">
+          <div class="search-result-thumb" style="background:var(--pastel-mint)">&#129514;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Apteczka olejkowa</div>
+            <div class="search-result-path">Podstawy aromaterapii</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="kadzidlowiec frankincense boswellia" onclick="nav('screen-kadzidlowiec')">
+          <div class="search-result-thumb" style="background:var(--pastel-peach)">&#129732;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Kadzidlowiec</div>
+            <div class="search-result-path">Podstawy aromaterapii</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="vmg suplementy witaminy mineraly" onclick="nav('screen-vmg')">
+          <div class="search-result-thumb" style="background:var(--pastel-sky)">&#128138;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">VMG</div>
+            <div class="search-result-path">Suplementy</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="probiotyki jelita flora bakteryjna" onclick="nav('screen-probiotyki')">
+          <div class="search-result-thumb" style="background:var(--pastel-sky)">&#129440;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Probiotyki</div>
+            <div class="search-result-path">Suplementy</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="wszy pasożyty dzieci głowa" onclick="nav('screen-wszy')">
+          <div class="search-result-thumb" style="background:var(--pastel-mint)">&#128028;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Wszy</div>
+            <div class="search-result-path">Aromaterapia</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="metapwr metabolizm energia odchudzanie" onclick="nav('screen-metapwr')">
+          <div class="search-result-thumb" style="background:var(--pastel-sky)">&#9889;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">MetaPWR</div>
+            <div class="search-result-path">Podstawy aromaterapii</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="bialko roślinne shake koktajl" onclick="nav('screen-bialko')">
+          <div class="search-result-thumb" style="background:var(--pastel-sky)">&#129371;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Bialko roslinne</div>
+            <div class="search-result-path">Suplementy</div>
+          </div>
+        </div>
+        <!-- Materialy -->
+        <div class="search-result" data-search="biofilm film yt youtube" onclick="showYtOverlay()">
           <div class="search-result-thumb" style="overflow:hidden;padding:0">
             <img src="https://img.youtube.com/vi/qazzB9Bsdeg/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
           </div>
           <div class="search-result-info">
-            <div class="search-result-name">Film YT: Biofilm</div>
+            <div class="search-result-name">Film: Biofilm — co to jest?</div>
             <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
           </div>
         </div>
-        <div class="search-result" onclick="nav('screen-biofilm')">
-          <div class="search-result-thumb" style="overflow:hidden;padding:0">
-            <img src="https://img.youtube.com/vi/vXNwykKCP9g/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
-          </div>
-          <div class="search-result-info">
-            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
-            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
-          </div>
-        </div>
-        <div class="search-result" onclick="nav('screen-biofilm')">
-          <div class="search-result-thumb" style="overflow:hidden;padding:0">
-            <img src="https://img.youtube.com/vi/kH8zT5MOLXU/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
-          </div>
-          <div class="search-result-info">
-            <div class="search-result-name">Film YT: Emilia Chodorowska</div>
-            <div class="search-result-path">Aromaterapia > Biofilm i bakterie</div>
-          </div>
-        </div>
-        <div class="search-result" onclick="showNote()">
+        <div class="search-result" data-search="kadzidlowiec frankincense notatka dawkowanie zastosowania" onclick="showNote()">
           <div class="search-result-thumb" style="background:var(--pastel-peach)">&#128221;</div>
           <div class="search-result-info">
-            <div class="search-result-name">Kadzidlowiec — zastosowania</div>
+            <div class="search-result-name">Kadzidlowiec — zastosowania i dawkowanie</div>
             <div class="search-result-path">Podstawy aromaterapii > Kadzidlowiec</div>
           </div>
         </div>
+        <div class="search-result" data-search="apteczka olejkowa notatka jak zbudowac lawenda peppermint" onclick="showNote()">
+          <div class="search-result-thumb" style="background:var(--pastel-lavender)">&#128221;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Jak zbudowac apteczke olejkowa?</div>
+            <div class="search-result-path">Podstawy aromaterapii > Apteczka olejkowa</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="sen relaks lawenda dyfuzja mieszanki spokojny" onclick="showFullscreen()">
+          <div class="search-result-thumb" style="background:linear-gradient(135deg,#c3b1e1,#a58fd3)">&#127769;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Mieszanki na spokojny sen</div>
+            <div class="search-result-path">Podstawy aromaterapii > Apteczka olejkowa</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="lekcja olejkowa film yt youtube podstawy" onclick="showYtOverlay()">
+          <div class="search-result-thumb" style="overflow:hidden;padding:0">
+            <img src="https://img.youtube.com/vi/npvjyM_d9NM/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.textContent='&#127916;'">
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-name">Film: Lekcja olejkowa</div>
+            <div class="search-result-path">Podstawy aromaterapii > Lekcja olejkowa</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="ksiazki link aromaterapia edukacja" onclick="showLinkOverlay()">
+          <div class="search-result-thumb" style="background:var(--pastel-rose)">&#128218;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Polecane ksiazki o olejkach</div>
+            <div class="search-result-path">Materialy > Ksiazki</div>
+          </div>
+        </div>
+        <div class="search-result" data-search="ciaza porod trymestr mdlosci dzieci" onclick="nav('screen-ciaza')">
+          <div class="search-result-thumb" style="background:var(--pastel-rose)">&#129328;</div>
+          <div class="search-result-info">
+            <div class="search-result-name">Ciaza, porod, male dzieci</div>
+            <div class="search-result-path">Aromaterapia</div>
+          </div>
+        </div>
       </div>
-      <div class="empty-state" style="display:none">
+      <div class="empty-state" id="searchEmpty" style="display:none">
         <div class="empty-state-icon">&#128270;</div>
-        <div>Brak wynikow dla tego zapytania.<br>Sprobuj innych slow kluczowych.</div>
+        <div>Nie znaleziono materialow.<br>Sprobuj innych slow kluczowych.</div>
       </div>
     </div>
   </div>
@@ -2296,6 +2399,37 @@
       const hasItems = grid.querySelector('.gallery-item[data-type="' + filter + '"]');
       tab.style.display = hasItems ? '' : 'none';
     });
+  }
+
+  // Search
+  function searchFilter(query) {
+    const q = query.trim().toLowerCase();
+    const suggestions = document.getElementById('searchSuggestions');
+    const results = document.getElementById('searchResults');
+    const empty = document.getElementById('searchEmpty');
+    const clearBtn = document.getElementById('searchClear');
+
+    clearBtn.style.display = q ? 'block' : 'none';
+
+    if (!q) {
+      suggestions.style.display = '';
+      results.style.display = 'none';
+      empty.style.display = 'none';
+      return;
+    }
+
+    suggestions.style.display = 'none';
+    results.style.display = '';
+
+    let visibleCount = 0;
+    results.querySelectorAll('.search-result').forEach(item => {
+      const searchData = (item.dataset.search || '') + ' ' + item.textContent.toLowerCase();
+      const match = q.split(/\s+/).every(word => searchData.includes(word));
+      item.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+
+    empty.style.display = visibleCount === 0 ? '' : 'none';
   }
 
   // YouTube overlay
